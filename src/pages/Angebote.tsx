@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -36,8 +37,28 @@ const angebote = [
 ];
 
 const Angebote = () => {
+  const seoSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "TrauWorte – Meine Angebote",
+    "url": "https://trauworte.de/angebote",
+    "offers": angebote.map(a => ({
+      "@type": "Offer",
+      "name": a.title,
+      "description": a.desc,
+      "image": a.img
+    }))
+  };
+
   return (
     <Layout>
+      <SEO
+        title="Meine Angebote – Trauungszeremonien | TrauWorte"
+        description="6 Angebote für eure Hochzeit: Persönliche Trauungszeremonie, Moderation, Traurede, Beratung, Ehegelübde & Outdoor-Trauungen."
+        canonical="/angebote"
+        ogImage={angebote[0].img}
+        schema={seoSchema}
+      />
       <section className="py-20 bg-peach">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-display text-4xl md:text-5xl text-foreground">Meine Angebote</h1>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -63,6 +64,25 @@ const Kontakt = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Kontakt – Trauungszeremonie anfragen | TrauWorte"
+        description="Kontaktiere Stefanie Sick für deine persönliche Trauungszeremonie. Fülle das Formular aus oder rufe an."
+        canonical="/kontakt"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          "mainEntity": {
+            "@type": "LocalBusiness",
+            "name": "TrauWorte – Stefanie Sick",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "Customer Service",
+              "email": "info@stefaniesick.com",
+              "telephone": "+49000000000"
+            }
+          }
+        }}
+      />
       <section className="py-20 bg-peach">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-display text-4xl md:text-5xl text-foreground">Kontakt</h1>
