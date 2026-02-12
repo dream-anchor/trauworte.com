@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['"Playfair Display"', 'serif'],
-        body: ['"Lato"', 'sans-serif'],
+        display: ['"Boska"', 'serif'],
+        body: ['"Inter"', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -56,6 +56,10 @@ export default {
         peach: "hsl(var(--peach))",
         cream: "hsl(var(--cream))",
         gold: "hsl(var(--gold))",
+        beige: "hsl(var(--beige))",
+        "beige-light": "hsl(var(--beige-light))",
+        "beige-dark": "hsl(var(--beige-dark))",
+        brown: "hsl(var(--brown))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

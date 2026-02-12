@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@300;400;700&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=boska@400,500,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,25 +7,25 @@
 
 @layer base {
   :root {
-    --background: 25 50% 96%;
-    --foreground: 20 10% 20%;
+    --background: 27 53% 96%;
+    --foreground: 0 0% 10%;
 
-    --card: 25 40% 94%;
-    --card-foreground: 20 10% 20%;
+    --card: 27 53% 96%;
+    --card-foreground: 0 0% 10%;
 
-    --popover: 25 50% 96%;
-    --popover-foreground: 20 10% 20%;
+    --popover: 27 53% 96%;
+    --popover-foreground: 0 0% 10%;
 
-    --primary: 20 40% 45%;
+    --primary: 30 25% 44%;
     --primary-foreground: 30 60% 97%;
 
-    --secondary: 25 45% 90%;
-    --secondary-foreground: 20 10% 20%;
+    --secondary: 25 60% 92%;
+    --secondary-foreground: 0 0% 10%;
 
     --muted: 25 30% 92%;
-    --muted-foreground: 20 8% 45%;
+    --muted-foreground: 0 0% 40%;
 
-    --accent: 18 50% 55%;
+    --accent: 30 33% 57%;
     --accent-foreground: 30 60% 97%;
 
     --destructive: 0 84.2% 60.2%;
@@ -32,15 +33,19 @@
 
     --border: 25 25% 85%;
     --input: 25 25% 85%;
-    --ring: 20 40% 45%;
+    --ring: 30 33% 57%;
 
     --radius: 0.5rem;
 
     --warm: 25 60% 92%;
     --warm-dark: 20 30% 30%;
-    --peach: 20 70% 94%;
-    --cream: 35 50% 96%;
-    --gold: 35 60% 50%;
+    --peach: 24 90% 92%;
+    --cream: 30 53% 96%;
+    --gold: 43 100% 49%;
+    --beige: 24 90% 92%;
+    --beige-light: 27 53% 96%;
+    --beige-dark: 22 88% 93%;
+    --brown: 30 25% 44%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -60,10 +65,10 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Boska', serif;
   }
 }
