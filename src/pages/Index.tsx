@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Star, Mail, Phone, ChevronDown } from "lucide-react";
 
@@ -24,8 +25,32 @@ const standorte = [
 ];
 
 const Index = () => {
+  const seoSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "TrauWorte – Stefanie Sick",
+    "description": "Freie Rednerin für einzigartige Trauungszeremonien",
+    "url": "https://trauworte.de",
+    "image": HERO_IMG,
+    "priceRange": "€€",
+    "areaServed": ["DE", "AT", "CH", "ES", "IT"],
+    "telephone": "+49000000000",
+    "email": "info@stefaniesick.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "DE"
+    }
+  };
+
   return (
     <Layout>
+      <SEO
+        title="TrauWorte – Freie Rednerin für Trauungszeremonien"
+        description="Stefanie Sick – studierte Kommunikationswissenschaftlerin gestaltet einzigartige, persönliche Trauungszeremonien in Deutschland, Österreich, Schweiz und Europa."
+        canonical="/"
+        ogImage={HERO_IMG}
+        schema={seoSchema}
+      />
       {/* Hero */}
       <section className="bg-peach py-16 md:py-24 relative overflow-hidden">
         <div className="container mx-auto px-4">
@@ -64,7 +89,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
             <div className="aspect-[3/4] rounded-lg overflow-hidden shadow-lg">
-              <img src={HERO_IMG} alt="Stefanie Sick" className="w-full h-full object-cover" />
+              <img src={ABOUT_IMG} alt="Beratung mit Stefanie Sick" className="w-full h-full object-cover" />
             </div>
             <div className="space-y-6">
               <h2 className="font-display text-3xl md:text-4xl text-foreground">
@@ -138,6 +163,42 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Ablauf-Sektion */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="font-display text-3xl md:text-4xl text-foreground text-center mb-12">
+            So läuft unsere Zusammenarbeit ab
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                step: "01",
+                title: "Kennenlernen",
+                desc: "Wir treffen uns zum Gespräch. Ich möchte eure Geschichte, eure Liebe und eure Wünsche verstehen – denn nur so kann ich eure perfekte Zeremonie gestalten."
+              },
+              {
+                step: "02",
+                title: "Planung",
+                desc: "Gemeinsam entwickeln wir eure Zeremonie. Ablauf, Rituale, Musik, Texte – alles wird auf eure Geschichte abgestimmt und regelmäßig mit euch besprochen."
+              },
+              {
+                step: "03",
+                title: "Trauung",
+                desc: "Der große Tag ist da! Ich führe euch emotional und sicher durch eure Zeremonie. Eure Worte, eure Geschichte, eure Liebe – professionell und mit vollem Herzen."
+              }
+            ].map((item, i) => (
+              <div key={i} className="space-y-4 text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-accent/20">
+                  <span className="font-display text-xl text-accent font-semibold">{item.step}</span>
+                </div>
+                <h3 className="font-display text-xl text-foreground">{item.title}</h3>
+                <p className="font-body text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Angebote */}
       <section className="py-20 bg-peach">
         <div className="container mx-auto px-4">
@@ -166,18 +227,44 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonial */}
+      {/* Testimonials */}
       <section className="py-20 bg-background">
-        <div className="container mx-auto px-4 text-center max-w-2xl space-y-6">
-          <div className="flex justify-center gap-1">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} size={18} className="text-gold fill-gold" />
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="font-display text-3xl md:text-4xl text-foreground text-center mb-12">
+            Das sagen meine Paare
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                text: "Stefanie hat unsere Trauung zu einem unvergesslichen Erlebnis gemacht. Ihre Worte waren so persönlich und berührend, dass kein Auge trocken blieb. Vielen Dank!",
+                name: "Sybille M.",
+                location: "Frankfurt"
+              },
+              {
+                text: "Wir wussten genau, dass Stefanie die richtige Wahl ist. Sie hat unsere Geschichte so wunderschön erzählt und die Gäste zum Lachen und Weinen gebracht.",
+                name: "Anna & Tom",
+                location: "München"
+              },
+              {
+                text: "Die Zusammenarbeit war so entspannt und professionell. Stefanie hat unsere Wünsche zu 100% umgesetzt und sich Zeit genommen, uns wirklich kennenzulernen.",
+                name: "Lisa & Jan",
+                location: "Berlin"
+              }
+            ].map((testimonial, i) => (
+              <div key={i} className="space-y-4 bg-peach rounded-lg p-6">
+                <div className="flex justify-center gap-1">
+                  {[...Array(5)].map((_, j) => (
+                    <Star key={j} size={16} className="text-gold fill-gold" />
+                  ))}
+                </div>
+                <p className="font-body text-sm text-muted-foreground italic leading-relaxed">"{testimonial.text}"</p>
+                <div className="text-center pt-2 border-t border-accent/20">
+                  <p className="font-display text-sm text-foreground font-semibold">{testimonial.name}</p>
+                  <p className="font-body text-xs text-muted-foreground">{testimonial.location}</p>
+                </div>
+              </div>
             ))}
           </div>
-          <blockquote className="font-display text-xl md:text-2xl italic text-foreground leading-relaxed">
-            „Stefanie hat unsere Trauung zu einem unvergesslichen Erlebnis gemacht. Ihre Worte waren so persönlich und berührend, dass kein Auge trocken blieb. Wir und unsere Gäste waren überwältigt. Vielen Dank für diesen wundervollen Tag!"
-          </blockquote>
-          <p className="font-body text-sm text-muted-foreground">— Sybille M. aus Frankfurt</p>
         </div>
       </section>
 

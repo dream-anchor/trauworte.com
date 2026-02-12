@@ -1,12 +1,30 @@
 import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 const HERO_IMG = "https://cdn.durable.co/blocks/fD5L1qAV0Jq1mm6juDiJouPrpzDiaAxwG2jUhpHMKJ59qZwRZaEDDQdsXR8pmXeR.png";
 
 const UeberMich = () => {
+  const seoSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Stefanie Sick",
+    "jobTitle": "Freie Rednerin",
+    "url": "https://trauworte.de/ueber-mich",
+    "image": HERO_IMG,
+    "description": "Studierte Kommunikationswissenschaftlerin mit über 10 Jahren Erfahrung in der Medien- und Eventbranche"
+  };
+
   return (
     <Layout>
+      <SEO
+        title="Über mich – Stefanie Sick | TrauWorte"
+        description="Stefanie Sick – studierte Kommunikationswissenschaftlerin mit über 10 Jahren Erfahrung in der Medien- und Eventbranche. Freie Rednerin für persönliche Trauungszeremonien."
+        canonical="/ueber-mich"
+        ogImage={HERO_IMG}
+        schema={seoSchema}
+      />
       <section className="py-20 bg-peach">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-display text-4xl md:text-5xl text-foreground">Über mich</h1>
