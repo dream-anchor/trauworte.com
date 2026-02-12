@@ -1,36 +1,35 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Heart, Mic, PenLine, MessageCircle, Users, TreePine } from "lucide-react";
 
 const angebote = [
   {
-    icon: Heart,
+    img: "https://cdn.durable.co/shutterstock/1bmUV28L4mWx0qNACJaUsJ6ZFiZzMTE0RUCWxikO4Yyuom54fZITzEf9FG3UcZL5.jpeg",
     title: "Persönliche Trauungszeremonie",
     desc: "Eure Liebe verdient eine Zeremonie, die so einzigartig ist wie ihr selbst. Ich gestalte eure freie Trauung ganz individuell – mit eurer Geschichte, euren Wünschen und den Worten, die euch berühren. Ob klassisch-elegant, locker-humorvoll oder romantisch-emotional: Ich finde den perfekten Ton für euren besonderen Moment.",
   },
   {
-    icon: Mic,
+    img: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800&q=80",
     title: "Moderation",
     desc: "Ihr wünscht euch jemanden, der charmant und souverän durch euren Hochzeitstag führt? Als eure Moderatorin sorge ich dafür, dass alles reibungslos läuft und eure Gäste sich rundum wohlfühlen. Von der Begrüßung bis zum letzten Tanz – ich behalte den Überblick.",
   },
   {
-    icon: PenLine,
+    img: "https://cdn.durable.co/blocks/1d9jKiHP9rOLaAegmtxI20pDUpwojNN70eHDkvLZk6FfUNyBrgGnXMFsMKpRGss5.png",
     title: "Briefliche Traurede",
     desc: "Ihr feiert im Ausland oder möchtet eure Zeremonie selbst gestalten, wünscht euch aber professionelle Unterstützung bei der Rede? Ich verfasse eine individuelle Traurede, die eure Geschichte auf berührende Weise erzählt – zum Vorlesen durch eine Person eurer Wahl.",
   },
   {
-    icon: MessageCircle,
+    img: "https://cdn.durable.co/shutterstock/1eo1c1LaWskyy8BSovyzuu00BxWtR7UYbBJG9gP6SWI3vZCUePYVy3iGE4ROioWS.jpeg",
     title: "Beratung",
     desc: "Ihr braucht Unterstützung bei der Planung eurer Trauungszeremonie? In einem persönlichen Beratungsgespräch helfe ich euch, eure Vorstellungen zu konkretisieren und gebe euch wertvolle Tipps rund um Ablauf, Rituale und Gestaltung.",
   },
   {
-    icon: Users,
+    img: "https://cdn.durable.co/shutterstock/3KlhuJuXWpqtSLY2SI2z4b45VGP0Uehyo1X8xiOBgAkvyvQ48O1knC9qn69hBjNq.jpeg",
     title: "Kreative Ehegelübde",
     desc: "Ihr möchtet euch eigene Ehegelübde schreiben, wisst aber nicht, wo ihr anfangen sollt? Ich helfe euch dabei, eure Gefühle in die richtigen Worte zu fassen – authentisch, persönlich und von Herzen kommend.",
   },
   {
-    icon: TreePine,
+    img: "https://images.unsplash.com/photo-1515232389446-a17ce9ca7434?w=800&q=80",
     title: "Trauungszeremonie im Freien",
     desc: "Eine Trauung unter freiem Himmel hat ihren ganz eigenen Zauber. Ob am See, im Wald, auf einer Wiese oder in einem Garten – ich gestalte eure Outdoor-Zeremonie so, dass sie perfekt in die Umgebung und zu euch passt.",
   },
@@ -55,9 +54,9 @@ const Angebote = () => {
                 i % 2 === 1 ? "md:flex-row-reverse" : ""
               }`}
             >
-              <div className="w-full md:w-1/3 flex justify-center">
-                <div className="w-24 h-24 rounded-full bg-peach flex items-center justify-center">
-                  <a.icon className="text-accent" size={36} />
+              <div className="w-full md:w-1/3">
+                <div className="rounded-lg overflow-hidden shadow-md">
+                  <img src={a.img} alt={a.title} className="w-full aspect-[4/3] object-cover" />
                 </div>
               </div>
               <div className="w-full md:w-2/3 space-y-4">
