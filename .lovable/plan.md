@@ -1,62 +1,105 @@
 
-# TrauWorte – Website für Hochzeitsrednerin Stefanie Sick
 
-Nachbau der TrauWorte-Website als originalgetreue, mehrseitige Webseite mit warmem, elegantem Design und funktionierendem Kontaktformular.
+# TrauWorte Website – Update mit Original-Bildern und Design
 
----
-
-## Design & Farbschema
-- Warmes Farbschema: Beige/Peach-Töne (#F5E6D8, #FDF0E7), dunkle Akzente für Text
-- Elegante Schriftarten: Handschrift-ähnliche Schrift für Überschriften (z.B. Playfair Display oder ähnlich), klare Serifenlose für Fließtext
-- Dezente, feminine Ästhetik passend zum Hochzeitsthema
-- Logo "TRAUWORTE" im Header
+## Zusammenfassung
+Die hochgeladene HTML-Datei enthaelt das vollstaendige Original-Design der TrauWorte-Website mit allen Bildern, Farben, Schriften und Inhalten. Ich werde die bestehende React-Website aktualisieren, um das Original so genau wie moeglich nachzubauen.
 
 ---
 
-## Seitenstruktur
+## 1. Design-System aktualisieren
 
-### 1. Startseite (Landingpage)
-- **Header/Navigation**: Logo + Menüpunkte (Startseite, Die Trauung, Meine Angebote, Freie Rednerin, Über mich, Podcast/Blog, Kontakt)
-- **Hero-Bereich**: "Herzlich Willkommen" mit Vorstellungstext und Portrait-Platzhalter
-- **Beratungssektion**: "Ich berate euch gerne" mit CTA-Button
-- **Über TrauWorte**: Kurzvorstellung der Dienstleistungen
-- **Verfügbarkeit**: "Ich bin überall für euch da" – Deutschland, Österreich, Schweiz, Europa
-- **Magische Momente**: Emotionaler Text über die Arbeit als Rednerin
-- **Angebote-Übersicht**: 6 Angebotskarten (Persönliche Trauungszeremonie, Moderation, Briefliche Traurede, Beratung, Kreative Ehegelübde, Trauungszeremonie im Freien)
-- **Testimonial**: Kundenbewertung (Sybille M. aus Frankfurt)
-- **Kontakt-CTA**: "Nehmt Kontakt mit mir auf" mit Button
-- **Footer**: Logo, Links (Impressum, Datenschutz)
+### Schriften
+- Aktuell: Playfair Display + Lato
+- Original: **Boska** (von Fontshare) + **Inter** (von Google Fonts)
+- Aenderung in `index.css`: Font-Imports und CSS-Variablen anpassen
 
-### 2. Über mich / Freie Rednerin
-- Detaillierter Vorstellungstext über Stefanie Sick
-- Werdegang und Qualifikation
+### Farbschema (aus dem Original)
+| Variable | Wert |
+|---|---|
+| beige | #FBE9DA |
+| beige-light | #FDF4ED |
+| beige-dark | #FCECDF |
+| brown | #8B7355 |
+| black | #1a1a1a |
+| gray | #666666 |
+| accent | #B8956A |
+| gold (stars) | #FFB800 |
 
-### 3. Meine Angebote
-- Detailseiten für die 6 Angebote mit ausführlichen Beschreibungen
-- Jeweils mit CTA zur Kontaktaufnahme
-
-### 4. Kontaktseite
-- **Funktionierendes Kontaktformular** mit Feldern: Name, E-Mail, Telefon, Nachricht, Wunschtermin
-- E-Mails werden an info@stefaniesick.com gesendet
-- Wird über eine Supabase Edge Function realisiert (z.B. via Resend)
-
-### 5. Impressum & Datenschutz
-- Platzhalter-Seiten für rechtliche Texte
+### Tailwind Config
+- Font-Familien auf Boska + Inter umstellen
+- Farbwerte an das Original anpassen
 
 ---
 
-## Backend (Lovable Cloud)
-- **Edge Function** für Kontaktformular-E-Mail-Versand (via Resend API)
-- Kein Login, keine Datenbank nötig
+## 2. Bilder einbinden (externe URLs)
+
+Alle Bilder sind auf CDNs gehostet und koennen direkt per URL eingebunden werden:
+
+| Bild | URL |
+|---|---|
+| Logo (Header + Footer) | `https://cdn.durable.co/blocks/dQ3cBEXFTRESpwpPWP8YwCVR4XygOvrXgd09r9CKfF1GjjyEyoTRMOhJwlYgrlo1.png` |
+| Hero-Portrait | `https://cdn.durable.co/blocks/fD5L1qAV0Jq1mm6juDiJouPrpzDiaAxwG2jUhpHMKJ59qZwRZaEDDQdsXR8pmXeR.png` |
+| Ueber TrauWorte | `https://cdn.durable.co/shutterstock/32KzhE001knAG9Tdks4KwoABZhoKOfvP33Zkox667naeeMPtK7hf7ita1Nv1jB7B.jpeg` |
+| Angebot 1: Trauungszeremonie | `https://cdn.durable.co/shutterstock/1bmUV28L4mWx0qNACJaUsJ6ZFiZzMTE0RUCWxikO4Yyuom54fZITzEf9FG3UcZL5.jpeg` |
+| Angebot 2: Moderation | `https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800&q=80` |
+| Angebot 3: Traurede | `https://cdn.durable.co/blocks/1d9jKiHP9rOLaAegmtxI20pDUpwojNN70eHDkvLZk6FfUNyBrgGnXMFsMKpRGss5.png` |
+| Angebot 4: Beratung | `https://cdn.durable.co/shutterstock/1eo1c1LaWskyy8BSovyzuu00BxWtR7UYbBJG9gP6SWI3vZCUePYVy3iGE4ROioWS.jpeg` |
+| Angebot 5: Ehegeluebde | `https://cdn.durable.co/shutterstock/3KlhuJuXWpqtSLY2SI2z4b45VGP0Uehyo1X8xiOBgAkvyvQ48O1knC9qn69hBjNq.jpeg` |
+| Angebot 6: Freien | `https://images.unsplash.com/photo-1515232389446-a17ce9ca7434?w=800&q=80` |
 
 ---
 
-## Bilder
-- Platzhalter-Bilder werden zunächst eingesetzt
-- Du kannst später eigene Fotos hochladen und ersetzen
+## 3. Betroffene Dateien
+
+### `src/index.css`
+- Font-Imports aendern (Boska + Inter statt Playfair Display + Lato)
+- CSS-Variablen an Original-Farbschema anpassen
+
+### `tailwind.config.ts`
+- Font-Familien aktualisieren
+
+### `src/components/Header.tsx`
+- Logo-Bild statt Text "TRAUWORTE"
+- Scroll-Effekt mit Hintergrund-Blur
+- Navigation-Links: Home, Ueber mich, Angebote, Kontakt (als CTA-Button)
+
+### `src/components/Footer.tsx`
+- Logo-Bild einbinden
+- 3-Spalten-Layout (Info, Navigation, Kontakt)
+- Footer-Bottom mit Impressum/Datenschutz Links
+
+### `src/pages/Index.tsx`
+- Hero: Portrait-Bild mit leichter Rotation, Grid-Layout
+- CTA-Box: "Ich berate euch gerne" mit Gradient-Hintergrund
+- Ueber TrauWorte: Bild einbinden
+- Standorte: Karten mit Flaggen-Emojis (Deutschland, Oesterreich, Schweiz, Mallorca, Toskana)
+- Statement: "Magische und unvergessliche Momente" mit 2-Spalten-Text
+- Angebote: 6 Karten mit echten Bildern statt Icons
+- Testimonial: Exakter Text aus dem Original
+- Kontakt-CTA: Zwei Buttons (E-Mail + Anrufen)
+
+### `src/pages/Angebote.tsx`
+- Angebots-Karten mit echten Bildern aktualisieren
+
+### `src/pages/UeberMich.tsx`
+- Portrait-Bild einbinden
 
 ---
 
-## Responsive Design
-- Vollständig responsive für Desktop, Tablet und Mobile
-- Hamburger-Menü auf kleinen Bildschirmen
+## 4. Inhaltliche Aktualisierungen
+
+Texte werden an das Original angepasst:
+- Hero-Text: Erwaehnung des Kommunikations-Studiums und der Medien-/Eventbranche
+- Testimonial: Vollstaendiger Originaltext von Sybille M.
+- Standorte: Mallorca und Toskana hinzufuegen
+- Kontakt-Bereich: E-Mail und Telefon-Buttons
+
+---
+
+## Technische Details
+
+- Bilder werden als externe URLs direkt in `<img>`-Tags eingebunden (keine Downloads noetig, da CDN-gehostet)
+- Scroll-Reveal-Animationen werden als einfache CSS-Transitions implementiert
+- Scroll-Indikator im Hero-Bereich wird hinzugefuegt
+- Header bekommt Scroll-Effekt (Hintergrund verdunkelt sich beim Scrollen)
