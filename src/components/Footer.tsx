@@ -8,7 +8,7 @@ const Footer = () => {
       {/* Curved top edge */}
       <div className="absolute -top-16 left-0 w-full overflow-hidden leading-none">
         <svg viewBox="0 0 1440 80" preserveAspectRatio="none" className="w-full h-16">
-          <path d="M0,80 C360,0 1080,0 1440,80 L1440,80 L0,80 Z" className="fill-warm-dark" />
+          <path d="M0,0 C360,80 1080,80 1440,0 L1440,80 L0,80 Z" className="fill-warm-dark" />
         </svg>
       </div>
     <footer className="bg-warm-dark text-primary-foreground py-16">
