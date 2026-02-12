@@ -4,6 +4,13 @@ const LOGO_URL = "https://cdn.durable.co/blocks/dQ3cBEXFTRESpwpPWP8YwCVR4XygOvrX
 
 const Footer = () => {
   return (
+    <div className="relative mt-16">
+      {/* Curved top edge */}
+      <div className="absolute -top-16 left-0 w-full overflow-hidden leading-none">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" className="w-full h-16">
+          <path d="M0,80 C360,0 1080,0 1440,80 L1440,80 L0,80 Z" className="fill-warm-dark" />
+        </svg>
+      </div>
     <footer className="bg-warm-dark text-primary-foreground py-16">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
@@ -49,6 +56,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
+    </div>
   );
 };
 
