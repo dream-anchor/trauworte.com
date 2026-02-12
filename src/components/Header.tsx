@@ -24,9 +24,10 @@ const Header = () => {
 
   return (
     <header className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/95 backdrop-blur-md shadow-sm" : "bg-background/80 backdrop-blur-sm"} border-b border-border/50`}>
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <Link to="/">
-          <img src={LOGO_URL} alt="TrauWorte Logo" className="h-10 md:h-12" />
+      <div className="container mx-auto px-4 py-2 flex flex-col items-center relative">
+        {/* Centered Logo */}
+        <Link to="/" className="mb-2">
+          <img src={LOGO_URL} alt="TrauWorte Logo" className="h-14 md:h-20 drop-shadow-sm" />
         </Link>
 
         {/* Desktop Nav */}
@@ -49,7 +50,7 @@ const Header = () => {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-foreground"
+          className="md:hidden absolute right-4 top-4 text-foreground"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Menü öffnen"
         >
