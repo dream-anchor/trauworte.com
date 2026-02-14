@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
+import StructuredData from "@/components/StructuredData";
+import usePrerenderReady from "@/hooks/usePrerenderReady";
 import { Button } from "@/components/ui/button";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Star, Mail, Phone, ChevronDown } from "lucide-react";
 
 const HERO_IMG = "https://cdn.durable.co/blocks/fD5L1qAV0Jq1mm6juDiJouPrpzDiaAxwG2jUhpHMKJ59qZwRZaEDDQdsXR8pmXeR.png";
@@ -24,23 +32,43 @@ const standorte = [
   { flag: "🇮🇹", name: "Toskana" },
 ];
 
+const faqs = [
+  {
+    q: "Was ist eine freie Trauung?",
+    a: "Eine freie Trauung ist eine nicht-konfessionelle, individuell gestaltete Hochzeitszeremonie ohne kirchliche oder standesamtliche Bindung. Ihr entscheidet selbst über Ablauf, Inhalte, Rituale und Ort – ganz nach euren Vorstellungen.",
+  },
+  {
+    q: "Wie läuft die Zusammenarbeit mit einer freien Rednerin ab?",
+    a: "Zunächst lernen wir uns in einem persönlichen Gespräch kennen. Ich erfahre eure Geschichte, eure Wünsche und Vorstellungen. Darauf basierend erstelle ich eure individuelle Zeremonie, die wir gemeinsam verfeinern, bis sie perfekt ist.",
+  },
+  {
+    q: "Wo finden die Trauungen statt?",
+    a: "Überall dort, wo ihr euch wohlfühlt! Ich bin in ganz Deutschland, Österreich, der Schweiz sowie auf Mallorca und in der Toskana für euch da. Ob Schloss, Strand, Garten, Wald oder Weingut – ich komme zu euch.",
+  },
+  {
+    q: "Wie weit im Voraus sollten wir buchen?",
+    a: "Beliebte Termine (besonders im Sommer und an Wochenenden) sind schnell vergeben. Ich empfehle, mindestens 6–12 Monate vor eurem Wunschtermin Kontakt aufzunehmen, damit wir genug Zeit für die Planung haben.",
+  },
+  {
+    q: "Was kostet eine freie Trauung?",
+    a: "Die Kosten variieren je nach Umfang der Zeremonie, Anfahrt und individuellen Wünschen. Ich erstelle euch nach dem Kennenlerngespräch ein persönliches Angebot, das genau auf eure Vorstellungen zugeschnitten ist.",
+  },
+  {
+    q: "Können wir eigene Rituale einbauen?",
+    a: "Auf jeden Fall! Ob Sandzeremonie, Handfasting, Baumstamm sägen, gemeinsames Kerzenanzünden oder ganz eigene Ideen – ich helfe euch, passende Rituale zu finden und stimmig in die Zeremonie zu integrieren.",
+  },
+  {
+    q: "Ist eine freie Trauung rechtlich gültig?",
+    a: "Eine freie Trauung ist eine symbolische Zeremonie und nicht rechtlich bindend. Für die standesamtliche Trauung müsst ihr separat zum Standesamt. Viele Paare heiraten standesamtlich im kleinen Kreis und feiern die große freie Trauung mit allen Gästen.",
+  },
+  {
+    q: "Was unterscheidet TrauWorte von anderen freien Rednern?",
+    a: "Als studierte Kommunikationswissenschaftlerin mit über 10 Jahren Erfahrung in der Medien- und Eventbranche verbinde ich sprachliche Professionalität mit echtem Einfühlungsvermögen. Jede Zeremonie wird individuell und mit viel Herzblut gestaltet.",
+  },
+];
+
 const Index = () => {
-  const seoSchema = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "TrauWorte – Stefanie Sick",
-    "description": "Freie Rednerin für einzigartige Trauungszeremonien",
-    "url": "https://trauworte.de",
-    "image": HERO_IMG,
-    "priceRange": "€€",
-    "areaServed": ["DE", "AT", "CH", "ES", "IT"],
-    "telephone": "+49000000000",
-    "email": "info@stefaniesick.com",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "DE"
-    }
-  };
+  usePrerenderReady(true);
 
   return (
     <Layout>
@@ -49,8 +77,29 @@ const Index = () => {
         description="Stefanie Sick – studierte Kommunikationswissenschaftlerin gestaltet einzigartige, persönliche Trauungszeremonien in Deutschland, Österreich, Schweiz und Europa."
         canonical="/"
         ogImage={HERO_IMG}
-        schema={seoSchema}
       />
+      <StructuredData type="main" />
+      <StructuredData
+        type="breadcrumb"
+        breadcrumbs={[{ name: "Startseite", url: "/" }]}
+      />
+
+      {/* FAQPage JSON-LD — inline, nicht über Helmet (Abschnitt 10) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.q,
+              acceptedAnswer: { "@type": "Answer", text: faq.a },
+            })),
+          }),
+        }}
+      />
+
       {/* Hero */}
       <section className="bg-peach py-16 md:py-24 relative overflow-hidden">
         <div className="container mx-auto px-4">
@@ -73,12 +122,14 @@ const Index = () => {
               <img
                 src={HERO_IMG}
                 alt="Stefanie Sick – Freie Rednerin"
+                width={384}
+                height={384}
+                loading="eager"
                 className="w-80 md:w-96 rounded-lg shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500"
               />
             </div>
           </div>
         </div>
-        {/* Scroll indicator */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce">
           <ChevronDown className="text-muted-foreground" size={24} />
         </div>
@@ -89,7 +140,14 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
             <div className="aspect-[3/4] rounded-lg overflow-hidden shadow-lg">
-              <img src={ABOUT_IMG} alt="Beratung mit Stefanie Sick" className="w-full h-full object-cover" />
+              <img
+                src={ABOUT_IMG}
+                alt="Beratung mit Stefanie Sick"
+                width={600}
+                height={800}
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="space-y-6">
               <h2 className="font-display text-3xl md:text-4xl text-foreground">
@@ -122,7 +180,14 @@ const Index = () => {
               </p>
             </div>
             <div className="rounded-lg overflow-hidden shadow-lg">
-              <img src={ABOUT_IMG} alt="Über TrauWorte" className="w-full h-full object-cover" />
+              <img
+                src={ABOUT_IMG}
+                alt="Über TrauWorte"
+                width={600}
+                height={400}
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
@@ -210,7 +275,14 @@ const Index = () => {
             {angeboteData.map((a) => (
               <Link to="/angebote" key={a.title} className="group block bg-background rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img src={a.img} alt={a.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <img
+                    src={a.img}
+                    alt={a.title}
+                    width={400}
+                    height={300}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
                 <div className="p-5 space-y-2">
                   <h3 className="font-display text-lg text-foreground">{a.title}</h3>
@@ -265,6 +337,30 @@ const Index = () => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* FAQ — mit forceMount für SEO (Abschnitt 10) */}
+      <section className="py-20 bg-peach">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <h2 className="font-display text-3xl md:text-4xl text-foreground text-center mb-12">
+            Häufig gestellte Fragen
+          </h2>
+          <Accordion type="single" collapsible className="w-full">
+            {faqs.map((faq, i) => (
+              <AccordionItem key={i} value={`faq-${i}`}>
+                <AccordionTrigger className="text-left font-semibold font-body">
+                  {faq.q}
+                </AccordionTrigger>
+                <AccordionContent
+                  forceMount
+                  className="text-muted-foreground font-body data-[state=closed]:hidden"
+                >
+                  {faq.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
 

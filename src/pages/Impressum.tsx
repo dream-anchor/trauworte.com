@@ -1,8 +1,27 @@
 import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
+import StructuredData from "@/components/StructuredData";
+import usePrerenderReady from "@/hooks/usePrerenderReady";
 
 const Impressum = () => {
+  usePrerenderReady(true);
+
   return (
     <Layout>
+      <SEO
+        title="Impressum | TrauWorte"
+        description="Impressum von TrauWorte – Freie Rednerin Stefanie Sick. Angaben gemäß § 5 TMG."
+        canonical="/impressum"
+        noIndex
+      />
+      <StructuredData
+        type="breadcrumb"
+        breadcrumbs={[
+          { name: "Startseite", url: "/" },
+          { name: "Impressum", url: "/impressum/" },
+        ]}
+      />
+
       <section className="py-20 bg-peach">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-display text-4xl text-foreground">Impressum</h1>

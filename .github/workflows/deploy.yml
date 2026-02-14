@@ -27,6 +27,7 @@ jobs:
 
       - run: npm install
 
+      # SSG Build: Client → Server → Prerender → Sitemap
       - run: npm run build
 
       - uses: actions/upload-pages-artifact@v3

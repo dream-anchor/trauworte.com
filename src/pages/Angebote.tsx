@@ -1,5 +1,7 @@
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
+import StructuredData from "@/components/StructuredData";
+import usePrerenderReady from "@/hooks/usePrerenderReady";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -37,17 +39,20 @@ const angebote = [
 ];
 
 const Angebote = () => {
-  const seoSchema = {
+  usePrerenderReady(true);
+
+  const offersSchema = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "TrauWorte – Meine Angebote",
-    "url": "https://trauworte.de/angebote",
-    "offers": angebote.map(a => ({
+    "@type": "OfferCatalog",
+    name: "TrauWorte – Angebote",
+    url: "https://trauworte.com/angebote/",
+    itemListElement: angebote.map((a, i) => ({
       "@type": "Offer",
-      "name": a.title,
-      "description": a.desc,
-      "image": a.img
-    }))
+      position: i + 1,
+      name: a.title,
+      description: a.desc,
+      image: a.img,
+    })),
   };
 
   return (
@@ -57,8 +62,16 @@ const Angebote = () => {
         description="6 Angebote für eure Hochzeit: Persönliche Trauungszeremonie, Moderation, Traurede, Beratung, Ehegelübde & Outdoor-Trauungen."
         canonical="/angebote"
         ogImage={angebote[0].img}
-        schema={seoSchema}
+        schema={offersSchema}
       />
+      <StructuredData
+        type="breadcrumb"
+        breadcrumbs={[
+          { name: "Startseite", url: "/" },
+          { name: "Meine Angebote", url: "/angebote/" },
+        ]}
+      />
+
       <section className="py-20 bg-peach">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-display text-4xl md:text-5xl text-foreground">Meine Angebote</h1>
@@ -77,7 +90,14 @@ const Angebote = () => {
             >
               <div className="w-full md:w-1/3">
                 <div className="rounded-lg overflow-hidden shadow-md">
-                  <img src={a.img} alt={a.title} className="w-full aspect-[4/3] object-cover" />
+                  <img
+                    src={a.img}
+                    alt={a.title}
+                    width={400}
+                    height={300}
+                    loading="lazy"
+                    className="w-full aspect-[4/3] object-cover"
+                  />
                 </div>
               </div>
               <div className="w-full md:w-2/3 space-y-4">

@@ -1,0 +1,15 @@
+{
+  "name": "TrauWorte – Freie Rednerin Stefanie Sick",
+  "short_name": "TrauWorte",
+  "description": "Freie Rednerin für einzigartige, persönliche Trauungszeremonien in Deutschland, Österreich, Schweiz und Europa.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#8B7355",
+  "background_color": "#FDF4ED",
+  "icons": [
+    { "src": "/favicon.ico", "sizes": "64x64", "type": "image/x-icon" }
+  ],
+  "categories": ["lifestyle", "business"],
+  "lang": "de",
+  "scope": "/"
+}
