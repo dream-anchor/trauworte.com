@@ -11,7 +11,7 @@ interface SEOProps {
 }
 
 const BASE_URL = "https://trauworte.com";
-const DEFAULT_IMAGE = "https://cdn.durable.co/blocks/fD5L1qAV0Jq1mm6juDiJouPrpzDiaAxwG2jUhpHMKJ59qZwRZaEDDQdsXR8pmXeR.png";
+const DEFAULT_IMAGE = "/images/traurednerin-stefanie-sick-portrait.webp";
 
 const ensureTrailingSlash = (p: string) =>
   p === "/" || p.endsWith("/") ? p : `${p}/`;
@@ -19,6 +19,9 @@ const ensureTrailingSlash = (p: string) =>
 const SEO = ({ title, description, canonical, ogImage, ogType = "website", noIndex, schema }: SEOProps) => {
   const currentPath = ensureTrailingSlash(canonical || "/");
   const canonicalUrl = `${BASE_URL}${currentPath}`;
+  // og:image muss immer absolute URL sein
+  const rawImg = ogImage || DEFAULT_IMAGE;
+  const absoluteImage = rawImg.startsWith("http") ? rawImg : `${BASE_URL}${rawImg}`;
 
   return (
     <Helmet>
@@ -32,7 +35,7 @@ const SEO = ({ title, description, canonical, ogImage, ogType = "website", noInd
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={ogImage || DEFAULT_IMAGE} />
+      <meta property="og:image" content={absoluteImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:locale" content="de_DE" />
@@ -42,7 +45,7 @@ const SEO = ({ title, description, canonical, ogImage, ogType = "website", noInd
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={ogImage || DEFAULT_IMAGE} />
+      <meta name="twitter:image" content={absoluteImage} />
 
       {/* Geo Tags (Local SEO) */}
       <meta name="geo.region" content="DE" />

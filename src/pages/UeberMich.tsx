@@ -5,7 +5,7 @@ import usePrerenderReady from "@/hooks/usePrerenderReady";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-const HERO_IMG = "https://cdn.durable.co/blocks/fD5L1qAV0Jq1mm6juDiJouPrpzDiaAxwG2jUhpHMKJ59qZwRZaEDDQdsXR8pmXeR.png";
+const HERO_IMG = "/images/traurednerin-stefanie-sick-portrait.webp";
 
 const UeberMich = () => {
   usePrerenderReady(true);

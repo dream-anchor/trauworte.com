@@ -23,8 +23,7 @@ const mainSchema = {
   url: BASE_URL,
   email: "info@stefaniesick.com",
   priceRange: "€€",
-  image:
-    "https://cdn.durable.co/blocks/fD5L1qAV0Jq1mm6juDiJouPrpzDiaAxwG2jUhpHMKJ59qZwRZaEDDQdsXR8pmXeR.png",
+  image: `${BASE_URL}/images/traurednerin-stefanie-sick-portrait.webp`,
   address: {
     "@type": "PostalAddress",
     addressCountry: "DE",
