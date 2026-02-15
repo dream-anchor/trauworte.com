@@ -3,6 +3,7 @@ import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import ObfuscatedEmail from "@/components/ObfuscatedEmail";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import { Link } from "react-router-dom";
 
 const Impressum = () => {
   usePrerenderReady(true);
@@ -35,6 +36,14 @@ const Impressum = () => {
             <p>Stefanie Sick<br />TrauWorte – Freie Rednerin<br />[Adresse wird ergänzt]</p>
             <h2 className="font-display text-2xl text-foreground">Kontakt</h2>
             <p>E-Mail: <ObfuscatedEmail /></p>
+            <h2 className="font-display text-2xl text-foreground">Bildnachweise</h2>
+            <p>
+              Die auf dieser Website verwendeten Fotos stammen u.a. von Unsplash.com.
+              Eine vollständige Liste aller Bildnachweise finden Sie auf der Seite{" "}
+              <Link to="/bildnachweise" style={{ color: "#B8956A", textDecoration: "underline" }}>
+                Bildnachweise
+              </Link>.
+            </p>
             <p className="text-sm italic">Weitere Angaben werden noch ergänzt.</p>
           </div>
         </div>

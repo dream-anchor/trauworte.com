@@ -21,11 +21,6 @@ interface NavItem {
 /* ─── Mega-Menu Daten ─── */
 const ceremonieLinks: DropdownItem[] = [
   {
-    label: "Unterschiede der Trauungen",
-    path: "/unterschiede-der-trauungen",
-    title: "Kirchliche vs. freie vs. standesamtliche Trauung",
-  },
-  {
     label: "Bayrisch & Tracht",
     path: "/bayrisch-tracht-trauung",
     title: "Freie Trauung auf Bayerisch mit Dirndl & Tracht",
@@ -115,6 +110,7 @@ const navItems: NavItem[] = [
     path: "/meine-angebote-freie-trauung",
     children: [
       { label: "Traurednerin & Preise", path: "/hochzeitsreden-traurednerin" },
+      { label: "Unterschiede der Trauungen", path: "/unterschiede-der-trauungen" },
       { label: "Hochzeitsplanerin & Fotograf", path: "/hochzeitsplanerin-fotograf" },
       { label: "Zeitlicher Ablauf", path: "/zeitlicher-ablauf-freie-trauung" },
     ],

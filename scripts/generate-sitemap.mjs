@@ -31,6 +31,7 @@ const PAGES = [
   { slug: "freie-trauung-alpen", priority: "0.8", changefreq: "monthly" },
   { slug: "freie-trauung-italien", priority: "0.8", changefreq: "monthly" },
   { slug: "magazin/trausprueche-freie-trauung", priority: "0.8", changefreq: "monthly" },
+  { slug: "bildnachweise", priority: "0.3", changefreq: "yearly" },
 ];
 
 const today = new Date().toISOString().split("T")[0];

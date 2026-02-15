@@ -18,7 +18,8 @@ import useParallax from "@/hooks/useParallax";
 /* ── Bilder ── */
 const IMG_STEFANIE = "/images/traurednerin-stefanie-sick-portrait.webp";
 const IMG_LOCATIONS = "/images/hochzeit-europa-deutschland-oesterreich-schweiz.webp";
-const IMG_BANNER = "/images/freie-trauung-hochzeitstanz-romantisch.webp";
+const IMG_BANNER = "/images/freie-trauung-zeremonie-outdoor.webp";
+const IMG_COUPLE = "/images/hochzeitspaar-sonnenuntergang-golden-hour.webp";
 
 /* ── Angebote (Bento) ── */
 const angebote = [
@@ -199,24 +200,24 @@ const Index = () => {
               </p>
 
               <h1
-                className="font-display leading-[1.05] mb-7"
+                className="font-display leading-[1.15] mb-6"
                 style={{
                   color: "#1a1a1a",
-                  fontSize: "clamp(2.5rem, 10vw, 6.5rem)",
+                  fontSize: "clamp(1.8rem, 5vw, 3.2rem)",
                   fontWeight: 400,
                   letterSpacing: "0.02em",
                 }}
               >
-                Eure Traurednerin aus München für{" "}
+                Eure Traurednerin für{" "}
                 <Accent gold>freie Trauungen</Accent>
                 {" "}voller Emotion
               </h1>
 
               <p
-                className="max-w-[520px] mx-auto mb-12"
+                className="max-w-[520px] mx-auto mb-10"
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: "clamp(1.1rem, 2.5vw, 1.4rem)",
+                  fontSize: "clamp(1rem, 2vw, 1.25rem)",
                   fontWeight: 300,
                   fontStyle: "italic",
                   color: "#5C4A3A",
@@ -224,7 +225,7 @@ const Index = () => {
                   letterSpacing: "0.02em",
                 }}
               >
-                Als eure Traurednerin gestalte ich Zeremonien, die so einzigartig sind wie eure Liebesgeschichte — persönlich, emotional und unvergesslich.
+                Persönlich, emotional und unvergesslich — Zeremonien, die so einzigartig sind wie eure Liebesgeschichte.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-5 justify-center">
@@ -657,8 +658,8 @@ const Index = () => {
         className="relative py-32 sm:py-40 md:py-48 overflow-hidden text-center"
         style={{
           background: `
-            linear-gradient(rgba(253,244,237,0.88), rgba(253,244,237,0.92)),
-            url(${IMG_LOCATIONS})
+            linear-gradient(rgba(253,244,237,0.85), rgba(253,244,237,0.9)),
+            url(${IMG_COUPLE})
           `,
           backgroundSize: "cover",
           backgroundPosition: "center",

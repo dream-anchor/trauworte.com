@@ -65,7 +65,7 @@ const Footer = () => {
         </p>
 
         {/* Links */}
-        <div className="flex gap-7 justify-center mt-6">
+        <div className="flex flex-wrap gap-7 justify-center mt-6">
           <Link
             to="/impressum"
             className="transition-colors duration-300 hover:text-[#B8956A]"
@@ -96,10 +96,42 @@ const Footer = () => {
           >
             Datenschutz
           </Link>
+          <Link
+            to="/bildnachweise"
+            className="transition-colors duration-300 hover:text-[#B8956A]"
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "11px",
+              fontWeight: 300,
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              color: "rgba(253,244,237,0.4)",
+              textDecoration: "none",
+            }}
+          >
+            Bildnachweise
+          </Link>
+        </div>
+
+        {/* CMS Link — dezent */}
+        <div className="mt-6">
+          <Link
+            to="/admin"
+            className="transition-colors duration-300 hover:text-[#B8956A]"
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "10px",
+              fontWeight: 300,
+              color: "rgba(253,244,237,0.15)",
+              textDecoration: "none",
+            }}
+          >
+            CMS
+          </Link>
         </div>
 
         <p
-          className="mt-10"
+          className="mt-8"
           style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "11px",

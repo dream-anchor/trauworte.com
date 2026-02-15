@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import EureFreieTrauung from "./pages/EureFreieTrauung";
@@ -23,7 +24,14 @@ import FreieTrauungGardasee from "./pages/FreieTrauungGardasee";
 import FreieTrauungAlpen from "./pages/FreieTrauungAlpen";
 import FreieTrauungItalien from "./pages/FreieTrauungItalien";
 import MagazinTrausprueche from "./pages/MagazinTrausprueche";
+import Bildnachweise from "./pages/Bildnachweise";
 import NotFound from "./pages/NotFound";
+
+// Admin (lazy-loaded — nicht im Prerender)
+const AdminPasswordGate = lazy(() => import("./components/admin/AdminPasswordGate"));
+const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
+const AdminPageEditor = lazy(() => import("./pages/admin/AdminPageEditor"));
+const AdminNavEditor = lazy(() => import("./pages/admin/AdminNavEditor"));
 
 const AppRoutes = () => (
   <Routes>
@@ -64,8 +72,37 @@ const AppRoutes = () => (
     <Route path="/kontakt" element={<Navigate to="/freie-trauung-kontakt" replace />} />
     <Route path="/datenschutz" element={<Navigate to="/datenschutzerklaerung" replace />} />
 
+    {/* Bildnachweise */}
+    <Route path="/bildnachweise" element={<Bildnachweise />} />
+
     {/* Angebote Detail-Links von Startseite */}
     <Route path="/meine-angebote-freie-trauung/hochzeitsreden-traurednerin" element={<Navigate to="/hochzeitsreden-traurednerin" replace />} />
+
+    {/* Admin CMS (lazy-loaded) */}
+    <Route
+      path="/admin"
+      element={
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center" style={{ background: "#f3f4f6" }}><p style={{ fontFamily: "'Inter', sans-serif", color: "#9ca3af" }}>Lade...</p></div>}>
+          <AdminPasswordGate><AdminDashboard /></AdminPasswordGate>
+        </Suspense>
+      }
+    />
+    <Route
+      path="/admin/pages/:slug"
+      element={
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center" style={{ background: "#f3f4f6" }}><p style={{ fontFamily: "'Inter', sans-serif", color: "#9ca3af" }}>Lade...</p></div>}>
+          <AdminPasswordGate><AdminPageEditor /></AdminPasswordGate>
+        </Suspense>
+      }
+    />
+    <Route
+      path="/admin/navigation"
+      element={
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center" style={{ background: "#f3f4f6" }}><p style={{ fontFamily: "'Inter', sans-serif", color: "#9ca3af" }}>Lade...</p></div>}>
+          <AdminPasswordGate><AdminNavEditor /></AdminPasswordGate>
+        </Suspense>
+      }
+    />
 
     <Route path="*" element={<NotFound />} />
   </Routes>

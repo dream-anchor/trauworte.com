@@ -30,6 +30,7 @@ const ROUTES = [
   "/freie-trauung-alpen",
   "/freie-trauung-italien",
   "/magazin/trausprueche-freie-trauung",
+  "/bildnachweise",
 ];
 
 async function prerender() {
