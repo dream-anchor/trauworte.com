@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
+import HeroImage from "@/components/HeroImage";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
 
 const faqs = [
@@ -126,6 +127,8 @@ const HaeufigeFragen = () => {
           </p>
         </div>
       </section>
+
+      <HeroImage src="/images/hero-haeufige-fragen.webp" alt="Hochzeitszeremonie — Antworten auf eure Fragen" credit="Sergio Butko" />
 
       {/* FAQ — immer offen */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">

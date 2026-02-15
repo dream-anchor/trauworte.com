@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import HeroImage from "@/components/HeroImage";
 
 /* ── FAQ ── */
 const faqItems = [
@@ -166,6 +167,8 @@ const FreieTrauungMallorca = () => {
           </p>
         </div>
       </section>
+
+      <HeroImage src="/images/hero-mallorca.webp" alt="Mallorca — Mittelmeerküste für Destination Weddings" credit="Xiskya Valladares" />
 
       {/* ═══ WARUM MALLORCA ═══ */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">

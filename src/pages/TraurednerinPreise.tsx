@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import HeroImage from "@/components/HeroImage";
 
 /* ── Helpers ── */
 const Accent = ({ children }: { children: React.ReactNode }) => (
@@ -135,6 +136,8 @@ const TraurednerinPreise = () => {
           </p>
         </div>
       </section>
+
+      <HeroImage src="/images/hero-trauringe.webp" alt="Trauringe — Symbol eures Eheversprechens" credit="Nick Karvounis" />
 
       {/* Was ist enthalten? */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">

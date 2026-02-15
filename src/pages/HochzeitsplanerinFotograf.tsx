@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
+import HeroImage from "@/components/HeroImage";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
 
 const HochzeitsplanerinFotograf = () => {
@@ -34,6 +35,8 @@ const HochzeitsplanerinFotograf = () => {
           </p>
         </div>
       </section>
+
+      <HeroImage src="/images/hero-hochzeitsplaner.webp" alt="Hochzeitspaar — Planung eures besonderen Tages" credit="ARTO SURAJ" />
 
       {/* Inhalt */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-16 md:py-24">

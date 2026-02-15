@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import HeroImage from "@/components/HeroImage";
 
 const EureFreieTrauung = () => {
   usePrerenderReady(true);
@@ -33,6 +34,8 @@ const EureFreieTrauung = () => {
           </p>
         </div>
       </section>
+
+      <HeroImage src="/images/hero-freie-trauung.webp" alt="Freie Trauung im Freien — Hochzeitszeremonie" credit="Hitesh Patel" />
 
       {/* Was ist eine freie Trauung? */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-16 md:py-24">

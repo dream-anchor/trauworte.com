@@ -7,6 +7,7 @@ import StructuredData from "@/components/StructuredData";
 import ContactForm from "@/components/ContactForm";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
 import useScrollReveal from "@/hooks/useScrollReveal";
+import HeroImage from "@/components/HeroImage";
 
 /* ─── Inline-Komponenten ─── */
 const Accent = ({ children }: { children: React.ReactNode }) => (
@@ -263,6 +264,8 @@ const MagazinTrausprueche = () => {
           </p>
         </div>
       </section>
+
+      <HeroImage src="/images/hero-trausprueche.webp" alt="Hochzeitsblumen — Die schönsten Trausprüche" credit="Scott Osborne" />
 
       {/* ═══ EINLEITUNG ═══ */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">

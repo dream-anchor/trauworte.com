@@ -119,8 +119,8 @@ const navItems: NavItem[] = [
       { label: "Zeitlicher Ablauf", path: "/zeitlicher-ablauf-freie-trauung" },
     ],
   },
-  { label: "Häufige Fragen", path: "/persoenliche-trauung-haeufige-fragen" },
   { label: "Über mich", path: "/ueber-traurednerin-stefanie" },
+  { label: "Häufige Fragen", path: "/persoenliche-trauung-haeufige-fragen" },
   { label: "Magazin", path: "/magazin" },
 ];
 

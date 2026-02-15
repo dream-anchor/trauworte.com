@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import HeroImage from "@/components/HeroImage";
 
 const QueereTrauung = () => {
   usePrerenderReady(true);
@@ -34,6 +35,8 @@ const QueereTrauung = () => {
           </p>
         </div>
       </section>
+
+      <HeroImage src="/images/hero-queere-trauung.webp" alt="Queere Trauung — Liebe ist Liebe" credit="In Lieu & In View Photography" />
 
       {/* Inhalt */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-16 md:py-24">

@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import HeroImage from "@/components/HeroImage";
 
 /* ── FAQ ── */
 const faqItems = [
@@ -148,6 +149,8 @@ const FreieTrauungGardasee = () => {
           </p>
         </div>
       </section>
+
+      <HeroImage src="/images/hero-gardasee.webp" alt="Gardasee — Traumkulisse für Hochzeiten in Italien" credit="Claudio Gagliardini" />
 
       {/* ═══ WARUM GARDASEE ═══ */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">

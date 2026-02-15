@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import HeroImage from "@/components/HeroImage";
 
 /* ── FAQ ── */
 const faqItems = [
@@ -152,6 +153,8 @@ const FreieTrauungAlpen = () => {
           </p>
         </div>
       </section>
+
+      <HeroImage src="/images/hero-alpen.webp" alt="Alpenpanorama — Berghochzeit in den Alpen" credit="Rey Emsen" />
 
       {/* ═══ WARUM ALPEN ═══ */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">

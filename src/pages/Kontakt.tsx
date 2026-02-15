@@ -11,6 +11,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Mail, MapPin } from "lucide-react";
 import { z } from "zod";
 import ObfuscatedEmail from "@/components/ObfuscatedEmail";
+import HeroImage from "@/components/HeroImage";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Bitte gebt euren Namen ein").max(100),
@@ -99,6 +100,8 @@ const Kontakt = () => {
           <p className="font-body text-muted-foreground mt-4">Ich freue mich auf eure Nachricht</p>
         </div>
       </section>
+
+      <HeroImage src="/images/hero-kontakt.webp" alt="Hochzeitsblumen — Schreibt mir eure Wünsche" credit="Sandra Grünewald" />
 
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">

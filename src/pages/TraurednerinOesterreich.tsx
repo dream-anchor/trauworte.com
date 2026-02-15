@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import HeroImage from "@/components/HeroImage";
 
 /* ── FAQ ── */
 const faqItems = [
@@ -157,6 +158,8 @@ const TraurednerinOesterreich = () => {
           </p>
         </div>
       </section>
+
+      <HeroImage src="/images/hero-oesterreich.webp" alt="Österreichische Alpen — Bergsee-Kulisse für Trauungen" credit="Jannic Böhme" />
 
       {/* ═══ WARUM ÖSTERREICH ═══ */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">

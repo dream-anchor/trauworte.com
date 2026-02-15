@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import HeroImage from "@/components/HeroImage";
 
 /* ─── Artikel-Daten ─── */
 const articles = [
@@ -83,6 +84,8 @@ const Magazin = () => {
           </p>
         </div>
       </section>
+
+      <HeroImage src="/images/hero-magazin.webp" alt="Hochzeitsfeier — Inspiration aus dem TrauWorte Magazin" credit="In Lieu & In View Photography" />
 
       {/* Artikel-Grid */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">

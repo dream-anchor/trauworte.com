@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import HeroImage from "@/components/HeroImage";
 
 const angebote = [
   {
@@ -118,6 +119,8 @@ const MeineAngebote = () => {
           </p>
         </div>
       </section>
+
+      <HeroImage src="/images/hero-angebote.webp" alt="Hochzeitsblumenstrauß — Meine Angebote für eure Trauung" credit="Stefan Maass" />
 
       {/* Angebote Grid */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">

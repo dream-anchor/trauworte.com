@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import HeroImage from "@/components/HeroImage";
 
 const BayrischTrachtTrauung = () => {
   usePrerenderReady(true);
@@ -34,6 +35,8 @@ const BayrischTrachtTrauung = () => {
           </p>
         </div>
       </section>
+
+      <HeroImage src="/images/hero-bayerisch-tracht.webp" alt="Bayerische Hochzeit — Trauung mit Tradition" credit="Tim Dennert" />
 
       {/* Inhalt */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-16 md:py-24">

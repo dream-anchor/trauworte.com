@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import HeroImage from "@/components/HeroImage";
 
 /* ── FAQ ── */
 const faqItems = [
@@ -153,6 +154,8 @@ const FreieTrauungItalien = () => {
           </p>
         </div>
       </section>
+
+      <HeroImage src="/images/hero-italien.webp" alt="Italien — Landschaft für romantische freie Trauungen" credit="Claudio Carrozzo" />
 
       {/* ═══ WARUM ITALIEN ═══ */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">

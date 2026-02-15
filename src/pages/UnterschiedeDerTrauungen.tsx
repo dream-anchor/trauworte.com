@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
+import HeroImage from "@/components/HeroImage";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
 
 const UnterschiedeDerTrauungen = () => {
@@ -34,6 +35,8 @@ const UnterschiedeDerTrauungen = () => {
           </p>
         </div>
       </section>
+
+      <HeroImage src="/images/hero-kirche-trauung.webp" alt="Kirchliche Trauung — Vergleich der Trauungsarten" credit="Josh Applegate" />
 
       {/* Inhalt */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-16 md:py-24">
