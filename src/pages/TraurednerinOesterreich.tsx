@@ -12,7 +12,7 @@ const faqItems = [
   },
   {
     q: "Welche Locations in Österreich eignen sich für freie Trauungen?",
-    a: "Von den Salzburger Schlössern über die Tiroler Almhütten bis zu den Weingutshöfen der Wachau — Österreich bietet für jeden Hochzeitsstil die perfekte Location. Besonders beliebt sind das Salzkammergut, der Wolfgangsee und die Region rund um Kitzbhühel.",
+    a: "Von den Salzburger Schlössern über die Tiroler Almhütten bis zu den Weingutshöfen der Wachau — Österreich bietet für jeden Hochzeitsstil die perfekte Location. Besonders beliebt sind das Salzkammergut, der Wolfgangsee und die Region rund um Kitzbühel.",
   },
   {
     q: "Kann die Zeremonie in Österreich auf Deutsch und Englisch sein?",

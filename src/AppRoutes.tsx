@@ -21,6 +21,7 @@ import FreieTrauungMallorca from "./pages/FreieTrauungMallorca";
 import FreieTrauungToskana from "./pages/FreieTrauungToskana";
 import FreieTrauungGardasee from "./pages/FreieTrauungGardasee";
 import FreieTrauungAlpen from "./pages/FreieTrauungAlpen";
+import FreieTrauungItalien from "./pages/FreieTrauungItalien";
 import WeddingCelebrantMunich from "./pages/WeddingCelebrantMunich";
 import NotFound from "./pages/NotFound";
 
@@ -51,6 +52,7 @@ const AppRoutes = () => (
     <Route path="/freie-trauung-toskana" element={<FreieTrauungToskana />} />
     <Route path="/freie-trauung-gardasee" element={<FreieTrauungGardasee />} />
     <Route path="/freie-trauung-alpen" element={<FreieTrauungAlpen />} />
+    <Route path="/freie-trauung-italien" element={<FreieTrauungItalien />} />
     <Route path="/en/wedding-celebrant-munich" element={<WeddingCelebrantMunich />} />
 
     {/* Redirects: alte Slugs → neue Slugs */}

@@ -29,6 +29,7 @@ const PAGES = [
   { slug: "freie-trauung-toskana", priority: "0.8", changefreq: "monthly" },
   { slug: "freie-trauung-gardasee", priority: "0.8", changefreq: "monthly" },
   { slug: "freie-trauung-alpen", priority: "0.8", changefreq: "monthly" },
+  { slug: "freie-trauung-italien", priority: "0.8", changefreq: "monthly" },
   { slug: "en/wedding-celebrant-munich", priority: "0.7", changefreq: "monthly" },
 ];
 

@@ -28,6 +28,7 @@ const ROUTES = [
   "/freie-trauung-toskana",
   "/freie-trauung-gardasee",
   "/freie-trauung-alpen",
+  "/freie-trauung-italien",
   "/en/wedding-celebrant-munich",
 ];
 
