@@ -14,12 +14,14 @@ import UeberMich from "./pages/UeberMich";
 import Blog from "./pages/Blog";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
+import IndexV2 from "./pages/IndexV2";
 import NotFound from "./pages/NotFound";
 
 const AppRoutes = () => (
   <Routes>
     {/* Hauptseiten */}
     <Route path="/" element={<Index />} />
+    <Route path="/v2" element={<IndexV2 />} />
     <Route path="/eure-freie-trauung" element={<EureFreieTrauung />} />
     <Route path="/unterschiede-der-trauungen" element={<UnterschiedeDerTrauungen />} />
     <Route path="/bayrisch-tracht-trauung" element={<BayrischTrachtTrauung />} />
