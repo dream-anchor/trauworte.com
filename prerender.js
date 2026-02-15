@@ -21,8 +21,6 @@ const ROUTES = [
   "/blog",
   "/impressum",
   "/datenschutzerklaerung",
-  "/v2",
-  "/v3",
 ];
 
 async function prerender() {

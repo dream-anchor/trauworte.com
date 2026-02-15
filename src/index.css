@@ -242,7 +242,7 @@
     left: -10px;
   }
 
-  /* ── V3: Silk Editorial ── */
+  /* ── Silk Editorial ── */
 
   /* Film-Grain Overlay */
   .grain::after {
@@ -257,62 +257,71 @@
     z-index: 1;
   }
 
-  /* Bento Grid */
-  .bento-grid {
+  /* Selection */
+  ::selection {
+    background: rgba(184,149,106,0.2);
+    color: #1a1a1a;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #FDF4ED; }
+  ::-webkit-scrollbar-thumb { background: #B8956A; border-radius: 3px; }
+
+  /* Editorial Bento Grid */
+  .editorial-bento {
     display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 320px 320px;
     gap: 16px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto auto auto;
   }
 
-  .bento-grid .bento-large {
-    grid-column: span 2;
-    grid-row: span 2;
-  }
-
-  .bento-grid .bento-wide {
-    grid-column: span 3;
+  .editorial-bento-card {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    cursor: pointer;
   }
 
   @media (max-width: 768px) {
-    .bento-grid {
-      grid-template-columns: repeat(2, 1fr);
+    .editorial-bento {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
     }
-    .bento-grid .bento-large {
-      grid-column: span 2;
-      grid-row: span 1;
-    }
-    .bento-grid .bento-wide {
-      grid-column: span 2;
+    .editorial-bento-card {
+      grid-column: auto !important;
+      grid-row: auto !important;
+      min-height: 260px;
     }
   }
 
-  /* Bento Card */
-  .bento-card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 20px;
-    cursor: pointer;
-    min-height: 240px;
+  /* Editorial Gallery (Impressionen) */
+  .editorial-gallery {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr 1fr;
+    grid-template-rows: 280px 240px;
+    gap: 16px;
   }
 
-  .bento-card img {
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  .editorial-gallery .gallery-tall {
+    grid-row: 1 / 3;
   }
 
-  .bento-card:hover img {
-    transform: scale(1.06);
+  .editorial-gallery .gallery-wide {
+    grid-column: 2 / 4;
   }
 
-  .bento-card .bento-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(0deg, rgba(26,26,26,0.8) 0%, rgba(26,26,26,0.35) 40%, rgba(26,26,26,0.05) 70%, transparent 100%);
-    transition: background 0.5s ease;
-  }
-
-  .bento-card:hover .bento-overlay {
-    background: linear-gradient(0deg, rgba(26,26,26,0.65) 0%, rgba(26,26,26,0.2) 40%, transparent 70%);
+  @media (max-width: 768px) {
+    .editorial-gallery {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 220px 220px 220px;
+    }
+    .editorial-gallery .gallery-tall {
+      grid-row: auto;
+    }
+    .editorial-gallery .gallery-wide {
+      grid-column: 1 / 3;
+    }
   }
 
   /* Timeline */
@@ -337,88 +346,84 @@
     flex-shrink: 0;
   }
 
-  /* Gold CTA Button */
+  /* Gold CTA Button — Editorial */
   .btn-gold {
-    @apply inline-flex items-center justify-center font-body text-sm tracking-wide;
-    padding: 16px 36px;
-    border-radius: 50px;
-    background: linear-gradient(135deg, #B8956A, #D4AF7A);
-    color: #fff;
+    @apply inline-flex items-center justify-center;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
     font-weight: 500;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 4px 16px rgba(184, 149, 106, 0.3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 16px 40px;
+    background: #B8956A;
+    color: #FDF4ED;
+    transition: all 0.4s ease;
   }
 
   .btn-gold:hover {
+    background: #a07d58;
     transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(184, 149, 106, 0.45);
   }
 
-  /* Location pill */
+  /* Outline Button — Editorial */
+  .btn-outline-editorial {
+    @apply inline-flex items-center justify-center;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 16px 40px;
+    color: #5C4A3A;
+    border: 1px solid rgba(92,74,58,0.25);
+    transition: all 0.4s ease;
+  }
+
+  .btn-outline-editorial:hover {
+    border-color: #B8956A;
+    color: #B8956A;
+  }
+
+  /* Location pill — Editorial */
   .location-pill {
-    @apply inline-flex items-center font-body text-sm;
-    padding: 8px 20px;
-    border-radius: 50px;
-    border: 1.5px solid rgba(184, 149, 106, 0.4);
-    color: #1a1a1a;
-    background: rgba(255, 255, 255, 0.3);
+    @apply inline-flex items-center;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 10px 22px;
+    color: #5C4A3A;
+    border: 1px solid rgba(184, 149, 106, 0.25);
     transition: all 0.3s ease;
   }
 
   .location-pill:hover {
-    background: rgba(184, 149, 106, 0.15);
+    background: #B8956A;
+    color: #FDF4ED;
     border-color: #B8956A;
   }
 
-  /* Form inputs */
-  .form-input {
-    @apply font-body text-base w-full;
-    padding: 14px 18px;
-    border-radius: 12px;
-    border: 1.5px solid rgba(184, 149, 106, 0.3);
-    background: rgba(255, 255, 255, 0.5);
+  /* Form Underline Inputs — Editorial */
+  .form-input-editorial {
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    padding: 14px 0;
+    border: none;
+    border-bottom: 1px solid rgba(184,149,106,0.25);
+    background: transparent;
     color: #1a1a1a;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
     outline: none;
+    transition: border-color 0.3s ease;
   }
 
-  .form-input:focus {
-    border-color: #B8956A;
-    box-shadow: 0 0 0 3px rgba(184, 149, 106, 0.15);
+  .form-input-editorial:focus {
+    border-bottom-color: #B8956A;
   }
 
-  .form-input::placeholder {
-    color: rgba(26, 26, 26, 0.4);
-  }
-
-  /* Instagram grid hover */
-  .insta-card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 16px;
-    aspect-ratio: 1;
-  }
-
-  .insta-card img {
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .insta-card:hover img {
-    transform: scale(1.08);
-  }
-
-  .insta-card .insta-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(26, 26, 26, 0.4);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .insta-card:hover .insta-overlay {
-    opacity: 1;
+  .form-input-editorial::placeholder {
+    color: rgba(92, 74, 58, 0.4);
   }
 }
