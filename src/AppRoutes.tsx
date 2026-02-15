@@ -22,7 +22,7 @@ import FreieTrauungToskana from "./pages/FreieTrauungToskana";
 import FreieTrauungGardasee from "./pages/FreieTrauungGardasee";
 import FreieTrauungAlpen from "./pages/FreieTrauungAlpen";
 import FreieTrauungItalien from "./pages/FreieTrauungItalien";
-import WeddingCelebrantMunich from "./pages/WeddingCelebrantMunich";
+import MagazinTrausprueche from "./pages/MagazinTrausprueche";
 import NotFound from "./pages/NotFound";
 
 const AppRoutes = () => (
@@ -40,7 +40,8 @@ const AppRoutes = () => (
     <Route path="/persoenliche-trauung-haeufige-fragen" element={<HaeufigeFragen />} />
     <Route path="/freie-trauung-kontakt" element={<Kontakt />} />
     <Route path="/ueber-traurednerin-stefanie" element={<UeberMich />} />
-    <Route path="/blog" element={<Blog />} />
+    <Route path="/magazin" element={<Blog />} />
+    <Route path="/blog" element={<Navigate to="/magazin" replace />} />
     <Route path="/impressum" element={<Impressum />} />
     <Route path="/datenschutzerklaerung" element={<Datenschutz />} />
 
@@ -53,7 +54,9 @@ const AppRoutes = () => (
     <Route path="/freie-trauung-gardasee" element={<FreieTrauungGardasee />} />
     <Route path="/freie-trauung-alpen" element={<FreieTrauungAlpen />} />
     <Route path="/freie-trauung-italien" element={<FreieTrauungItalien />} />
-    <Route path="/en/wedding-celebrant-munich" element={<WeddingCelebrantMunich />} />
+
+    {/* Magazin */}
+    <Route path="/magazin/trausprueche-freie-trauung" element={<MagazinTrausprueche />} />
 
     {/* Redirects: alte Slugs → neue Slugs */}
     <Route path="/ueber-mich" element={<Navigate to="/ueber-traurednerin-stefanie" replace />} />

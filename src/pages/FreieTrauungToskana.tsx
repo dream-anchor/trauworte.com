@@ -24,8 +24,8 @@ const faqItems = [
     a: "Selbstverständlich! Ich reise für eure freie Trauung in die Toskana und bin bereits am Vortag vor Ort. So kann ich eure Location kennenlernen, die Technik prüfen und alles in Ruhe vorbereiten. Am Hochzeitstag könnt ihr euch ganz auf eure Emotionen konzentrieren.",
   },
   {
-    q: "Ist eine zweisprachige Trauung in der Toskana möglich?",
-    a: "Ja! Ich gestalte eure Trauung in der Toskana gerne zweisprachig auf Deutsch und Englisch — ideal für internationale Gäste und binationale Paare. Die Zeremonie wechselt fließend und natürlich zwischen beiden Sprachen.",
+    q: "Was ist, wenn internationale Gäste bei der Trauung dabei sind?",
+    a: "Ich gestalte eure Zeremonie auf Deutsch. Wenn internationale Gäste dabei sind, kann ich einzelne Passagen so gestalten, dass sie auch ohne perfekte Deutschkenntnisse emotional mitgenommen werden — etwa durch universelle Gesten, Rituale und ein kurzes gedrucktes Programm in anderen Sprachen.",
   },
 ];
 
@@ -52,7 +52,7 @@ const serviceSchema = {
   serviceType: "Freie Trauung / Destination Wedding",
   areaServed: { "@type": "Place", name: "Toskana, Italien" },
   description:
-    "Persönliche und emotionale freie Trauungen in der Toskana — auf Weingütern, in Villen und unter toskanischer Sonne. Zweisprachig, individuell und unvergesslich.",
+    "Persönliche und emotionale freie Trauungen in der Toskana — auf Weingütern, in Villen und unter toskanischer Sonne. Individuell und unvergesslich.",
   url: "https://trauworte.com/freie-trauung-toskana/",
 };
 
@@ -185,21 +185,20 @@ const FreieTrauungToskana = () => {
           {/* ═══ TRAUREDNERIN TOSKANA ═══ */}
           <SH2>
             Eure Traurednerin für die Toskana –{" "}
-            <Accent>persönlich und zweisprachig</Accent>
+            <Accent>persönlich und von Herzen</Accent>
           </SH2>
 
           <div className="space-y-6 font-body" style={bodyStyle}>
             <p>
               Als eure Traurednerin für die Toskana verbinde ich persönliche Worte mit
               italienischem Flair. Ich lerne eure Liebesgeschichte kennen, höre zu und verwandle
-              eure gemeinsamen Erlebnisse in eine Traurede, die unter die Haut geht — eingerahmt
+              eure gemeinsamen Erlebnisse in eine Traurede, die tief berührt — eingerahmt
               von der atemberaubenden Kulisse der toskanischen Landschaft.
             </p>
             <p>
-              Gerade bei einer Hochzeit in der Toskana sind oft Gäste aus verschiedenen Ländern
-              dabei. Deshalb biete ich eure freie Trauung in Italien{" "}
-              <strong>zweisprachig auf Deutsch und Englisch</strong> an. Die Zeremonie wechselt
-              fließend und natürlich zwischen beiden Sprachen. Die Vorbereitung läuft unkompliziert
+              Wenn internationale Gäste dabei sind, sorge ich dafür, dass sie sich einbezogen
+              fühlen — durch universelle Gesten, Rituale und auf Wunsch ein gedrucktes
+              Programm in anderen Sprachen. Die Vorbereitung läuft unkompliziert
               per Videocall — ich bin von Anfang an persönlich für euch da, auch über die Distanz.
             </p>
           </div>
@@ -354,8 +353,13 @@ const FreieTrauungToskana = () => {
             ].map((r) => (
               <div
                 key={r.name}
-                className="p-6"
-                style={{ background: "rgba(255, 255, 255, 0.4)", border: "1px solid rgba(184, 149, 106, 0.15)" }}
+                style={{
+                  background: "rgba(255, 255, 255, 0.45)",
+                  borderLeft: "3px solid #B8956A",
+                  borderRadius: "0 16px 16px 0",
+                  padding: "28px 32px",
+                  boxShadow: "0 2px 20px rgba(0,0,0,0.03)",
+                }}
               >
                 <h3 className="font-display mb-2" style={{ fontSize: "1.1rem", fontWeight: 400, color: "#1a1a1a" }}>
                   {r.name}
@@ -382,18 +386,23 @@ const FreieTrauungToskana = () => {
 
       {/* ═══ FAQ ═══ */}
       <section style={{ backgroundColor: "#FBE9DA" }} className="py-20 md:py-28 grain">
-        <div className="container mx-auto px-5 sm:px-8 max-w-[800px] relative z-10">
+        <div className="container mx-auto px-5 sm:px-8 max-w-[1000px] relative z-10">
           <SH2 center>
             Häufige Fragen zur{" "}
             <Accent>freien Trauung in der Toskana</Accent>
           </SH2>
 
-          <div className="space-y-6">
+          <div className="space-y-5">
             {faqItems.map((item, i) => (
               <div
                 key={i}
-                className="p-6"
-                style={{ background: "rgba(253, 244, 237, 0.7)", border: "1px solid rgba(184, 149, 106, 0.12)" }}
+                style={{
+                  background: "rgba(255, 255, 255, 0.5)",
+                  borderLeft: "3px solid #B8956A",
+                  borderRadius: "0 16px 16px 0",
+                  padding: "28px 32px",
+                  boxShadow: "0 2px 20px rgba(0,0,0,0.03)",
+                }}
               >
                 <h3 className="font-display mb-3" style={{ fontSize: "1.15rem", fontWeight: 400, color: "#1a1a1a" }}>
                   {item.q}

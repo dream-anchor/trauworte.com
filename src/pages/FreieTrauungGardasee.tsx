@@ -16,8 +16,8 @@ const faqItems = [
     a: "Der Gardasee bietet traumhafte Locations: Von eleganten Villen in Sirmione und Gardone Riviera über Zitronenhaine in Limone sul Garda bis hin zu Olivenhainen bei Malcesine mit Blick auf den Monte Baldo. Auch Riva del Garda im Norden und die charmanten Orte Lazise, Torri del Benaco und Salò sind beliebt.",
   },
   {
-    q: "Kann die Trauung am Gardasee zweisprachig sein?",
-    a: "Selbstverständlich! Gerade am Gardasee sind häufig internationale Gäste dabei. Ich gestalte eure freie Trauung fließend zweisprachig auf Deutsch und Englisch, damit alle die Emotionen eurer Zeremonie erleben. Die Übergänge zwischen den Sprachen sind natürlich und nahtlos.",
+    q: "Was ist, wenn internationale Gäste bei der Trauung dabei sind?",
+    a: "Ich gestalte eure Zeremonie auf Deutsch. Wenn internationale Gäste dabei sind, kann ich einzelne Passagen so gestalten, dass sie auch ohne perfekte Deutschkenntnisse emotional mitgenommen werden — etwa durch universelle Gesten, Rituale und ein kurzes gedrucktes Programm in anderen Sprachen.",
   },
   {
     q: "Was kostet eine freie Trauung am Gardasee?",
@@ -51,7 +51,7 @@ const serviceSchema = {
   },
   serviceType: "Freie Trauung / Destination Wedding",
   areaServed: { "@type": "Place", name: "Gardasee, Italien" },
-  description: "Persönliche und emotionale freie Trauungen am Gardasee — zweisprachig, individuell und unvergesslich.",
+  description: "Persönliche und emotionale freie Trauungen am Gardasee — individuell und unvergesslich.",
   url: "https://trauworte.com/freie-trauung-gardasee/",
 };
 
@@ -187,21 +187,20 @@ const FreieTrauungGardasee = () => {
           {/* ═══ TRAUREDNERIN GARDASEE ═══ */}
           <SH2>
             Eure Traurednerin am Gardasee –{" "}
-            <Accent>persönlich und zweisprachig</Accent>
+            <Accent>persönlich und von Herzen</Accent>
           </SH2>
 
           <div className="space-y-6 font-body" style={bodyStyle}>
             <p>
               Als eure Traurednerin für den Gardasee verbinde ich persönliche Worte mit
               italienischem Flair. Ich lerne eure Liebesgeschichte kennen und schreibe eine
-              Traurede, die unter die Haut geht — eingerahmt von der atemberaubenden Kulisse
+              Traurede, die tief berührt — eingerahmt von der atemberaubenden Kulisse
               des Sees. Jede Zeremonie ist so individuell wie das Paar, das sie feiert.
             </p>
             <p>
-              Da bei Hochzeiten am Gardasee oft Gäste aus verschiedenen Ländern dabei sind,
-              biete ich eure freie Trauung gerne{" "}
-              <strong>zweisprachig auf Deutsch und Englisch</strong> an. Die Zeremonie wechselt
-              fließend und natürlich zwischen beiden Sprachen. Die Planung funktioniert
+              Wenn internationale Gäste dabei sind, sorge ich dafür, dass sie sich einbezogen
+              fühlen — durch universelle Gesten, Rituale und auf Wunsch ein gedrucktes
+              Programm in anderen Sprachen. Die Planung funktioniert
               unkompliziert per Videocall — am Vortag bin ich vor Ort, um die Location zu
               besichtigen, die Technik zu prüfen und die letzten Details abzustimmen.
             </p>
@@ -364,8 +363,13 @@ const FreieTrauungGardasee = () => {
             ].map((r) => (
               <div
                 key={r.name}
-                className="p-6"
-                style={{ background: "rgba(255, 255, 255, 0.4)", border: "1px solid rgba(184, 149, 106, 0.15)" }}
+                style={{
+                  background: "rgba(255, 255, 255, 0.45)",
+                  borderLeft: "3px solid #B8956A",
+                  borderRadius: "0 16px 16px 0",
+                  padding: "28px 32px",
+                  boxShadow: "0 2px 20px rgba(0,0,0,0.03)",
+                }}
               >
                 <h3 className="font-display mb-2" style={{ fontSize: "1.1rem", fontWeight: 400, color: "#1a1a1a" }}>
                   {r.name}
@@ -392,17 +396,22 @@ const FreieTrauungGardasee = () => {
 
       {/* ═══ FAQ ═══ */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">
-        <div className="container mx-auto px-5 sm:px-8 max-w-[800px] relative z-10">
+        <div className="container mx-auto px-5 sm:px-8 max-w-[1000px] relative z-10">
           <SH2 center>
             Häufige Fragen zur{" "}
             <Accent>Hochzeit am Gardasee</Accent>
           </SH2>
-          <div className="space-y-6">
+          <div className="space-y-5">
             {faqItems.map((item, i) => (
               <div
                 key={i}
-                className="p-6"
-                style={{ background: "rgba(253, 244, 237, 0.7)", border: "1px solid rgba(184, 149, 106, 0.12)" }}
+                style={{
+                  background: "rgba(255, 255, 255, 0.5)",
+                  borderLeft: "3px solid #B8956A",
+                  borderRadius: "0 16px 16px 0",
+                  padding: "28px 32px",
+                  boxShadow: "0 2px 20px rgba(0,0,0,0.03)",
+                }}
               >
                 <h3 className="font-display mb-3" style={{ fontSize: "1.15rem", fontWeight: 400, color: "#1a1a1a" }}>
                   {item.q}

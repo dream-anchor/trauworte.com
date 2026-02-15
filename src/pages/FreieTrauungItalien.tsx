@@ -16,8 +16,8 @@ const faqItems = [
     a: "Ja! Von München aus bin ich schnell in Italien — der Gardasee ist in vier Stunden erreichbar, die Toskana per Flug in unter zwei Stunden. Ich reise immer ein bis zwei Tage vor eurer Hochzeit an, um die Location zu besichtigen und letzte Details vor Ort abzustimmen.",
   },
   {
-    q: "Kann die Trauung in Italien zweisprachig sein?",
-    a: "Selbstverständlich! Bei Hochzeiten in Italien sind häufig internationale Gäste dabei. Ich gestalte eure freie Trauung fließend zweisprachig auf Deutsch und Englisch, damit alle die Emotionen eurer Zeremonie erleben können.",
+    q: "Was ist, wenn internationale Gäste bei der Trauung dabei sind?",
+    a: "Ich gestalte eure Zeremonie auf Deutsch. Wenn internationale Gäste dabei sind, kann ich einzelne Passagen so gestalten, dass sie auch ohne perfekte Deutschkenntnisse emotional mitgenommen werden — etwa durch universelle Gesten, Rituale und ein kurzes gedrucktes Programm in anderen Sprachen.",
   },
   {
     q: "Was kostet eine freie Trauung in Italien?",
@@ -149,7 +149,7 @@ const FreieTrauungItalien = () => {
           <p className="font-body max-w-[600px] mx-auto mt-6" style={bodyStyle}>
             Sonne, Genuss und unvergessliche Emotionen: Als eure Traurednerin gestalte ich freie
             Trauungen in ganz Italien — von den Weinbergen der Toskana über die Ufer des Gardasees
-            bis zu den Bergdörfern Südtirols. Persönlich, zweisprachig und voller Herz.
+            bis zu den Bergdörfern Südtirols. Persönlich, emotional und voller Herz.
           </p>
         </div>
       </section>
@@ -176,7 +176,7 @@ const FreieTrauungItalien = () => {
               <strong>Gardasee</strong>, oder von einer intimen Feier in einem{" "}
               <strong>Südtiroler Bergdorf</strong>: Italien bietet für jeden Hochzeitsstil die
               perfekte Kulisse. Und als eure Traurednerin fange ich die besondere Atmosphäre
-              dieses Landes in Worten ein, die unter die Haut gehen.
+              dieses Landes in Worten ein, die berühren.
             </p>
             <p>
               Italien ist von Deutschland aus hervorragend erreichbar — der Gardasee liegt nur
@@ -191,7 +191,7 @@ const FreieTrauungItalien = () => {
           {/* ═══ TRAUREDNERIN FÜR ITALIEN ═══ */}
           <SH2>
             Eure Traurednerin für Italien –{" "}
-            <Accent>persönlich und zweisprachig</Accent>
+            <Accent>persönlich und von Herzen</Accent>
           </SH2>
 
           <div className="space-y-6 font-body" style={bodyStyle}>
@@ -203,10 +203,9 @@ const FreieTrauungItalien = () => {
               mit einem offenen Ohr für eure Wünsche.
             </p>
             <p>
-              Da bei Hochzeiten in Italien fast immer internationale Gäste dabei sind, gestalte
-              ich eure Zeremonie gerne <strong>zweisprachig auf Deutsch und Englisch</strong>.
-              Die Trauung wechselt fließend und natürlich zwischen beiden Sprachen, sodass
-              jeder Gast die Emotionen eures Tages miterleben kann. Am Vortag bin ich immer
+              Wenn internationale Gäste dabei sind, sorge ich dafür, dass sie sich einbezogen
+              fühlen — durch universelle Gesten, Rituale und auf Wunsch ein gedrucktes
+              Programm in anderen Sprachen. Am Vortag bin ich immer
               vor Ort, um die Location zu besichtigen und die letzten Details abzustimmen.
             </p>
           </div>
@@ -351,18 +350,23 @@ const FreieTrauungItalien = () => {
 
       {/* ═══ FAQ ═══ */}
       <section style={{ backgroundColor: "#FBE9DA" }} className="py-20 md:py-28 grain">
-        <div className="container mx-auto px-5 sm:px-8 max-w-[800px] relative z-10">
+        <div className="container mx-auto px-5 sm:px-8 max-w-[1000px] relative z-10">
           <SH2 center>
             Häufige Fragen zur{" "}
             <Accent>freien Trauung in Italien</Accent>
           </SH2>
 
-          <div className="space-y-6">
+          <div className="space-y-5">
             {faqItems.map((item, i) => (
               <div
                 key={i}
-                className="p-6"
-                style={{ background: "rgba(253, 244, 237, 0.7)", border: "1px solid rgba(184, 149, 106, 0.12)" }}
+                style={{
+                  background: "rgba(255, 255, 255, 0.5)",
+                  borderLeft: "3px solid #B8956A",
+                  borderRadius: "0 16px 16px 0",
+                  padding: "28px 32px",
+                  boxShadow: "0 2px 20px rgba(0,0,0,0.03)",
+                }}
               >
                 <h3 className="font-display mb-3" style={{ fontSize: "1.15rem", fontWeight: 400, color: "#1a1a1a" }}>
                   {item.q}

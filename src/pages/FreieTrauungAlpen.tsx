@@ -114,7 +114,7 @@ const FreieTrauungAlpen = () => {
     <Layout>
       <SEO
         title="Freie Trauung in den Alpen – Traurednerin Stefanie Sick"
-        description="Freie Trauung in den Alpen: Eure Traurednerin für Berghochzeiten in Bayern, Tirol und Salzburg. Auf Almen, Gipfeln und vor Bergpanorama. Zweisprachig."
+        description="Freie Trauung in den Alpen: Eure Traurednerin für Berghochzeiten in Bayern, Tirol und Salzburg. Auf Almen, Gipfeln und vor Bergpanorama."
         canonical="/freie-trauung-alpen"
       />
       <StructuredData
@@ -203,9 +203,9 @@ const FreieTrauungAlpen = () => {
               Ablauf, der sich der Natur anpasst — nicht umgekehrt.
             </p>
             <p>
-              Eure Zeremonie gestalte ich gerne{" "}
-              <strong>zweisprachig auf Deutsch und Englisch</strong> — ideal für internationale
-              Gäste, die den weiten Weg in die Berge auf sich genommen haben. Und keine Sorge:
+              Wenn internationale Gäste dabei sind, sorge ich dafür, dass sie sich einbezogen
+              fühlen — durch universelle Gesten, Rituale und auf Wunsch ein gedrucktes
+              Programm in anderen Sprachen. Und keine Sorge:
               Ich bin bergfest, wettererprobt und immer rechtzeitig auf dem Gipfel.
             </p>
           </div>
@@ -385,8 +385,13 @@ const FreieTrauungAlpen = () => {
             ].map((r) => (
               <div
                 key={r.name}
-                className="p-6"
-                style={{ background: "rgba(255, 255, 255, 0.4)", border: "1px solid rgba(184, 149, 106, 0.15)" }}
+                style={{
+                  background: "rgba(255, 255, 255, 0.45)",
+                  borderLeft: "3px solid #B8956A",
+                  borderRadius: "0 16px 16px 0",
+                  padding: "28px 32px",
+                  boxShadow: "0 2px 20px rgba(0,0,0,0.03)",
+                }}
               >
                 <h3 className="font-display mb-2" style={{ fontSize: "1.1rem", fontWeight: 400, color: "#1a1a1a" }}>
                   {r.name}
@@ -413,17 +418,22 @@ const FreieTrauungAlpen = () => {
 
       {/* ═══ FAQ ═══ */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">
-        <div className="container mx-auto px-5 sm:px-8 max-w-[800px] relative z-10">
+        <div className="container mx-auto px-5 sm:px-8 max-w-[1000px] relative z-10">
           <SH2 center>
             Häufige Fragen zur{" "}
             <Accent>Berghochzeit in den Alpen</Accent>
           </SH2>
-          <div className="space-y-6">
+          <div className="space-y-5">
             {faqItems.map((item, i) => (
               <div
                 key={i}
-                className="p-6"
-                style={{ background: "rgba(253, 244, 237, 0.7)", border: "1px solid rgba(184, 149, 106, 0.12)" }}
+                style={{
+                  background: "rgba(255, 255, 255, 0.5)",
+                  borderLeft: "3px solid #B8956A",
+                  borderRadius: "0 16px 16px 0",
+                  padding: "28px 32px",
+                  boxShadow: "0 2px 20px rgba(0,0,0,0.03)",
+                }}
               >
                 <h3 className="font-display mb-3" style={{ fontSize: "1.15rem", fontWeight: 400, color: "#1a1a1a" }}>
                   {item.q}

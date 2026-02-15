@@ -16,8 +16,8 @@ const faqItems = [
     a: "Ich empfehle, eure Traurednerin 6 bis 12 Monate vor dem Hochzeitstermin zu buchen. Besonders in der Hochzeitssaison von Mai bis September sind die Wochenenden schnell vergeben. Beliebte Seen-Locations am Starnberger See oder Tegernsee sind oft schon früh ausgebucht — also lieber rechtzeitig anfragen.",
   },
   {
-    q: "Kann die Trauung auch auf Englisch stattfinden?",
-    a: "Ja! Ich biete freie Trauungen auf Deutsch, Englisch oder zweisprachig an. Gerade in Bayern mit vielen internationalen Paaren und Gästen ist das häufig gewünscht. Die Zeremonie wechselt fließend und natürlich zwischen beiden Sprachen.",
+    q: "Was ist, wenn internationale Gäste bei der Trauung dabei sind?",
+    a: "Ich gestalte eure Zeremonie auf Deutsch. Wenn internationale Gäste dabei sind, kann ich einzelne Passagen so gestalten, dass sie auch ohne perfekte Deutschkenntnisse emotional mitgenommen werden — etwa durch universelle Gesten, Rituale und ein kurzes gedrucktes Programm in anderen Sprachen.",
   },
   {
     q: "Braucht man zusätzlich eine standesamtliche Trauung?",
@@ -61,7 +61,7 @@ const serviceSchema = {
     { "@type": "Place", name: "Chiemsee" },
   ],
   description:
-    "Freie Trauungen in ganz Bayern: Am Starnberger See, Tegernsee, Chiemsee, auf Almen und in Schlössern. Persönlich, emotional und zweisprachig.",
+    "Freie Trauungen in ganz Bayern: Am Starnberger See, Tegernsee, Chiemsee, auf Almen und in Schlössern. Persönlich, emotional und unvergesslich.",
   url: "https://trauworte.com/traurednerin-bayern/",
 };
 
@@ -119,7 +119,7 @@ const TraurednerinBayern = () => {
     <Layout>
       <SEO
         title="Traurednerin Bayern – Freie Trauung am See & in den Bergen"
-        description="Eure Traurednerin für Bayern: Stefanie Sick gestaltet freie Trauungen am Starnberger See, Tegernsee, Chiemsee und in den Alpen. Persönlich & zweisprachig."
+        description="Eure Traurednerin für Bayern: Stefanie Sick gestaltet freie Trauungen am Starnberger See, Tegernsee, Chiemsee und in den Alpen. Persönlich & emotional."
         canonical="/traurednerin-bayern"
       />
       <StructuredData
@@ -202,10 +202,9 @@ const TraurednerinBayern = () => {
             </p>
             <p>
               Ich reise flexibel in ganz Bayern zu euch — von Oberbayern über Schwaben und
-              das Allgäu bis nach Franken und in die Oberpfalz. Eure Zeremonie gestalte ich
-              gerne <strong>zweisprachig auf Deutsch und Englisch</strong>, ideal für
-              internationale Paare und Gäste. Die Anfahrt innerhalb Bayerns ist immer im
-              Preis inbegriffen.
+              das Allgäu bis nach Franken und in die Oberpfalz. Jede Traurede ist ein
+              Unikat, geschrieben aus eurer einzigartigen Geschichte. Die Anfahrt innerhalb
+              Bayerns ist immer im Preis inbegriffen.
             </p>
           </div>
         </div>
@@ -385,7 +384,7 @@ const TraurednerinBayern = () => {
               {
                 step: "05",
                 title: "Euer großer Tag",
-                text: "Am Tag eurer freien Trauung in Bayern führe ich euch und eure Gäste mit Herz und Leidenschaft durch eine Zeremonie, die unter die Haut geht. Euer Moment — an eurem Ort in Bayern.",
+                text: "Am Tag eurer freien Trauung in Bayern führe ich euch und eure Gäste mit Herz und Leidenschaft durch eine Zeremonie, die tief berührt. Euer Moment — an eurem Ort in Bayern.",
               },
             ].map((item) => (
               <div key={item.step} className="flex gap-6 md:gap-8">
@@ -411,17 +410,22 @@ const TraurednerinBayern = () => {
 
       {/* ═══ FAQ ═══ */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">
-        <div className="container mx-auto px-5 sm:px-8 max-w-[800px] relative z-10">
+        <div className="container mx-auto px-5 sm:px-8 max-w-[1000px] relative z-10">
           <SH2 center>
             Häufige Fragen zur{" "}
             <Accent>freien Trauung in Bayern</Accent>
           </SH2>
-          <div className="space-y-6">
+          <div className="space-y-5">
             {faqItems.map((item, i) => (
               <div
                 key={i}
-                className="p-6"
-                style={{ background: "rgba(253, 244, 237, 0.7)", border: "1px solid rgba(184, 149, 106, 0.12)" }}
+                style={{
+                  background: "rgba(255, 255, 255, 0.5)",
+                  borderLeft: "3px solid #B8956A",
+                  borderRadius: "0 16px 16px 0",
+                  padding: "28px 32px",
+                  boxShadow: "0 2px 20px rgba(0,0,0,0.03)",
+                }}
               >
                 <h3 className="font-display mb-3" style={{ fontSize: "1.15rem", fontWeight: 400, color: "#1a1a1a" }}>
                   {item.q}
@@ -473,13 +477,6 @@ const TraurednerinBayern = () => {
               style={{ color: "#B8956A", textDecoration: "underline", textUnderlineOffset: "3px" }}
             >
               Über die Alpen: Gardasee und Toskana
-            </Link>
-            <Link
-              to="/en/wedding-celebrant-munich"
-              className="font-body text-sm"
-              style={{ color: "#B8956A", textDecoration: "underline", textUnderlineOffset: "3px" }}
-            >
-              English ceremonies available
             </Link>
           </div>
         </div>

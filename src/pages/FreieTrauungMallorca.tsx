@@ -24,8 +24,8 @@ const faqItems = [
     a: "Ja! Ich reise für eure freie Trauung nach Mallorca und bin bereits am Vortag vor Ort. So kann ich die Location besichtigen, die Technik prüfen und den Ablauf in Ruhe vorbereiten. Am Tag eurer Hochzeit könnt ihr euch ganz auf eure Emotionen konzentrieren.",
   },
   {
-    q: "Ist eine zweisprachige Trauung auf Mallorca möglich?",
-    a: "Selbstverständlich! Gerade bei Destination Weddings auf Mallorca sind oft internationale Gäste dabei. Ich gestalte eure freie Trauung fließend zweisprachig — auf Deutsch und Englisch — damit alle Gäste die Emotionen eurer Zeremonie in voller Tiefe erleben.",
+    q: "Was ist, wenn internationale Gäste bei der Trauung dabei sind?",
+    a: "Ich gestalte eure Zeremonie auf Deutsch. Wenn internationale Gäste dabei sind, kann ich einzelne Passagen so gestalten, dass sie auch ohne perfekte Deutschkenntnisse emotional mitgenommen werden — etwa durch universelle Gesten, Rituale und ein kurzes gedrucktes Programm in anderen Sprachen.",
   },
   {
     q: "Was passiert bei schlechtem Wetter auf Mallorca?",
@@ -62,7 +62,7 @@ const serviceSchema = {
     name: "Mallorca, Spanien",
   },
   description:
-    "Persönliche und emotionale freie Trauungen auf Mallorca — zweisprachig, individuell und unvergesslich.",
+    "Persönliche und emotionale freie Trauungen auf Mallorca — individuell und unvergesslich.",
   url: "https://trauworte.com/freie-trauung-mallorca/",
 };
 
@@ -197,7 +197,7 @@ const FreieTrauungMallorca = () => {
           {/* ═══ TRAUREDNERIN AUF MALLORCA ═══ */}
           <SH2>
             Eure Traurednerin auf Mallorca –{" "}
-            <Accent>persönlich und zweisprachig</Accent>
+            <Accent>persönlich und von Herzen</Accent>
           </SH2>
 
           <div className="space-y-6 font-body" style={bodyStyle}>
@@ -205,13 +205,12 @@ const FreieTrauungMallorca = () => {
               Als eure Traurednerin für Mallorca verbinde ich das Beste aus zwei Welten: deutsche
               Gründlichkeit in der Vorbereitung und mediterrane Leichtigkeit in der Zeremonie. Ich lerne
               eure Liebesgeschichte kennen, höre zu und verwandle eure Erlebnisse in eine Traurede, die
-              unter die Haut geht. Jede freie Trauung auf Mallorca, die ich gestalte, ist ein Unikat.
+              tief berührt. Jede freie Trauung auf Mallorca, die ich gestalte, ist ein Unikat.
             </p>
             <p>
-              Gerade bei Destination Weddings auf Mallorca sind oft Gäste aus verschiedenen Ländern
-              dabei. Deshalb biete ich eure freie Trauung{" "}
-              <strong>zweisprachig auf Deutsch und Englisch</strong> an — fließend, natürlich und so,
-              dass alle Gäste die Emotionen eurer Zeremonie in voller Tiefe erleben. Die persönliche
+              Wenn internationale Gäste dabei sind, sorge ich dafür, dass sie sich einbezogen
+              fühlen — durch universelle Gesten, Rituale und auf Wunsch ein gedrucktes
+              Programm in anderen Sprachen. Die persönliche
               Betreuung beginnt trotz Entfernung vom ersten Moment an: per Videocall, WhatsApp und E-Mail
               bin ich immer für euch da.
             </p>
@@ -250,7 +249,7 @@ const FreieTrauungMallorca = () => {
               {
                 step: "05",
                 title: "Euer großer Tag auf Mallorca",
-                text: "Am Tag eurer freien Trauung auf Mallorca bin ich ganz für euch da. Ich führe euch und eure Gäste mit Herz und Leidenschaft durch eine Zeremonie, die unter die Haut geht. Euer Moment — unvergesslich.",
+                text: "Am Tag eurer freien Trauung auf Mallorca bin ich ganz für euch da. Ich führe euch und eure Gäste mit Herz und Leidenschaft durch eine Zeremonie, die tief berührt. Euer Moment — unvergesslich.",
               },
             ].map((item) => (
               <div key={item.step} className="flex gap-6 md:gap-8">
@@ -371,10 +370,12 @@ const FreieTrauungMallorca = () => {
             ].map((r) => (
               <div
                 key={r.name}
-                className="p-6"
                 style={{
-                  background: "rgba(255, 255, 255, 0.4)",
-                  border: "1px solid rgba(184, 149, 106, 0.15)",
+                  background: "rgba(255, 255, 255, 0.45)",
+                  borderLeft: "3px solid #B8956A",
+                  borderRadius: "0 16px 16px 0",
+                  padding: "28px 32px",
+                  boxShadow: "0 2px 20px rgba(0,0,0,0.03)",
                 }}
               >
                 <h3
@@ -408,20 +409,22 @@ const FreieTrauungMallorca = () => {
 
       {/* ═══ FAQ ═══ */}
       <section style={{ backgroundColor: "#FBE9DA" }} className="py-20 md:py-28 grain">
-        <div className="container mx-auto px-5 sm:px-8 max-w-[800px] relative z-10">
+        <div className="container mx-auto px-5 sm:px-8 max-w-[1000px] relative z-10">
           <SH2 center>
             Häufige Fragen zur{" "}
             <Accent>freien Trauung auf Mallorca</Accent>
           </SH2>
 
-          <div className="space-y-6">
+          <div className="space-y-5">
             {faqItems.map((item, i) => (
               <div
                 key={i}
-                className="p-6"
                 style={{
-                  background: "rgba(253, 244, 237, 0.7)",
-                  border: "1px solid rgba(184, 149, 106, 0.12)",
+                  background: "rgba(255, 255, 255, 0.5)",
+                  borderLeft: "3px solid #B8956A",
+                  borderRadius: "0 16px 16px 0",
+                  padding: "28px 32px",
+                  boxShadow: "0 2px 20px rgba(0,0,0,0.03)",
                 }}
               >
                 <h3

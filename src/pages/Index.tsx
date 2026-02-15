@@ -19,7 +19,6 @@ import useParallax from "@/hooks/useParallax";
 const IMG_STEFANIE = "/images/traurednerin-stefanie-sick-portrait.webp";
 const IMG_LOCATIONS = "/images/hochzeit-europa-deutschland-oesterreich-schweiz.webp";
 const IMG_BANNER = "/images/freie-trauung-hochzeitstanz-romantisch.webp";
-const IMG_TESTIMONIAL = "/images/testimonial-kundin-sybille-hochzeit.webp";
 
 /* ── Angebote (Bento) ── */
 const angebote = [
@@ -34,7 +33,7 @@ const angebote = [
   },
   {
     title: "Feierliche Traurede",
-    desc: "Eine Traurede, die unter die Haut geht. Ich schreibe eure individuelle Rede auf Basis eurer Liebesgeschichte — mit Humor, Tiefgang und den Worten, die euch wirklich berühren. Jede Traurede ist ein Unikat, das eure Gäste zu Tränen rührt.",
+    desc: "Eine Traurede, die tief berührt. Ich schreibe eure individuelle Rede auf Basis eurer Liebesgeschichte — mit Humor, Tiefgang und den Worten, die euch wirklich berühren. Jede Traurede ist ein Unikat, das eure Gäste zu Tränen rührt.",
     img: "/images/angebot-feierliche-traurede-rednerin.webp",
     alt: "Feierliche Traurede bei einer freien Trauung",
     link: "/hochzeitsreden-traurednerin",
@@ -208,7 +207,7 @@ const Index = () => {
                   letterSpacing: "0.02em",
                 }}
               >
-                Eure Traurednerin München für{" "}
+                Eure Traurednerin aus München für{" "}
                 <Accent gold>freie Trauungen</Accent>
                 {" "}voller Emotion
               </h1>
@@ -319,7 +318,7 @@ const Index = () => {
       {/* ═══ 3. UEBER STEFANIE — Editorial Portrait ═══ */}
       <section
         id="ueber"
-        style={{ backgroundColor: "#FBE9DA" }}
+        style={{ backgroundColor: "#FBE9DA", scrollMarginTop: "140px" }}
         className="overflow-hidden relative"
       >
         <div className="flex flex-col md:flex-row max-w-[1200px] mx-auto min-h-[85vh]">
@@ -413,8 +412,7 @@ const Index = () => {
               auf Mallorca — ich höre euch zu, verstehe eure Wünsche und gestalte
               eine Zeremonie, die euch und eure Gäste tief berührt. Bei mir bekommt
               ihr persönliche 1:1-Betreuung von der ersten Anfrage bis zum letzten
-              Wort eurer Trauung. Und auf Wunsch gestalte ich eure Zeremonie auch
-              zweisprachig — perfekt für internationale Paare.
+              Wort eurer Trauung.
             </p>
 
             <div className="flex flex-wrap gap-4 mt-8">
@@ -586,7 +584,7 @@ const Index = () => {
 
       {/* ═══ 5b. LEISTUNGS-ÜBERSICHT ═══ */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-28 sm:py-36 md:py-44 relative grain">
-        <div className="container mx-auto px-5 sm:px-8 max-w-[800px] relative z-10">
+        <div className="container mx-auto px-5 sm:px-8 max-w-[900px] relative z-10">
           <Reveal className="text-center mb-12">
             <p
               style={{
@@ -751,8 +749,7 @@ const Index = () => {
                 Egal ob eine intime Zeremonie zu zweit oder eine große freie
                 Trauung mit 200 Gästen — ich passe mich eurem Wunschort an
                 und gestalte eure Zeremonie so, dass sie perfekt zur Atmosphäre
-                eurer Location passt. Auf Wunsch auch zweisprachig (Deutsch/Englisch)
-                für internationale Paare und Destination Weddings.
+                eurer Location passt.
               </p>
             </div>
             {/* Location Pills */}
@@ -799,7 +796,7 @@ const Index = () => {
             "review": [
               {
                 "@type": "Review",
-                "author": { "@type": "Person", "name": "Sybille M." },
+                "author": { "@type": "Person", "name": "Sybille & Frank" },
                 "datePublished": "2024-09-15",
                 "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
                 "reviewBody": "Stefanie war absolut fantastisch! Ihre Reden und Moderation bei unserer Hochzeit waren herzlich und berührend. Die persönliche Note und die professionelle Präsentation haben unseren besonderen Tag noch unvergesslicher gemacht."
@@ -1002,7 +999,7 @@ const Index = () => {
               </div>
             </Reveal>
 
-            {/* Testimonial 4 — Sybille (bestehend) */}
+            {/* Testimonial 4 — Sybille & Frank */}
             <Reveal>
               <div className="text-center max-w-2xl mx-auto">
                 <h3
@@ -1011,15 +1008,6 @@ const Index = () => {
                 >
                   Frankfurt am Main
                 </h3>
-                <img
-                  src={IMG_TESTIMONIAL}
-                  alt="Bewertung – Traurednerin Stefanie Sick"
-                  width={80}
-                  height={80}
-                  loading="lazy"
-                  className="w-20 h-20 rounded-full object-cover mx-auto shadow-md mb-4"
-                  style={{ border: "3px solid rgba(184, 149, 106, 0.25)" }}
-                />
                 <div className="flex justify-center gap-1 mb-6">
                   {[1, 2, 3, 4, 5].map((s) => (
                     <svg key={s} width="16" height="16" viewBox="0 0 24 24" fill="#B8956A">
@@ -1054,7 +1042,7 @@ const Index = () => {
                     color: "rgba(26, 26, 26, 0.45)",
                   }}
                 >
-                  Sybille M. aus Frankfurt
+                  Sybille & Frank
                 </p>
               </div>
             </Reveal>
@@ -1068,7 +1056,62 @@ const Index = () => {
       {/* ═══ 10. FAQ ═══ */}
       <HomepageFAQ />
 
-      {/* ═══ 11. CTA + FORMULAR ═══ */}
+      {/* ═══ 11. REGIONALE LINKS ═══ */}
+      <section style={{ backgroundColor: "#FBE9DA" }} className="py-20 sm:py-24 relative grain">
+        <div className="container mx-auto px-5 sm:px-8 max-w-[900px] relative z-10">
+          <Reveal className="text-center mb-10">
+            <p
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "11px",
+                fontWeight: 500,
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                color: "#B8956A",
+                marginBottom: "20px",
+              }}
+            >
+              Eure Wunschregion
+            </p>
+            <h2
+              className="font-display"
+              style={{
+                color: "#1a1a1a",
+                letterSpacing: "0.02em",
+                fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
+              }}
+            >
+              Freie Trauungen in{" "}
+              <Accent gold>ganz Europa</Accent>
+            </h2>
+          </Reveal>
+          <Reveal>
+            <div className="flex flex-wrap justify-center gap-3">
+              {[
+                { to: "/traurednerin-muenchen", label: "München" },
+                { to: "/traurednerin-bayern", label: "Bayern" },
+                { to: "/traurednerin-oesterreich", label: "Österreich" },
+                { to: "/freie-trauung-alpen", label: "Alpen" },
+                { to: "/freie-trauung-italien", label: "Italien" },
+                { to: "/freie-trauung-gardasee", label: "Gardasee" },
+                { to: "/freie-trauung-toskana", label: "Toskana" },
+                { to: "/freie-trauung-mallorca", label: "Mallorca" },
+              ].map((lp) => (
+                <Link
+                  key={lp.to}
+                  to={lp.to}
+                  className="location-pill transition-all duration-300 hover:scale-105"
+                  style={{ textDecoration: "none" }}
+                >
+                  {lp.label}
+                </Link>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══ 12. CTA + FORMULAR ═══ */}
       <ContactForm />
 
       {/* Divider: CTA → Footer */}

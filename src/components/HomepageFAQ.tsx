@@ -31,9 +31,9 @@ const faqs = [
       "Überall dort, wo ihr euch wohlfühlt! Freie Trauungen können im Garten, am See, auf einer Almhütte, in einer Scheune, auf einer Burg, am Strand oder in einem eleganten Hotel stattfinden. Als Traurednerin in München und Bayern kenne ich viele wunderschöne Hochzeitslocations — vom Starnberger See über den Tegernsee bis zu den Schlössern im Allgäu. Auch Destination Weddings auf Mallorca, in der Toskana oder in den österreichischen Alpen begleite ich mit Leidenschaft.",
   },
   {
-    frage: "Kann die Trauung mehrsprachig gestaltet werden?",
+    frage: "Was ist, wenn internationale Gäste dabei sind?",
     antwort:
-      "Ja, selbstverständlich! Gerade bei internationalen Paaren oder Gästen aus verschiedenen Ländern gestalte ich die freie Trauung gerne zweisprachig — zum Beispiel Deutsch und Englisch. So fühlen sich alle Gäste einbezogen und können den emotionalen Momenten folgen. Auch bei Destination Weddings im Ausland ist Mehrsprachigkeit ein großer Vorteil. Sprecht mich einfach an, und wir finden die perfekte Lösung für eure Zeremonie.",
+      "Ich gestalte eure Zeremonie auf Deutsch. Wenn internationale Gäste dabei sind, kann ich einzelne Passagen so gestalten, dass sie auch ohne perfekte Deutschkenntnisse emotional mitgenommen werden — etwa durch universelle Gesten, Rituale und ein kurzes gedrucktes Programm in anderen Sprachen.",
   },
   {
     frage: "Wie persönlich wird die freie Trauung?",
@@ -176,7 +176,7 @@ const HomepageFAQ = () => {
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
-      <div className="container mx-auto px-5 sm:px-8 max-w-[900px] relative z-10">
+      <div className="container mx-auto px-5 sm:px-8 max-w-[1000px] relative z-10">
         {/* Header */}
         <div
           ref={ref}

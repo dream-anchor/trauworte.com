@@ -15,8 +15,8 @@ const faqItems = [
     a: "Ich empfehle, eure Traurednerin mindestens 9–12 Monate vor dem Hochzeitstermin zu buchen. In der Hochzeitssaison von Mai bis Oktober sind die Wochenenden in München besonders beliebt und schnell vergeben.",
   },
   {
-    q: "Kann die Trauung in München auch zweisprachig sein?",
-    a: "Selbstverständlich! Als Traurednerin in München gestalte ich eure Zeremonie gerne zweisprachig — auf Deutsch und Englisch. Perfekt für internationale Paare oder wenn Freunde und Familie aus dem Ausland anreisen.",
+    q: "Was ist, wenn internationale Gäste bei der Trauung dabei sind?",
+    a: "Ich gestalte eure Zeremonie auf Deutsch. Wenn internationale Gäste dabei sind, kann ich einzelne Passagen so gestalten, dass sie auch ohne perfekte Deutschkenntnisse emotional mitgenommen werden — etwa durch universelle Gesten, Rituale und ein kurzes gedrucktes Programm in anderen Sprachen.",
   },
   {
     q: "Was kostet eine Traurednerin in München?",
@@ -60,7 +60,6 @@ const TraurednerinMuenchen = () => {
       />
       <Helmet>
         <link rel="alternate" hrefLang="de" href="https://trauworte.com/traurednerin-muenchen/" />
-        <link rel="alternate" hrefLang="en" href="https://trauworte.com/en/wedding-celebrant-munich/" />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
@@ -148,7 +147,7 @@ const TraurednerinMuenchen = () => {
               Eine freie Trauung in München bedeutet völlige Freiheit: Ihr entscheidet, wo, wann und
               wie eure Zeremonie stattfindet. Kein fester Rahmen, keine Vorgaben — nur ihr, eure Liebe
               und die Menschen, die euch am Herzen liegen. Ich höre euch zu, lerne eure Geschichte kennen
-              und verwandle sie in eine Traurede, die unter die Haut geht.
+              und verwandle sie in eine Traurede, die tief berührt.
             </p>
             <p>
               Als Traurednerin mit Sitz in München begleite ich euch von der ersten Anfrage bis zum
@@ -209,7 +208,7 @@ const TraurednerinMuenchen = () => {
 
       {/* FAQ */}
       <section style={{ backgroundColor: "#FBE9DA" }} className="py-20 md:py-28 grain">
-        <div className="container mx-auto px-5 sm:px-8 max-w-[800px] relative z-10">
+        <div className="container mx-auto px-5 sm:px-8 max-w-[1000px] relative z-10">
           <h2
             className="font-display text-center mb-12"
             style={{
@@ -231,14 +230,16 @@ const TraurednerinMuenchen = () => {
             </span>
           </h2>
 
-          <div className="space-y-6">
+          <div className="space-y-5">
             {faqItems.map((item, i) => (
               <div
                 key={i}
-                className="p-6"
                 style={{
-                  background: "rgba(253, 244, 237, 0.7)",
-                  border: "1px solid rgba(184, 149, 106, 0.12)",
+                  background: "rgba(255, 255, 255, 0.5)",
+                  borderLeft: "3px solid #B8956A",
+                  borderRadius: "0 16px 16px 0",
+                  padding: "28px 32px",
+                  boxShadow: "0 2px 20px rgba(0,0,0,0.03)",
                 }}
               >
                 <h3

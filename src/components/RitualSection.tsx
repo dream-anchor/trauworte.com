@@ -61,9 +61,11 @@ const RitualCard = ({ name, text, index }: { name: string; text: string; index: 
       <div
         className="p-6 sm:p-8"
         style={{
-          background: "rgba(255, 255, 255, 0.4)",
+          background: "rgba(255, 255, 255, 0.45)",
           backdropFilter: "blur(6px)",
-          border: "1px solid rgba(184, 149, 106, 0.15)",
+          borderLeft: "3px solid #B8956A",
+          borderRadius: "0 16px 16px 0",
+          boxShadow: "0 2px 20px rgba(0,0,0,0.03)",
         }}
       >
         <h3

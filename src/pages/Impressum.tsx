@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
+import ObfuscatedEmail from "@/components/ObfuscatedEmail";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
 
 const Impressum = () => {
@@ -33,7 +34,7 @@ const Impressum = () => {
             <h2 className="font-display text-2xl text-foreground">Angaben gemäß § 5 TMG</h2>
             <p>Stefanie Sick<br />TrauWorte – Freie Rednerin<br />[Adresse wird ergänzt]</p>
             <h2 className="font-display text-2xl text-foreground">Kontakt</h2>
-            <p>E-Mail: info@stefaniesick.com</p>
+            <p>E-Mail: <ObfuscatedEmail /></p>
             <p className="text-sm italic">Weitere Angaben werden noch ergänzt.</p>
           </div>
         </div>

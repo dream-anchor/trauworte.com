@@ -19,7 +19,7 @@ const PAGES = [
   { slug: "persoenliche-trauung-haeufige-fragen", priority: "0.8", changefreq: "monthly" },
   { slug: "freie-trauung-kontakt", priority: "0.9", changefreq: "monthly" },
   { slug: "ueber-traurednerin-stefanie", priority: "0.8", changefreq: "monthly" },
-  { slug: "blog", priority: "0.6", changefreq: "weekly" },
+  { slug: "magazin", priority: "0.6", changefreq: "weekly" },
   { slug: "impressum", priority: "0.3", changefreq: "yearly" },
   { slug: "datenschutzerklaerung", priority: "0.3", changefreq: "yearly" },
   { slug: "traurednerin-muenchen", priority: "0.8", changefreq: "monthly" },
@@ -30,7 +30,7 @@ const PAGES = [
   { slug: "freie-trauung-gardasee", priority: "0.8", changefreq: "monthly" },
   { slug: "freie-trauung-alpen", priority: "0.8", changefreq: "monthly" },
   { slug: "freie-trauung-italien", priority: "0.8", changefreq: "monthly" },
-  { slug: "en/wedding-celebrant-munich", priority: "0.7", changefreq: "monthly" },
+  { slug: "magazin/trausprueche-freie-trauung", priority: "0.8", changefreq: "monthly" },
 ];
 
 const today = new Date().toISOString().split("T")[0];

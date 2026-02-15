@@ -16,8 +16,8 @@ const faqItems = [
     a: "Von den Salzburger Schlössern über Tiroler Almhütten bis zu den Weingutshöfen der Wachau — Österreich bietet für jeden Hochzeitsstil die perfekte Location. Besonders beliebt sind das Salzkammergut mit Wolfgangsee und Hallstätter See, die Region rund um Kitzbühel und die Palais in Wien.",
   },
   {
-    q: "Kann die Zeremonie in Österreich auf Deutsch und Englisch sein?",
-    a: "Selbstverständlich! Gerade bei Hochzeiten in Österreich sind oft internationale Gäste dabei. Ich gestalte eure freie Trauung gerne zweisprachig — auf Deutsch und Englisch, fließend und natürlich. So fühlt sich jeder Gast einbezogen und versteht jedes Wort eurer Geschichte.",
+    q: "Was ist, wenn internationale Gäste bei der Trauung dabei sind?",
+    a: "Ich gestalte eure Zeremonie auf Deutsch. Wenn internationale Gäste dabei sind, kann ich einzelne Passagen so gestalten, dass sie auch ohne perfekte Deutschkenntnisse emotional mitgenommen werden — etwa durch universelle Gesten, Rituale und ein kurzes gedrucktes Programm in anderen Sprachen.",
   },
   {
     q: "Was kostet eine Traurednerin für Österreich?",
@@ -61,7 +61,7 @@ const serviceSchema = {
     { "@type": "Place", name: "Wien, Österreich" },
   ],
   description:
-    "Freie Trauungen in ganz Österreich: In Salzburg, Tirol, am Wolfgangsee und im Salzkammergut. Persönlich, emotional und zweisprachig.",
+    "Freie Trauungen in ganz Österreich: In Salzburg, Tirol, am Wolfgangsee und im Salzkammergut. Persönlich, emotional und unvergesslich.",
   url: "https://trauworte.com/traurednerin-oesterreich/",
 };
 
@@ -119,7 +119,7 @@ const TraurednerinOesterreich = () => {
     <Layout>
       <SEO
         title="Freie Trauung Österreich – Traurednerin für Salzburg & Tirol"
-        description="Traurednerin Stefanie Sick für freie Trauungen in Österreich. Zeremonien in Salzburg, Tirol, am Wolfgangsee & im Salzkammergut — persönlich und zweisprachig."
+        description="Traurednerin Stefanie Sick für freie Trauungen in Österreich. Zeremonien in Salzburg, Tirol, am Wolfgangsee & im Salzkammergut — persönlich und emotional."
         canonical="/traurednerin-oesterreich"
       />
       <StructuredData
@@ -202,10 +202,10 @@ const TraurednerinOesterreich = () => {
               persönlich und emotional, dass sie euch und eure Gäste tief berührt.
             </p>
             <p>
-              Eure Zeremonie gestalte ich gerne{" "}
-              <strong>zweisprachig auf Deutsch und Englisch</strong> — ideal für internationale
-              Paare und Gäste, die in Österreich heiraten. Jede Traurede ist ein Unikat,
-              geschrieben aus eurer einzigartigen Geschichte.
+              Jede Traurede ist ein Unikat, geschrieben aus eurer einzigartigen Geschichte.
+              Wenn internationale Gäste dabei sind, sorge ich dafür, dass sie sich einbezogen
+              fühlen — durch universelle Gesten, Rituale und auf Wunsch ein gedrucktes
+              Programm in anderen Sprachen.
             </p>
           </div>
         </div>
@@ -273,7 +273,7 @@ const TraurednerinOesterreich = () => {
                 ihre Sommer verbrachte, könnt ihr eure freie Trauung in wahrhaft königlichem
                 Rahmen feiern. Das Salzkammergut verbindet die Eleganz der k.u.k.-Monarchie
                 mit der Natürlichkeit einer alpinen Seenlandschaft — perfekt für eine Zeremonie,
-                die unter die Haut geht.
+                die tief berührt.
               </p>
             </div>
 
@@ -357,7 +357,7 @@ const TraurednerinOesterreich = () => {
               {
                 step: "05",
                 title: "Euer großer Tag in Österreich",
-                text: "Am Tag eurer freien Trauung führe ich euch und eure Gäste mit Herz, Leidenschaft und den richtigen Worten durch eine Zeremonie, die unter die Haut geht. Euer Moment — an eurem Ort in Österreich.",
+                text: "Am Tag eurer freien Trauung führe ich euch und eure Gäste mit Herz, Leidenschaft und den richtigen Worten durch eine Zeremonie, die tief berührt. Euer Moment — an eurem Ort in Österreich.",
               },
             ].map((item) => (
               <div key={item.step} className="flex gap-6 md:gap-8">
@@ -383,17 +383,22 @@ const TraurednerinOesterreich = () => {
 
       {/* ═══ FAQ ═══ */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">
-        <div className="container mx-auto px-5 sm:px-8 max-w-[800px] relative z-10">
+        <div className="container mx-auto px-5 sm:px-8 max-w-[1000px] relative z-10">
           <SH2 center>
             Häufige Fragen zur{" "}
             <Accent>freien Trauung in Österreich</Accent>
           </SH2>
-          <div className="space-y-6">
+          <div className="space-y-5">
             {faqItems.map((item, i) => (
               <div
                 key={i}
-                className="p-6"
-                style={{ background: "rgba(253, 244, 237, 0.7)", border: "1px solid rgba(184, 149, 106, 0.12)" }}
+                style={{
+                  background: "rgba(255, 255, 255, 0.5)",
+                  borderLeft: "3px solid #B8956A",
+                  borderRadius: "0 16px 16px 0",
+                  padding: "28px 32px",
+                  boxShadow: "0 2px 20px rgba(0,0,0,0.03)",
+                }}
               >
                 <h3 className="font-display mb-3" style={{ fontSize: "1.15rem", fontWeight: 400, color: "#1a1a1a" }}>
                   {item.q}
@@ -445,13 +450,7 @@ const TraurednerinOesterreich = () => {
             >
               Traurednerin in München
             </Link>
-            <Link
-              to="/en/wedding-celebrant-munich"
-              className="font-body text-sm"
-              style={{ color: "#B8956A", textDecoration: "underline", textUnderlineOffset: "3px" }}
-            >
-              English ceremonies available
-            </Link>
+
           </div>
         </div>
       </section>

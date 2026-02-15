@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, MapPin } from "lucide-react";
 import { z } from "zod";
+import ObfuscatedEmail from "@/components/ObfuscatedEmail";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Bitte gebt euren Namen ein").max(100),
@@ -111,7 +112,7 @@ const Kontakt = () => {
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <Mail className="text-accent" size={20} />
-                  <span className="font-body text-muted-foreground">info@stefaniesick.com</span>
+                  <ObfuscatedEmail className="font-body text-muted-foreground" style={{ textDecoration: "none" }} />
                 </div>
                 <div className="flex items-center gap-3">
                   <MapPin className="text-accent" size={20} />

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import ObfuscatedEmail from "@/components/ObfuscatedEmail";
 
 const Footer = () => {
   return (
@@ -38,8 +39,33 @@ const Footer = () => {
           Freie Trauungen voller Emotion
         </p>
 
+        {/* Kontakt — JS-verschlüsselt */}
+        <ObfuscatedEmail
+          className="inline-block mt-6 transition-colors duration-300 hover:text-[#B8956A]"
+          style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "13px",
+            fontWeight: 300,
+            letterSpacing: "0.05em",
+            color: "rgba(253,244,237,0.5)",
+            textDecoration: "none",
+          }}
+        />
+
+        <p
+          className="mt-4"
+          style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "12px",
+            fontWeight: 300,
+            color: "rgba(253,244,237,0.3)",
+          }}
+        >
+          München, Bayern
+        </p>
+
         {/* Links */}
-        <div className="flex gap-7 justify-center mt-8">
+        <div className="flex gap-7 justify-center mt-6">
           <Link
             to="/impressum"
             className="transition-colors duration-300 hover:text-[#B8956A]"

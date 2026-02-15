@@ -4,12 +4,6 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 
 const faqs = [
   {
@@ -89,66 +83,114 @@ const HaeufigeFragen = () => {
       />
 
       {/* Hero */}
-      <section style={{ backgroundColor: "#FCECDF" }} className="py-16 md:py-24">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="font-display text-4xl md:text-5xl" style={{ color: "#111827" }}>
-            Häufige Fragen
+      <section style={{ backgroundColor: "#FCECDF" }} className="pt-32 pb-16 md:pt-40 md:pb-20">
+        <div className="container mx-auto px-5 sm:px-8 text-center">
+          <p
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "11px",
+              fontWeight: 500,
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              color: "#B8956A",
+              marginBottom: "20px",
+            }}
+          >
+            Wissenswertes
+          </p>
+          <h1
+            className="font-display"
+            style={{
+              color: "#1a1a1a",
+              letterSpacing: "0.02em",
+              fontSize: "clamp(2.2rem, 5vw, 3.2rem)",
+            }}
+          >
+            Häufige Fragen zur{" "}
+            <span
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontStyle: "italic",
+                fontWeight: 300,
+                color: "#B8956A",
+              }}
+            >
+              freien Trauung
+            </span>
           </h1>
-          <p className="font-body mt-4 text-lg" style={{ color: "#111827" }}>
-            Alles, was ihr über eine freie Trauung wissen müsst
+          <p
+            className="font-body mt-4 max-w-[550px] mx-auto"
+            style={{ fontSize: "16px", fontWeight: 300, lineHeight: 1.9, color: "#5C4A3A" }}
+          >
+            Alles, was ihr über eine freie Trauung wissen müsst — ehrlich und auf den Punkt.
           </p>
         </div>
       </section>
 
-      {/* FAQ Accordion */}
-      <section style={{ backgroundColor: "#FDF4ED" }} className="py-16 md:py-24">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <Accordion type="multiple" className="space-y-4">
+      {/* FAQ — immer offen */}
+      <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">
+        <div className="container mx-auto px-5 sm:px-8 max-w-[1000px]">
+          <div className="space-y-5">
             {faqs.map((faq, i) => (
-              <AccordionItem
+              <div
                 key={i}
-                value={`faq-${i}`}
-                className="rounded-lg overflow-hidden border"
-                style={{ borderColor: "#e5d5c5", backgroundColor: "#FFFFFF" }}
+                style={{
+                  background: "rgba(255, 255, 255, 0.5)",
+                  borderLeft: "3px solid #B8956A",
+                  borderRadius: "0 16px 16px 0",
+                  padding: "28px 32px",
+                  boxShadow: "0 2px 20px rgba(0,0,0,0.03)",
+                }}
               >
-                <AccordionTrigger
-                  className="font-display text-left text-lg px-6 py-4 hover:no-underline"
-                  style={{ color: "#111827" }}
+                <h2
+                  className="font-display mb-4"
+                  style={{
+                    fontSize: "clamp(1.1rem, 2.5vw, 1.35rem)",
+                    fontWeight: 400,
+                    color: "#1a1a1a",
+                    letterSpacing: "0.01em",
+                  }}
                 >
                   {faq.frage}
-                </AccordionTrigger>
-                <AccordionContent
-                  forceMount
-                  className="data-[state=closed]:hidden font-body leading-relaxed px-6 pb-4"
-                  style={{ color: "#111827" }}
+                </h2>
+                <p
+                  className="font-body leading-[1.9]"
+                  style={{ fontSize: "15px", fontWeight: 300, color: "#5C4A3A" }}
                 >
                   {faq.antwort}
-                </AccordionContent>
-              </AccordionItem>
+                </p>
+              </div>
             ))}
-          </Accordion>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section style={{ backgroundColor: "#FBE9DA" }} className="py-16 md:py-24">
-        <div className="container mx-auto px-4 max-w-3xl text-center space-y-6">
-          <h2 className="font-display text-3xl md:text-4xl" style={{ color: "#111827" }}>
+      <section style={{ backgroundColor: "#FBE9DA" }} className="py-20 md:py-28 grain">
+        <div className="container mx-auto px-5 sm:px-8 max-w-[700px] text-center">
+          <h2
+            className="font-display"
+            style={{
+              color: "#1a1a1a",
+              letterSpacing: "0.02em",
+              fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
+            }}
+          >
             Noch Fragen?
           </h2>
-          <p className="font-body leading-relaxed" style={{ color: "#111827" }}>
+          <p
+            className="font-body mt-4 mb-8"
+            style={{ fontSize: "16px", fontWeight: 300, lineHeight: 1.9, color: "#5C4A3A" }}
+          >
             Wenn eure Frage hier nicht beantwortet wurde, schreibt mir gerne.
             Ich nehme mir Zeit für euch und eure Anliegen.
           </p>
-          <div className="pt-2">
-            <Link
-              to="/freie-trauung-kontakt"
-              className="inline-block font-body text-sm px-6 py-3 rounded-lg border transition-colors hover:bg-gray-100"
-              style={{ borderColor: "#111827", color: "#111827" }}
-            >
-              Jetzt unverbindlich anfragen
-            </Link>
-          </div>
+          <Link
+            to="/freie-trauung-kontakt"
+            className="btn-gold inline-block"
+          >
+            Jetzt unverbindlich anfragen
+          </Link>
         </div>
       </section>
     </Layout>

@@ -18,7 +18,7 @@ const ROUTES = [
   "/persoenliche-trauung-haeufige-fragen",
   "/freie-trauung-kontakt",
   "/ueber-traurednerin-stefanie",
-  "/blog",
+  "/magazin",
   "/impressum",
   "/datenschutzerklaerung",
   "/traurednerin-muenchen",
@@ -29,7 +29,7 @@ const ROUTES = [
   "/freie-trauung-gardasee",
   "/freie-trauung-alpen",
   "/freie-trauung-italien",
-  "/en/wedding-celebrant-munich",
+  "/magazin/trausprueche-freie-trauung",
 ];
 
 async function prerender() {

@@ -1,5 +1,6 @@
 import { useState, FormEvent } from "react";
 import useScrollReveal from "@/hooks/useScrollReveal";
+import { getEmailAddress } from "@/components/ObfuscatedEmail";
 
 const ContactForm = () => {
   const { ref, isVisible } = useScrollReveal();
@@ -18,7 +19,7 @@ const ContactForm = () => {
     const body = encodeURIComponent(
       `Name: ${name}\nE-Mail: ${email}\nWunschdatum: ${date}\n\nNachricht:\n${message}`
     );
-    window.location.href = `mailto:info@stefaniesick.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${getEmailAddress()}?subject=${subject}&body=${body}`;
     setSubmitted(true);
   };
 
