@@ -245,6 +245,11 @@
   /* ── Silk Editorial ── */
 
   /* Film-Grain Overlay */
+  .grain {
+    position: relative;
+    overflow: hidden;
+  }
+
   .grain::after {
     content: '';
     position: absolute;
