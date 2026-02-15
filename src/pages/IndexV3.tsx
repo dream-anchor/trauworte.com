@@ -145,12 +145,12 @@ const IndexV3 = () => {
             transform: `translateY(${heroPx.offset}px) scale(1.1)`,
           }}
         />
-        {/* Warm Gradient Overlay */}
+        {/* Warm Gradient Overlay — staerker fuer Lesbarkeit */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(251,233,218,0.55) 0%, rgba(251,233,218,0.35) 40%, rgba(251,233,218,0.75) 100%)",
+              "linear-gradient(180deg, rgba(251,233,218,0.82) 0%, rgba(251,233,218,0.72) 40%, rgba(251,233,218,0.88) 100%)",
           }}
         />
 
@@ -159,7 +159,7 @@ const IndexV3 = () => {
           <Reveal>
             <div
               className="font-body text-xs md:text-sm tracking-[0.25em] uppercase mb-8"
-              style={{ color: "rgba(26, 26, 26, 0.6)" }}
+              style={{ color: "rgba(26, 26, 26, 0.7)" }}
             >
               Freie Trauungen in Europa
             </div>
@@ -169,6 +169,7 @@ const IndexV3 = () => {
                 color: "#1a1a1a",
                 fontSize: "clamp(2.8rem, 7vw, 5.5rem)",
                 letterSpacing: "0.02em",
+                textShadow: "0 1px 2px rgba(251,233,218,0.5)",
               }}
             >
               Worte, die eure
@@ -177,7 +178,7 @@ const IndexV3 = () => {
             </h1>
             <p
               className="font-body text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-12"
-              style={{ color: "rgba(26, 26, 26, 0.7)" }}
+              style={{ color: "rgba(26, 26, 26, 0.8)" }}
             >
               Eure Trauzeremonie wird so einzigartig wie eure Geschichte —
               persoenlich, emotional und unvergesslich.
@@ -412,7 +413,7 @@ const IndexV3 = () => {
                 <div className="absolute bottom-0 left-0 right-0 p-5 md:p-7 z-10">
                   <h3
                     className="font-display text-xl md:text-2xl leading-tight mb-2"
-                    style={{ color: "#fff", letterSpacing: "0.01em" }}
+                    style={{ color: "#fff", letterSpacing: "0.01em", textShadow: "0 1px 4px rgba(0,0,0,0.4)" }}
                   >
                     {a.title}
                   </h3>
