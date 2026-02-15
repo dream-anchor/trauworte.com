@@ -5,22 +5,31 @@ import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
 
+/* ── FAQ ── */
 const faqItems = [
   {
-    q: "Wo in Bayern finden freie Trauungen statt?",
-    a: "Bayern bietet unzählige traumhafte Locations: Schlösser in Oberbayern, Weingutshöfe in Franken, Almhütten im Allgäu, Seeufer am Chiemsee oder historische Brauereigärten. Als eure Traurednerin in Bayern kenne ich die schönsten Orte und berate euch gerne.",
-  },
-  {
-    q: "Plant die Traurednerin auch bayerische Trauungen in Tracht?",
-    a: "Absolut! Eine freie Trauung in Tracht hat ihren ganz eigenen Charme. Ob Dirndl und Lederhose oder eine Mischung aus traditionell und modern — ich gestalte eure Zeremonie so, dass sie perfekt zu euch und eurem Stil passt. Mehr dazu erfahrt ihr auf meiner Seite zur bayerischen Trauung.",
-  },
-  {
-    q: "Wie weit reist die Traurednerin innerhalb Bayerns?",
-    a: "Als Traurednerin mit Sitz in München reise ich in ganz Bayern zu euch — von Oberbayern über Schwaben und Franken bis zur Oberpfalz. Die Anfahrt innerhalb Bayerns ist im Preis inbegriffen.",
-  },
-  {
     q: "Was kostet eine Traurednerin in Bayern?",
-    a: "Mein Honorar als Traurednerin in Bayern richtet sich nach dem gewählten Leistungspaket. Jedes Paket enthält mindestens ein Kennenlerngespräch, ein Paargespräch, eine individuell geschriebene Traurede und die Zeremonie-Durchführung. Schreibt mir für ein persönliches Angebot.",
+    a: "Die Kosten für eine freie Trauung in Bayern variieren je nach Umfang und Leistungspaket. Mein Honorar umfasst immer ein persönliches Kennenlerngespräch, ein ausführliches Paargespräch, eine individuell geschriebene Traurede und die professionelle Durchführung eurer Zeremonie. Die Anfahrt innerhalb Bayerns ist im Preis inbegriffen. Schreibt mir für ein unverbindliches Angebot.",
+  },
+  {
+    q: "Wie weit im Voraus sollte man eine Traurednerin buchen?",
+    a: "Ich empfehle, eure Traurednerin 6 bis 12 Monate vor dem Hochzeitstermin zu buchen. Besonders in der Hochzeitssaison von Mai bis September sind die Wochenenden schnell vergeben. Beliebte Seen-Locations am Starnberger See oder Tegernsee sind oft schon früh ausgebucht — also lieber rechtzeitig anfragen.",
+  },
+  {
+    q: "Kann die Trauung auch auf Englisch stattfinden?",
+    a: "Ja! Ich biete freie Trauungen auf Deutsch, Englisch oder zweisprachig an. Gerade in Bayern mit vielen internationalen Paaren und Gästen ist das häufig gewünscht. Die Zeremonie wechselt fließend und natürlich zwischen beiden Sprachen.",
+  },
+  {
+    q: "Braucht man zusätzlich eine standesamtliche Trauung?",
+    a: "Ja, eine freie Trauung ist in Deutschland nicht rechtlich bindend. Für die rechtsgültige Ehe benötigt ihr eine standesamtliche Trauung. Viele Paare machen beides am gleichen Tag oder legen die standesamtliche Trauung auf einen separaten, intimeren Termin.",
+  },
+  {
+    q: "Welche Jahreszeit ist am besten für eine Seehochzeit in Bayern?",
+    a: "Die beliebteste Zeit für Hochzeiten an bayerischen Seen ist Mai bis Oktober. Der Frühsommer (Mai und Juni) bietet mildere Temperaturen und lange Abende. Der Herbst (September und Oktober) verzaubert mit goldenem Licht, weniger Touristen und einer besonders stimmungsvollen Atmosphäre am Wasser.",
+  },
+  {
+    q: "Reist die Traurednerin auch an abgelegene Locations?",
+    a: "Absolut! Ob Alm ohne Straßenanbindung, einsamer Bergsee oder die Fraueninsel im Chiemsee — ich komme überall hin. Die Anreise-Logistik besprechen wir gemeinsam im Vorfeld, damit am Tag eurer Hochzeit alles reibungslos läuft.",
   },
 ];
 
@@ -30,12 +39,78 @@ const faqSchema = {
   mainEntity: faqItems.map((item) => ({
     "@type": "Question",
     name: item.q,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.a,
-    },
+    acceptedAnswer: { "@type": "Answer", text: item.a },
   })),
 };
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Traurednerin Bayern",
+  provider: {
+    "@type": "Person",
+    name: "Stefanie Sick",
+    jobTitle: "Traurednerin",
+    url: "https://trauworte.com",
+  },
+  serviceType: "Freie Trauung",
+  areaServed: [
+    { "@type": "Place", name: "Bayern, Deutschland" },
+    { "@type": "Place", name: "Starnberger See" },
+    { "@type": "Place", name: "Tegernsee" },
+    { "@type": "Place", name: "Chiemsee" },
+  ],
+  description:
+    "Freie Trauungen in ganz Bayern: Am Starnberger See, Tegernsee, Chiemsee, auf Almen und in Schlössern. Persönlich, emotional und zweisprachig.",
+  url: "https://trauworte.com/traurednerin-bayern/",
+};
+
+/* ── Helpers ── */
+const Accent = ({ children }: { children: React.ReactNode }) => (
+  <span
+    style={{
+      fontFamily: "'Cormorant Garamond', serif",
+      fontStyle: "italic",
+      fontWeight: 300,
+      color: "#B8956A",
+    }}
+  >
+    {children}
+  </span>
+);
+
+const GoldLine = () => (
+  <div style={{ width: "40px", height: "1px", background: "#B8956A", margin: "40px 0" }} />
+);
+
+const Label = ({ children }: { children: React.ReactNode }) => (
+  <p
+    style={{
+      fontFamily: "'Inter', sans-serif",
+      fontSize: "11px",
+      fontWeight: 500,
+      letterSpacing: "0.2em",
+      textTransform: "uppercase",
+      color: "#B8956A",
+      marginBottom: "20px",
+    }}
+  >
+    {children}
+  </p>
+);
+
+const SH2 = ({ children, center }: { children: React.ReactNode; center?: boolean }) => (
+  <h2
+    className={`font-display mb-8 ${center ? "text-center" : ""}`}
+    style={{ color: "#1a1a1a", letterSpacing: "0.02em", fontSize: "clamp(1.6rem, 3vw, 2.4rem)" }}
+  >
+    {children}
+  </h2>
+);
+
+const bodyStyle = { fontSize: "16px", fontWeight: 300 as const, lineHeight: 1.9, color: "#5C4A3A" };
+
+/* ═══════════════════════════════════════════════ */
 
 const TraurednerinBayern = () => {
   usePrerenderReady(true);
@@ -43,8 +118,8 @@ const TraurednerinBayern = () => {
   return (
     <Layout>
       <SEO
-        title="Traurednerin Bayern – Freie Trauungen | TrauWorte"
-        description="Traurednerin Stefanie Sick für freie Trauungen in ganz Bayern. Zeremonien in Oberbayern, Allgäu, Franken, am Chiemsee & Starnberger See."
+        title="Traurednerin Bayern – Freie Trauung am See & in den Bergen"
+        description="Eure Traurednerin für Bayern: Stefanie Sick gestaltet freie Trauungen am Starnberger See, Tegernsee, Chiemsee und in den Alpen. Persönlich & zweisprachig."
         canonical="/traurednerin-bayern"
       />
       <StructuredData
@@ -56,24 +131,13 @@ const TraurednerinBayern = () => {
       />
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
       </Helmet>
 
-      {/* Hero */}
+      {/* ═══ HERO ═══ */}
       <section style={{ backgroundColor: "#FCECDF" }} className="pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="container mx-auto px-5 sm:px-8 max-w-[800px] text-center">
-          <p
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "11px",
-              fontWeight: 500,
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              color: "#B8956A",
-              marginBottom: "20px",
-            }}
-          >
-            Traurednerin in Bayern
-          </p>
+          <Label>Traurednerin in Bayern</Label>
           <h1
             className="font-display"
             style={{
@@ -83,164 +147,286 @@ const TraurednerinBayern = () => {
               lineHeight: 1.15,
             }}
           >
-            Freie Trauungen in{" "}
-            <span
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontStyle: "italic",
-                fontWeight: 300,
-                color: "#B8956A",
-              }}
-            >
-              ganz Bayern
-            </span>
+            Traurednerin in Bayern –{" "}
+            <Accent>Eure freie Trauung am See, auf der Alm oder im Schloss</Accent>
           </h1>
-          <p
-            className="font-body max-w-[600px] mx-auto mt-6"
-            style={{ fontSize: "16px", fontWeight: 300, lineHeight: 1.9, color: "#5C4A3A" }}
-          >
-            Von den Alpen bis nach Franken: Als eure Traurednerin in Bayern gestalte ich Zeremonien,
-            die eure Liebesgeschichte erzählen — an den schönsten Orten des Freistaats.
+          <p className="font-body max-w-[600px] mx-auto mt-6" style={bodyStyle}>
+            Von den Ufern des Starnberger Sees bis zu den Gipfeln der Alpen: Als eure
+            Traurednerin in Bayern gestalte ich Zeremonien, die so vielfältig und schön sind
+            wie der Freistaat selbst. Persönlich, emotional und unvergesslich.
           </p>
         </div>
       </section>
 
-      {/* Haupttext */}
+      {/* ═══ WARUM BAYERN ═══ */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">
         <div className="container mx-auto px-5 sm:px-8 max-w-[800px] relative z-10">
-          <h2
-            className="font-display mb-8"
-            style={{
-              color: "#1a1a1a",
-              letterSpacing: "0.02em",
-              fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
-            }}
-          >
-            Bayern:{" "}
-            <span
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontStyle: "italic",
-                fontWeight: 300,
-                color: "#B8956A",
-              }}
-            >
-              Das schönste Bundesland für freie Trauungen
-            </span>
-          </h2>
+          <SH2>
+            Warum Bayern der schönste Ort für eure{" "}
+            <Accent>freie Trauung</Accent>{" "}
+            ist
+          </SH2>
 
-          <div className="space-y-6 font-body" style={{ fontSize: "16px", fontWeight: 300, lineHeight: 1.9, color: "#5C4A3A" }}>
+          <div className="space-y-6 font-body" style={bodyStyle}>
             <p>
-              Bayern ist ein Paradies für freie Trauungen. Kaum eine andere Region in Deutschland bietet
-              eine solche Vielfalt an traumhaften Locations: majestätische Schlösser, idyllische Seen,
-              beeindruckende Bergkulissen und charmante Gutshöfe. Als eure Traurednerin in Bayern bringe
-              ich eure Liebesgeschichte an genau den Ort, der zu euch passt.
+              Bayern ist ein Paradies für freie Trauungen. Kaum eine andere Region in Europa
+              bietet eine solche Vielfalt an traumhaften Locations: kristallklare Seen mit
+              Alpenpanorama, majestätische Schlösser, urige Almhütten und charmante Städte.
+              Vom Münchner Stadtleben seid ihr in einer Stunde am See oder in den Bergen —
+              dieser Kontrast macht Bayern einzigartig für Hochzeiten.
             </p>
             <p>
-              In <strong>Oberbayern</strong> locken der Starnberger See, der Tegernsee und der Ammersee
-              mit ihrem Alpenpanorama. Das <strong>Allgäu</strong> verzaubert mit saftigen Wiesen und
-              romantischen Almhütten. Am <strong>Chiemsee</strong> — dem bayerischen Meer — feiert
-              ihr eure freie Trauung mit Blick auf die Chiemgauer Alpen. Und in{" "}
-              <strong>Franken</strong> erwarten euch historische Weinberge und malerische Fachwerkdörfer.
-            </p>
-            <p>
-              Als Traurednerin mit Sitz in München kenne ich Bayern wie meine Westentasche. Ob ihr eine
-              intime Zeremonie zu zweit auf einer Bergspitze plant oder eine große Feier in einem
-              bayerischen Schloss — ich gestalte eure freie Trauung so persönlich und emotional, dass
-              sie euch und eure Gäste tief berührt. Jede Traurede ist ein Unikat, geschrieben aus
-              eurer Geschichte, mit Herzblut und Feingefühl.
+              Bayern ist ganzjährig wunderschön: Im Sommer feiert ihr eure freie Trauung am
+              See mit Blick auf die Berge, im Herbst tauchen die Wälder in Gold und Rot,
+              und im Winter verzaubert eine verschneite Schloss- oder Almhochzeit mit
+              Kerzenlicht und Kaminfeuer. Als eure Traurednerin in Bayern bringe ich eure
+              Liebesgeschichte an genau den Ort, der zu euch passt.
             </p>
           </div>
 
-          <div style={{ width: "40px", height: "1px", background: "#B8956A", margin: "40px 0" }} />
+          <GoldLine />
 
-          <h2
-            className="font-display mb-8"
-            style={{
-              color: "#1a1a1a",
-              letterSpacing: "0.02em",
-              fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
-            }}
-          >
-            Beliebte Regionen für{" "}
-            <span
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontStyle: "italic",
-                fontWeight: 300,
-                color: "#B8956A",
-              }}
-            >
-              freie Trauungen in Bayern
-            </span>
-          </h2>
+          {/* ═══ TRAUREDNERIN FÜR BAYERN ═══ */}
+          <SH2>
+            Eure Traurednerin{" "}
+            <Accent>für ganz Bayern</Accent>
+          </SH2>
 
-          <div className="space-y-6 font-body" style={{ fontSize: "16px", fontWeight: 300, lineHeight: 1.9, color: "#5C4A3A" }}>
+          <div className="space-y-6 font-body" style={bodyStyle}>
             <p>
-              <strong>München & Umgebung:</strong> Die bayerische Landeshauptstadt bietet stilvolle
-              Locations von Rooftop-Terrassen bis hin zu historischen Gutshöfen. Im Münchner Umland
-              findet ihr Schloss Hohenkammer, Gut Sonnenhausen oder romantische Gärten, die wie geschaffen
-              sind für eine freie Trauung.
+              Als Traurednerin mit Sitz in München kenne ich Bayern wie meine Westentasche.
+              Ob ihr eine intime Zeremonie zu zweit am Bergsee plant, eine große Feier in
+              einem bayerischen Schloss oder eine rustikale Almhochzeit — ich gestalte eure
+              freie Trauung so persönlich und emotional, dass sie euch und eure Gäste tief
+              berührt. Jede Traurede ist ein Unikat, geschrieben aus eurer Geschichte.
             </p>
             <p>
-              <strong>Bayerische Seen:</strong> Starnberger See, Tegernsee, Ammersee, Chiemsee,
-              Wörthsee — jeder See hat seinen eigenen Charakter. Ob auf einem Steg über dem Wasser,
-              in einem Seehaus oder auf einer Wiese mit Seeblick: Die bayerischen Seen bieten magische
-              Kulissen für eure Zeremonie.
-            </p>
-            <p>
-              <strong>Berge & Almen:</strong> Für abenteuerlustige Paare gestalte ich freie Trauungen
-              auf Almhütten, Berggipfeln oder in geschmückten Scheunen. Das Berchtesgadener Land, das
-              Zugspitz-Gebiet und das Allgäu sind beliebte Ziele für Hochzeiten mit Bergpanorama.
+              Ich reise flexibel in ganz Bayern zu euch — von Oberbayern über Schwaben und
+              das Allgäu bis nach Franken und in die Oberpfalz. Eure Zeremonie gestalte ich
+              gerne <strong>zweisprachig auf Deutsch und Englisch</strong>, ideal für
+              internationale Paare und Gäste. Die Anfahrt innerhalb Bayerns ist immer im
+              Preis inbegriffen.
             </p>
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* ═══ SEEN (Kernstück) ═══ */}
       <section style={{ backgroundColor: "#FBE9DA" }} className="py-20 md:py-28 grain">
         <div className="container mx-auto px-5 sm:px-8 max-w-[800px] relative z-10">
-          <h2
-            className="font-display text-center mb-12"
-            style={{
-              color: "#1a1a1a",
-              letterSpacing: "0.02em",
-              fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
-            }}
-          >
-            Häufige Fragen zur{" "}
-            <span
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontStyle: "italic",
-                fontWeight: 300,
-                color: "#B8956A",
-              }}
-            >
-              Traurednerin in Bayern
-            </span>
-          </h2>
+          <SH2>
+            Freie Trauung an Bayerns{" "}
+            <Accent>schönsten Seen</Accent>
+          </SH2>
 
+          <p className="font-body mb-10" style={bodyStyle}>
+            Die bayerischen Seen gehören zu den romantischsten Orten für eine freie Trauung
+            in ganz Deutschland. Jeder See hat seinen eigenen Charakter — und als eure
+            Traurednerin finde ich genau die Worte, die zu euch und eurer Location passen.
+          </p>
+
+          <div className="space-y-10">
+            <div>
+              <h3 className="font-display mb-3" style={{ fontSize: "1.2rem", fontWeight: 400, color: "#1a1a1a" }}>
+                Hochzeit am Starnberger See
+              </h3>
+              <p className="font-body leading-[1.85]" style={{ fontSize: "15px", fontWeight: 300, color: "#5C4A3A" }}>
+                Der Starnberger See ist Münchens elegantes Hausmeer — nur 30 Minuten von der
+                Stadt entfernt und doch eine andere Welt. Mondäne Villen, weitläufige Uferwiesen
+                und ein atemberaubendes Alpenpanorama machen den Starnberger See zu einer der
+                beliebtesten Hochzeitslocations in Bayern. Ob auf einem privaten Steg, in einer
+                Villa am Westufer oder in der berühmten Bucherer Bucht: Eure freie Trauung am
+                Starnberger See wird ein Fest der Sinne. Als eure Traurednerin am Starnberger
+                See gestalte ich eine Zeremonie, die so elegant und gleichzeitig persönlich ist
+                wie dieser besondere Ort.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-display mb-3" style={{ fontSize: "1.2rem", fontWeight: 400, color: "#1a1a1a" }}>
+                Hochzeit am Tegernsee
+              </h3>
+              <p className="font-body leading-[1.85]" style={{ fontSize: "15px", fontWeight: 300, color: "#5C4A3A" }}>
+                Der Tegernsee vereint bayerische Eleganz mit Bergkulisse auf einzigartige Weise.
+                Das türkisblaue Wasser, die umliegenden Gipfel und die exklusive Atmosphäre machen
+                den Tegernsee zum Traumziel für Hochzeiten in Bayern. Locations wie das{" "}
+                <strong>Gut Kaltenbrunn</strong>, das <strong>Hotel Überfahrt</strong> oder
+                ein Bootshaus direkt am See bieten den perfekten Rahmen für eure Zeremonie.
+                Auch die Almen rund um den Tegernsee sind beliebte Orte für eine freie Trauung
+                mit Bergblick. Bayerische Gastlichkeit und alpine Eleganz — als eure Traurednerin
+                am Tegernsee fange ich diese besondere Atmosphäre in Worten ein.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-display mb-3" style={{ fontSize: "1.2rem", fontWeight: 400, color: "#1a1a1a" }}>
+                Hochzeit am Chiemsee
+              </h3>
+              <p className="font-body leading-[1.85]" style={{ fontSize: "15px", fontWeight: 300, color: "#5C4A3A" }}>
+                Das Bayerische Meer — so wird der Chiemsee liebevoll genannt, und das zu Recht.
+                Der größte See Bayerns bietet eine großzügige Weite, die euch den Atem raubt.
+                Die <strong>Fraueninsel</strong> mit ihrem klösterlichen Charme ist eine der
+                romantischsten Hochzeitslocations Deutschlands. Auf der{" "}
+                <strong>Herreninsel</strong> feiert ihr vor königlicher Kulisse. Und am Ufer
+                erwarten euch Locations wie der Hafenwirt oder die Chiemgauer Almen. Eine
+                Hochzeit am Chiemsee lässt sich wunderbar mit einer Schifffahrt kombinieren —
+                eure freie Trauung auf dem Wasser, umgeben von Bergpanorama.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-display mb-3" style={{ fontSize: "1.2rem", fontWeight: 400, color: "#1a1a1a" }}>
+                Weitere Seen: Ammersee, Königssee, Schliersee
+              </h3>
+              <p className="font-body leading-[1.85]" style={{ fontSize: "15px", fontWeight: 300, color: "#5C4A3A" }}>
+                Bayern hat noch viele weitere Seen, die perfekt für eine freie Trauung sind.
+                Der <strong>Ammersee</strong> ist der entspannte Nachbar des Starnberger Sees —
+                mit Künstler-Vibes, charmanten Biergärten und einer Atmosphäre, die zum Verweilen
+                einlädt. Der <strong>Königssee</strong> bei Berchtesgaden beeindruckt mit seiner
+                dramatischen Bergkulisse und der berühmten Wallfahrtskirche St. Bartholomä. Und
+                der <strong>Schliersee</strong> verzaubert mit seiner idyllischen Ruhe — weniger
+                touristisch, authentisch bayerisch und ideal für intime Zeremonien.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ BERGE ═══ */}
+      <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">
+        <div className="container mx-auto px-5 sm:px-8 max-w-[800px] relative z-10">
+          <SH2>
+            Berghochzeiten in Bayern –{" "}
+            <Accent>Almen, Gipfel und Panoramablick</Accent>
+          </SH2>
+
+          <div className="space-y-6 font-body" style={bodyStyle}>
+            <p>
+              Bayern ist nicht nur Seen — es ist auch Berge. Von rustikalen Almhütten
+              über Gipfeltrauungen mit 360-Grad-Panorama bis hin zu eleganten Berghotels
+              wie <strong>Schloss Elmau</strong> bietet die bayerische Alpenregion
+              unvergessliche Kulissen für eure freie Trauung. Rund um{" "}
+              <strong>Garmisch-Partenkirchen</strong>, im <strong>Berchtesgadener Land</strong>{" "}
+              und am <strong>Tegernsee</strong> findet ihr Almen und Gipfel, die euch den
+              Atem rauben.
+            </p>
+            <p>
+              Als eure Traurednerin für Berghochzeiten in Bayern plane ich flexibel mit
+              Wetter-Plan B, Timing für Gondelbahn oder Wanderung und einem Ablauf, der sich
+              der Natur anpasst.
+            </p>
+          </div>
+
+          <Link
+            to="/freie-trauung-alpen"
+            className="font-body inline-block mt-4 text-sm"
+            style={{ color: "#B8956A", textDecoration: "underline", textUnderlineOffset: "3px" }}
+          >
+            Ausführliche Infos zu Berghochzeiten in den Alpen →
+          </Link>
+
+          <GoldLine />
+
+          {/* ═══ SCHLÖSSER ═══ */}
+          <SH2>
+            Schlösser und historische Locations{" "}
+            <Accent>in Bayern</Accent>
+          </SH2>
+
+          <div className="space-y-6 font-body" style={bodyStyle}>
+            <p>
+              Bayern ist das Land der Schlösser — und viele davon bieten den perfekten Rahmen
+              für eine freie Trauung. <strong>Schloss Nymphenburg</strong> in München verbindet
+              barocke Pracht mit weitläufigen Gärten. <strong>Schloss Hohenschwangau</strong> im
+              Allgäu liegt märchenhaft am Fuß der Berge, mit Blick auf den Alpsee und die
+              Königsschlösser.
+            </p>
+            <p>
+              Auch die <strong>Residenz Würzburg</strong> in Franken, <strong>Schloss
+              Schleißheim</strong> bei München und zahlreiche historische Gutshöfe und Scheunen
+              in ganz Bayern bieten einzigartige Kulissen. Als eure Traurednerin in Bayern lasse
+              ich die Geschichte und Eleganz dieser Orte in eure Zeremonie einfließen — eine
+              Hochzeit, die sich anfühlt wie aus einem Märchen.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ PLANUNGSPROZESS ═══ */}
+      <section style={{ backgroundColor: "#FBE9DA" }} className="py-20 md:py-28 grain">
+        <div className="container mx-auto px-5 sm:px-8 max-w-[800px] relative z-10">
+          <SH2>
+            So planen wir eure{" "}
+            <Accent>freie Trauung in Bayern</Accent>
+          </SH2>
+
+          <div className="space-y-8">
+            {[
+              {
+                step: "01",
+                title: "Videocall zum Kennenlernen",
+                text: "Wir lernen uns in einem entspannten Videocall kennen. Ihr erzählt mir von eurer Wunsch-Location in Bayern, eurem Termin und euren ersten Ideen. Ich berate euch gerne zu den schönsten Orten — ob See, Alm oder Schloss.",
+              },
+              {
+                step: "02",
+                title: "Eure Liebesgeschichte — das Herzstück",
+                text: "Im ausführlichen Paargespräch tauche ich tief in eure Geschichte ein. Wie habt ihr euch kennengelernt? Was verbindet euch? Aus diesen persönlichen Details entsteht eine Traurede, die so einzigartig ist wie eure Liebe.",
+              },
+              {
+                step: "03",
+                title: "Ablauf, Rituale und persönliche Details",
+                text: "Ich schreibe eure individuelle Traurede und stimme mit euch den Ablauf ab — Rituale, Musik, persönliche Elemente. Ihr bekommt den Entwurf vorab und könnt Wünsche äußern, bis jedes Wort sitzt.",
+              },
+              {
+                step: "04",
+                title: "Location-Tipps und Logistik",
+                text: "Als eure Traurednerin in Bayern kenne ich die Locations und ihre Besonderheiten. Ich berate euch zur Technik, zur besten Tageszeit für eure Zeremonie und koordiniere mich mit euren anderen Dienstleistern.",
+              },
+              {
+                step: "05",
+                title: "Euer großer Tag",
+                text: "Am Tag eurer freien Trauung in Bayern führe ich euch und eure Gäste mit Herz und Leidenschaft durch eine Zeremonie, die unter die Haut geht. Euer Moment — an eurem Ort in Bayern.",
+              },
+            ].map((item) => (
+              <div key={item.step} className="flex gap-6 md:gap-8">
+                <div
+                  className="font-body text-xs tracking-[0.2em] uppercase pt-1 shrink-0"
+                  style={{ color: "#B8956A", width: "48px" }}
+                >
+                  Schritt {item.step}
+                </div>
+                <div>
+                  <h3 className="font-display mb-2" style={{ fontSize: "1.2rem", fontWeight: 400, color: "#1a1a1a" }}>
+                    {item.title}
+                  </h3>
+                  <p className="font-body leading-[1.85]" style={{ fontSize: "15px", fontWeight: 300, color: "#5C4A3A" }}>
+                    {item.text}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ FAQ ═══ */}
+      <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">
+        <div className="container mx-auto px-5 sm:px-8 max-w-[800px] relative z-10">
+          <SH2 center>
+            Häufige Fragen zur{" "}
+            <Accent>freien Trauung in Bayern</Accent>
+          </SH2>
           <div className="space-y-6">
             {faqItems.map((item, i) => (
               <div
                 key={i}
                 className="p-6"
-                style={{
-                  background: "rgba(253, 244, 237, 0.7)",
-                  border: "1px solid rgba(184, 149, 106, 0.12)",
-                }}
+                style={{ background: "rgba(253, 244, 237, 0.7)", border: "1px solid rgba(184, 149, 106, 0.12)" }}
               >
-                <h3
-                  className="font-display mb-3"
-                  style={{ fontSize: "1.15rem", fontWeight: 400, color: "#1a1a1a" }}
-                >
+                <h3 className="font-display mb-3" style={{ fontSize: "1.15rem", fontWeight: 400, color: "#1a1a1a" }}>
                   {item.q}
                 </h3>
-                <p
-                  className="font-body leading-[1.85]"
-                  style={{ fontSize: "15px", fontWeight: 300, color: "#5C4A3A" }}
-                >
+                <p className="font-body leading-[1.85]" style={{ fontSize: "15px", fontWeight: 300, color: "#5C4A3A" }}>
                   {item.a}
                 </p>
               </div>
@@ -249,42 +435,53 @@ const TraurednerinBayern = () => {
         </div>
       </section>
 
-      {/* CTA */}
-      <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28">
-        <div className="container mx-auto px-5 sm:px-8 max-w-[600px] text-center">
-          <h2
-            className="font-display mb-6"
-            style={{
-              color: "#1a1a1a",
-              letterSpacing: "0.02em",
-              fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
-            }}
-          >
-            Traurednerin Bayern{" "}
-            <span
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontStyle: "italic",
-                fontWeight: 300,
-                color: "#B8956A",
-              }}
-            >
-              anfragen
-            </span>
-          </h2>
-          <p
-            className="font-body mb-8"
-            style={{ fontSize: "16px", fontWeight: 300, lineHeight: 1.9, color: "#5C4A3A" }}
-          >
-            Ihr plant eine freie Trauung in Bayern? Schreibt mir unverbindlich und erzählt von
-            euren Wünschen. Ich freue mich darauf, euch und eure Geschichte kennenzulernen.
+      {/* ═══ CTA ═══ */}
+      <section style={{ backgroundColor: "#FBE9DA" }} className="py-20 md:py-28 grain">
+        <div className="container mx-auto px-5 sm:px-8 max-w-[600px] text-center relative z-10">
+          <SH2 center>
+            Eure Traumhochzeit in Bayern{" "}
+            <Accent>beginnt hier</Accent>
+          </SH2>
+          <p className="font-body mb-8" style={bodyStyle}>
+            Ihr plant eine freie Trauung in Bayern? Ob am Starnberger See, auf einer Alm
+            am Tegernsee oder in einem bayerischen Schloss — schreibt mir unverbindlich und
+            erzählt von euren Wünschen. Ich freue mich darauf, euch und eure Geschichte
+            kennenzulernen.
           </p>
-          <Link
-            to="/freie-trauung-kontakt"
-            className="btn-gold inline-block"
-          >
+          <Link to="/freie-trauung-kontakt" className="btn-gold inline-block">
             Jetzt unverbindlich anfragen
           </Link>
+
+          <div className="flex flex-wrap justify-center gap-4 mt-8">
+            <Link
+              to="/traurednerin-muenchen"
+              className="font-body text-sm"
+              style={{ color: "#B8956A", textDecoration: "underline", textUnderlineOffset: "3px" }}
+            >
+              Traurednerin in München
+            </Link>
+            <Link
+              to="/freie-trauung-alpen"
+              className="font-body text-sm"
+              style={{ color: "#B8956A", textDecoration: "underline", textUnderlineOffset: "3px" }}
+            >
+              Berghochzeiten in den Alpen
+            </Link>
+            <Link
+              to="/freie-trauung-italien"
+              className="font-body text-sm"
+              style={{ color: "#B8956A", textDecoration: "underline", textUnderlineOffset: "3px" }}
+            >
+              Über die Alpen: Gardasee und Toskana
+            </Link>
+            <Link
+              to="/en/wedding-celebrant-munich"
+              className="font-body text-sm"
+              style={{ color: "#B8956A", textDecoration: "underline", textUnderlineOffset: "3px" }}
+            >
+              English ceremonies available
+            </Link>
+          </div>
         </div>
       </section>
     </Layout>
