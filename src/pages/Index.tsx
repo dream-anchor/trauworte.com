@@ -338,6 +338,9 @@ Meine Mission ist es, eure Traumhochzeit mit den schönsten und herzlichsten Wor
         </div>
       </section>
 
+      {/* Divider: Angebote → Testimonial */}
+      <SectionDivider type="slantLeft" fillColor="#FDF4ED" bgColor="#FBE9DA" />
+
       {/* ═══ 7. Testimonial ═══ */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-32">
         <Reveal className="container mx-auto px-4 max-w-4xl text-center">
@@ -391,6 +394,9 @@ Meine Mission ist es, eure Traumhochzeit mit den schönsten und herzlichsten Wor
           </div>
         </Reveal>
       </section>
+
+      {/* Divider: CTA → Footer */}
+      <SectionDivider type="curveUp" fillColor="#FBE9DA" bgColor="#FDF4ED" />
     </Layout>
   );
 };

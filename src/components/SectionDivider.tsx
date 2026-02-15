@@ -1,6 +1,7 @@
 interface SectionDividerProps {
   type: "swoopLeft" | "curveUp" | "slantLeft";
   fillColor?: string;
+  bgColor?: string;
 }
 
 const paths: Record<SectionDividerProps["type"], string> = {
@@ -12,8 +13,11 @@ const paths: Record<SectionDividerProps["type"], string> = {
     "M0,0 L1440,120 L1440,120 L0,120 Z",
 };
 
-const SectionDivider = ({ type, fillColor = "currentColor" }: SectionDividerProps) => (
-  <div className="relative w-full overflow-hidden leading-none -mb-px" style={{ height: "60px" }}>
+const SectionDivider = ({ type, fillColor = "currentColor", bgColor = "transparent" }: SectionDividerProps) => (
+  <div
+    className="relative w-full overflow-hidden leading-none -mb-px"
+    style={{ height: "60px", backgroundColor: bgColor }}
+  >
     <svg
       viewBox="0 0 1440 120"
       preserveAspectRatio="none"
