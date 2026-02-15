@@ -16,7 +16,7 @@ const UeberMich = () => {
     jobTitle: "Freie Rednerin",
     url: "https://trauworte.com/ueber-mich/",
     image: HERO_IMG,
-    description: "Studierte Kommunikationswissenschaftlerin mit über 10 Jahren Erfahrung in der Medien- und Eventbranche",
+    description: "Studierte Kommunikationswissenschaftlerin und Moderatorin mit 30 Jahren Erfahrung in der Medien- und Eventbranche",
     worksFor: {
       "@type": "ProfessionalService",
       name: "TrauWorte",
@@ -28,7 +28,7 @@ const UeberMich = () => {
     <Layout>
       <SEO
         title="Über mich – Stefanie Sick | TrauWorte"
-        description="Stefanie Sick – studierte Kommunikationswissenschaftlerin mit über 10 Jahren Erfahrung in der Medien- und Eventbranche. Freie Rednerin für persönliche Trauungszeremonien."
+        description="Stefanie Sick – studierte Kommunikationswissenschaftlerin und Moderatorin mit 30 Jahren Erfahrung in der Medien- und Eventbranche. Freie Rednerin für persönliche Trauungszeremonien."
         canonical="/ueber-traurednerin-stefanie"
         ogImage={HERO_IMG}
         schema={personSchema}
@@ -96,14 +96,27 @@ const UeberMich = () => {
             <div className="space-y-6">
               <h2 className="font-display text-3xl" style={{ color: "#1a1a1a" }}>Stefanie Sick</h2>
               <p className="font-body leading-relaxed" style={{ color: "#5C4A3A" }}>
-                Ich bin Stefanie Sick, ausgebildete Hochzeitsrednerin und Moderatorin.
-                Seit meinem Kommunikations-Studium führt mich meine berufliche Reise durch
-                verschiedene Stationen und Moderationen in der Medien- und Eventbranche.
+                Ich bin ausgebildete Hochzeitsrednerin für freie Trauungen.
+                Seit einigen Jahren begleite ich Paare an ihrem schönsten Tag und gestalte
+                Trauungszeremonien, die von Herzen kommen.
               </p>
               <p className="font-body leading-relaxed" style={{ color: "#5C4A3A" }}>
-                Mit viel Freude und Herz gestalte ich eure freie Trauung. In einer einzigartigen
-                und individuellen Zeremonie werde ich eure Liebesgeschichte mit viel Gefühl und
-                Hingabe erzählen, um euren besonderen Tag unvergesslich zu machen.
+                Jede Liebe ist einzigartig – und genau so sollte auch eure Trauung sein.
+                Ich nehme mir die Zeit, euch persönlich kennenzulernen, eure Geschichte zu
+                erfahren und daraus eine individuelle und einzigartige Zeremonie mit Freude
+                und Herz zu kreieren, die euch und eure Gäste berührt und bewegt.
+              </p>
+              <p className="font-body leading-relaxed" style={{ color: "#5C4A3A" }}>
+                Als studierte Kommunikationswissenschaftlerin und Moderatorin mit 30 Jahren
+                Erfahrung in der Medien- und Eventbranche verbinde ich Professionalität mit
+                Einfühlungsvermögen und Leidenschaft. Mir ist es wichtig, dass ihr euch in
+                jeder Phase der Planung wohl und gut aufgehoben fühlt.
+              </p>
+              <p className="font-body leading-relaxed" style={{ color: "#5C4A3A" }}>
+                Glück ist für mich der Moment, in dem ich in eure Augen schaue und sehe, dass
+                meine Worte euer Herz berühren. Der Moment, in dem Freudentränen fließen und
+                Gäste mir später sagen: „Das war die schönste Trauung, die ich je erlebt habe.
+                Unvergesslich!"
               </p>
               <div className="pt-4">
                 <Link to="/freie-trauung-kontakt" className="btn-gold inline-block">
