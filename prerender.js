@@ -7,11 +7,20 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // Alle Routen die prerendered werden sollen
 const ROUTES = [
   "/",
-  "/ueber-mich",
-  "/angebote",
-  "/kontakt",
+  "/eure-freie-trauung",
+  "/unterschiede-der-trauungen",
+  "/bayrisch-tracht-trauung",
+  "/gleichgeschlechtliche-queer-und-diverse-trauung",
+  "/meine-angebote-freie-trauung",
+  "/hochzeitsreden-traurednerin",
+  "/hochzeitsplanerin-fotograf",
+  "/zeitlicher-ablauf-freie-trauung",
+  "/persoenliche-trauung-haeufige-fragen",
+  "/freie-trauung-kontakt",
+  "/ueber-traurednerin-stefanie",
+  "/blog",
   "/impressum",
-  "/datenschutz",
+  "/datenschutzerklaerung",
 ];
 
 async function prerender() {

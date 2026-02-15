@@ -69,7 +69,7 @@ const Kontakt = () => {
       <SEO
         title="Kontakt – Trauungszeremonie anfragen | TrauWorte"
         description="Kontaktiere Stefanie Sick für deine persönliche Trauungszeremonie. Fülle das Formular aus oder schreibe eine E-Mail."
-        canonical="/kontakt"
+        canonical="/freie-trauung-kontakt"
         schema={{
           "@context": "https://schema.org",
           "@type": "ContactPage",

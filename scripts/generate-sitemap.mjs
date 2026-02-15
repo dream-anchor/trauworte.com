@@ -8,11 +8,20 @@ const BASE_URL = "https://trauworte.com";
 // Alle Seiten mit Priority und Changefreq
 const PAGES = [
   { slug: "", priority: "1.0", changefreq: "daily" },
-  { slug: "ueber-mich", priority: "0.8", changefreq: "monthly" },
-  { slug: "angebote", priority: "0.9", changefreq: "weekly" },
-  { slug: "kontakt", priority: "0.9", changefreq: "monthly" },
-  { slug: "impressum", priority: "0.3", changefreq: "monthly" },
-  { slug: "datenschutz", priority: "0.3", changefreq: "monthly" },
+  { slug: "eure-freie-trauung", priority: "0.8", changefreq: "monthly" },
+  { slug: "unterschiede-der-trauungen", priority: "0.7", changefreq: "monthly" },
+  { slug: "bayrisch-tracht-trauung", priority: "0.7", changefreq: "monthly" },
+  { slug: "gleichgeschlechtliche-queer-und-diverse-trauung", priority: "0.7", changefreq: "monthly" },
+  { slug: "meine-angebote-freie-trauung", priority: "0.9", changefreq: "weekly" },
+  { slug: "hochzeitsreden-traurednerin", priority: "0.8", changefreq: "monthly" },
+  { slug: "hochzeitsplanerin-fotograf", priority: "0.7", changefreq: "monthly" },
+  { slug: "zeitlicher-ablauf-freie-trauung", priority: "0.7", changefreq: "monthly" },
+  { slug: "persoenliche-trauung-haeufige-fragen", priority: "0.8", changefreq: "monthly" },
+  { slug: "freie-trauung-kontakt", priority: "0.9", changefreq: "monthly" },
+  { slug: "ueber-traurednerin-stefanie", priority: "0.8", changefreq: "monthly" },
+  { slug: "blog", priority: "0.6", changefreq: "weekly" },
+  { slug: "impressum", priority: "0.3", changefreq: "yearly" },
+  { slug: "datenschutzerklaerung", priority: "0.3", changefreq: "yearly" },
 ];
 
 const today = new Date().toISOString().split("T")[0];

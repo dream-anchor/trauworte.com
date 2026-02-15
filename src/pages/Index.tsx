@@ -2,68 +2,53 @@ import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
+import SectionDivider from "@/components/SectionDivider";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
-import { Button } from "@/components/ui/button";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Star, Mail, Phone, ChevronDown } from "lucide-react";
 
-const HERO_IMG = "https://cdn.durable.co/blocks/fD5L1qAV0Jq1mm6juDiJouPrpzDiaAxwG2jUhpHMKJ59qZwRZaEDDQdsXR8pmXeR.png";
-const ABOUT_IMG = "https://cdn.durable.co/shutterstock/32KzhE001knAG9Tdks4KwoABZhoKOfvP33Zkox667naeeMPtK7hf7ita1Nv1jB7B.jpeg";
+/* ── Bilder ── */
+const IMG_STEFANIE =
+  "https://cdn.durable.co/blocks/fD5L1qAV0Jq1mm6juDiJouPrpzDiaAxwG2jUhpHMKJ59qZwRZaEDDQdsXR8pmXeR.png";
+const IMG_ABOUT =
+  "https://cdn.durable.co/shutterstock/32KzhE001knAG9Tdks4KwoABZhoKOfvP33Zkox667naeeMPtK7hf7ita1Nv1jB7B.jpeg";
+const IMG_LOCATIONS =
+  "https://cdn.durable.co/shutterstock/19UsepJJI79iMphdecQBVR3YoAjQFl2UiP3xRb2avIimQZ9cLaahvfyulik4yxSC.jpeg";
+const IMG_BANNER =
+  "https://cdn.durable.co/shutterstock/14rl8pNeIZJXkEJIWMIE9UEVNt0JbbYPBg7g17WYPAovBa5amUSd5KJ0Y3zVosjT.jpeg";
+const IMG_TESTIMONIAL =
+  "https://cdn.durable.co/shutterstock/2bcDWS6MQREb8GLqc24h5eW57yNxwWHyPxG4rvX9N8GDfb8dKXtwt2PanXvCgKJR.jpeg";
 
-const angeboteData = [
-  { title: "Persönliche Trauungszeremonie", desc: "Eine einzigartige Zeremonie, die eure Liebesgeschichte erzählt.", img: "https://cdn.durable.co/shutterstock/1bmUV28L4mWx0qNACJaUsJ6ZFiZzMTE0RUCWxikO4Yyuom54fZITzEf9FG3UcZL5.jpeg" },
-  { title: "Moderation", desc: "Professionelle Moderation eurer Hochzeitsfeier.", img: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800&q=80" },
-  { title: "Briefliche Traurede", desc: "Eine persönliche Rede, liebevoll für euch verfasst.", img: "https://cdn.durable.co/blocks/1d9jKiHP9rOLaAegmtxI20pDUpwojNN70eHDkvLZk6FfUNyBrgGnXMFsMKpRGss5.png" },
-  { title: "Beratung", desc: "Individuelle Beratung für eure perfekte Trauung.", img: "https://cdn.durable.co/shutterstock/1eo1c1LaWskyy8BSovyzuu00BxWtR7UYbBJG9gP6SWI3vZCUePYVy3iGE4ROioWS.jpeg" },
-  { title: "Kreative Ehegelübde", desc: "Hilfe bei der Formulierung eurer persönlichen Gelübde.", img: "https://cdn.durable.co/shutterstock/3KlhuJuXWpqtSLY2SI2z4b45VGP0Uehyo1X8xiOBgAkvyvQ48O1knC9qn69hBjNq.jpeg" },
-  { title: "Trauungszeremonie im Freien", desc: "Romantische Zeremonien unter freiem Himmel.", img: "https://images.unsplash.com/photo-1515232389446-a17ce9ca7434?w=800&q=80" },
-];
-
-const standorte = [
-  { flag: "🇩🇪", name: "Deutschland" },
-  { flag: "🇦🇹", name: "Österreich" },
-  { flag: "🇨🇭", name: "Schweiz" },
-  { flag: "🇪🇸", name: "Mallorca" },
-  { flag: "🇮🇹", name: "Toskana" },
-];
-
-const faqs = [
+/* ── Angebote-Daten ── */
+const angebote = [
   {
-    q: "Was ist eine freie Trauung?",
-    a: "Eine freie Trauung ist eine nicht-konfessionelle, individuell gestaltete Hochzeitszeremonie ohne kirchliche oder standesamtliche Bindung. Ihr entscheidet selbst über Ablauf, Inhalte, Rituale und Ort – ganz nach euren Vorstellungen.",
+    title: "Persönliche Trauungszeremonie",
+    img: "https://cdn.durable.co/shutterstock/1bmUV28L4mWx0qNACJaUsJ6ZFiZzMTE0RUCWxikO4Yyuom54fZITzEf9FG3UcZL5.jpeg",
+    alt: "Eure Trauungszeremonie nach euren Wünschen",
   },
   {
-    q: "Wie läuft die Zusammenarbeit mit einer freien Rednerin ab?",
-    a: "Zunächst lernen wir uns in einem persönlichen Gespräch kennen. Ich erfahre eure Geschichte, eure Wünsche und Vorstellungen. Darauf basierend erstelle ich eure individuelle Zeremonie, die wir gemeinsam verfeinern, bis sie perfekt ist.",
+    title: "Moderation eures Hochzeitsdinners oder eurer Hochzeitsfeier von A-Z",
+    img: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wyNjI5NjF8MHwxfHNlYXJjaHwzfHxXZWRkaW5nJTIwRGlubmVyfGVufDB8fHx8MTcxNTcyMDczOXww&ixlib=rb-4.0.3&q=80&w=1080",
+    alt: "Hochzeitsrede während einer freien Trauung",
   },
   {
-    q: "Wo finden die Trauungen statt?",
-    a: "Überall dort, wo ihr euch wohlfühlt! Ich bin in ganz Deutschland, Österreich, der Schweiz sowie auf Mallorca und in der Toskana für euch da. Ob Schloss, Strand, Garten, Wald oder Weingut – ich komme zu euch.",
+    title: "Feierliche Traurede",
+    img: "https://cdn.durable.co/blocks/1d9jKiHP9rOLaAegmtxI20pDUpwojNN70eHDkvLZk6FfUNyBrgGnXMFsMKpRGss5.png",
+    alt: "Stefanie Sicks feierliche Traurede während einer Vermählung",
   },
   {
-    q: "Wie weit im Voraus sollten wir buchen?",
-    a: "Beliebte Termine (besonders im Sommer und an Wochenenden) sind schnell vergeben. Ich empfehle, mindestens 6–12 Monate vor eurem Wunschtermin Kontakt aufzunehmen, damit wir genug Zeit für die Planung haben.",
+    title: "Beratung zur Hochzeitsplanung",
+    img: "https://cdn.durable.co/shutterstock/1eo1c1LaWskyy8BSovyzuu00BxWtR7UYbBJG9gP6SWI3vZCUePYVy3iGE4ROioWS.jpeg",
+    alt: "Hochzeitsplanung einer freien Trauung - Hochzeitsplanerin",
   },
   {
-    q: "Was kostet eine freie Trauung?",
-    a: "Die Kosten variieren je nach Umfang der Zeremonie, Anfahrt und individuellen Wünschen. Ich erstelle euch nach dem Kennenlerngespräch ein persönliches Angebot, das genau auf eure Vorstellungen zugeschnitten ist.",
+    title: "Kreative Ehegelübde",
+    img: "https://cdn.durable.co/shutterstock/3KlhuJuXWpqtSLY2SI2z4b45VGP0Uehyo1X8xiOBgAkvyvQ48O1knC9qn69hBjNq.jpeg",
+    alt: "Ehegelübde während einer freien Hochzeit",
+    objectPosition: "0% 50%",
   },
   {
-    q: "Können wir eigene Rituale einbauen?",
-    a: "Auf jeden Fall! Ob Sandzeremonie, Handfasting, Baumstamm sägen, gemeinsames Kerzenanzünden oder ganz eigene Ideen – ich helfe euch, passende Rituale zu finden und stimmig in die Zeremonie zu integrieren.",
-  },
-  {
-    q: "Ist eine freie Trauung rechtlich gültig?",
-    a: "Eine freie Trauung ist eine symbolische Zeremonie und nicht rechtlich bindend. Für die standesamtliche Trauung müsst ihr separat zum Standesamt. Viele Paare heiraten standesamtlich im kleinen Kreis und feiern die große freie Trauung mit allen Gästen.",
-  },
-  {
-    q: "Was unterscheidet TrauWorte von anderen freien Rednern?",
-    a: "Als studierte Kommunikationswissenschaftlerin mit über 10 Jahren Erfahrung in der Medien- und Eventbranche verbinde ich sprachliche Professionalität mit echtem Einfühlungsvermögen. Jede Zeremonie wird individuell und mit viel Herzblut gestaltet.",
+    title: "Trauungszeremonie im Freien",
+    img: "https://images.unsplash.com/photo-1515232389446-a17ce9ca7434?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wyNjI5NjF8MHwxfHNlYXJjaHwyNXx8V2VkZGluZyUyMG91dGRvb3J8ZW58MHx8fHwxNzE1NzIwNzcwfDA&ixlib=rb-4.0.3&q=80&w=1080",
+    alt: "Freie Hochzeit und Trauungszeremonie am Strand",
   },
 ];
 
@@ -73,10 +58,10 @@ const Index = () => {
   return (
     <Layout>
       <SEO
-        title="TrauWorte – Freie Rednerin für Trauungszeremonien"
-        description="Stefanie Sick – studierte Kommunikationswissenschaftlerin gestaltet einzigartige, persönliche Trauungszeremonien in Deutschland, Österreich, Schweiz und Europa."
+        title="Unvergessliche Hochzeitszeremonien - Einzigartige Traurede"
+        description="Erlebt magische Momente mit individuell gestalteten Zeremonien und Reden von TrauWorte. Eure Traumhochzeit wird emotional, persönlich und unvergesslich gestaltet."
         canonical="/"
-        ogImage={HERO_IMG}
+        ogImage={IMG_STEFANIE}
       />
       <StructuredData type="main" />
       <StructuredData
@@ -84,309 +69,272 @@ const Index = () => {
         breadcrumbs={[{ name: "Startseite", url: "/" }]}
       />
 
-      {/* FAQPage JSON-LD — inline, nicht über Helmet (Abschnitt 10) */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: faqs.map((faq) => ({
-              "@type": "Question",
-              name: faq.q,
-              acceptedAnswer: { "@type": "Answer", text: faq.a },
-            })),
-          }),
-        }}
-      />
-
-      {/* Hero */}
-      <section className="bg-peach py-16 md:py-24 relative overflow-hidden">
+      {/* ═══ 1. Herzlich Willkommen ═══ */}
+      <section style={{ backgroundColor: "#FCECDF" }} className="py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            <div className="space-y-6 order-2 md:order-1">
-              <p className="font-body text-sm tracking-[0.2em] text-muted-foreground uppercase">Freie Rednerin</p>
-              <h1 className="font-display text-4xl md:text-6xl text-foreground leading-tight">
+          <div className="flex flex-col md:flex-row gap-10 md:gap-20 items-center max-w-6xl mx-auto">
+            {/* Text */}
+            <div className="flex-1 space-y-5">
+              <h2 className="font-display text-3xl md:text-4xl" style={{ color: "#111827" }}>
                 Herzlich Willkommen
-              </h1>
-              <p className="font-body text-muted-foreground leading-relaxed">
-                Ich bin Stefanie Sick – studierte Kommunikationswissenschaftlerin und seit über 10 Jahren in der Medien- und Eventbranche tätig. Als eure freie Rednerin gestalte ich Trauungszeremonien, die so einzigartig sind wie eure Liebe.
-              </p>
-              <div className="pt-2">
-                <Button asChild size="lg" className="font-body tracking-wide">
-                  <Link to="/kontakt">Kontakt aufnehmen</Link>
-                </Button>
-              </div>
-            </div>
-            <div className="order-1 md:order-2 flex justify-center">
-              <img
-                src={HERO_IMG}
-                alt="Stefanie Sick – Freie Rednerin"
-                width={384}
-                height={384}
-                loading="eager"
-                className="w-80 md:w-96 rounded-lg shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500"
-              />
-            </div>
-          </div>
-        </div>
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce">
-          <ChevronDown className="text-muted-foreground" size={24} />
-        </div>
-      </section>
-
-      {/* Beratung CTA */}
-      <section className="py-20 bg-gradient-to-br from-warm to-peach">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
-            <div className="aspect-[3/4] rounded-lg overflow-hidden shadow-lg">
-              <img
-                src={ABOUT_IMG}
-                alt="Beratung mit Stefanie Sick"
-                width={600}
-                height={800}
-                loading="lazy"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="space-y-6">
-              <h2 className="font-display text-3xl md:text-4xl text-foreground">
-                Ich berate euch gerne
               </h2>
-              <p className="font-body text-muted-foreground leading-relaxed">
-                Ihr plant eure Hochzeit und wünscht euch eine Trauungszeremonie, die wirklich zu euch passt?
-                Dann seid ihr bei mir genau richtig. In einem persönlichen Gespräch lernen wir uns kennen und
-                ich erfahre alles über eure Geschichte, eure Wünsche und Träume.
+              <p className="font-body leading-relaxed" style={{ color: "rgb(17, 24, 39)" }}>
+                Ich bin Stefanie Sick, ausgebildete Hochzeitsrednerin und Moderatorin.
               </p>
-              <Button asChild variant="outline" className="font-body tracking-wide">
-                <Link to="/kontakt">Jetzt anfragen</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Über TrauWorte */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
-            <div className="space-y-6">
-              <h2 className="font-display text-3xl md:text-4xl text-foreground">Über TrauWorte</h2>
-              <p className="font-body text-muted-foreground leading-relaxed">
-                TrauWorte steht für einzigartige, persönliche Trauungszeremonien. Jede Liebe hat ihre eigene Geschichte – und genau die verdient es, erzählt zu werden. Ich nehme mir die Zeit, euch kennenzulernen, und gestalte eine Zeremonie, die euch und eure Gäste berührt.
+              <p className="font-body leading-relaxed" style={{ color: "rgb(17, 24, 39)" }}>
+                Seit meinem Kommunikations-Studium führt mich meine berufliche Reise durch verschiedene
+                Stationen und Moderationen in der Medien- und Eventbranche.
               </p>
-              <p className="font-body text-muted-foreground leading-relaxed">
-                Mit Einfühlungsvermögen, Kreativität und den richtigen Worten schaffe ich für euch einen Moment, der unvergesslich bleibt.
+              <p className="font-body leading-relaxed" style={{ color: "rgb(17, 24, 39)" }}>
+                Mit viel Freude und Herz gestalte ich eure freie Trauung. In einer einzigartigen und
+                individuellen Zeremonie werde ich eure Liebesgeschichte mit viel Gefühl und Hingabe
+                erzählen, um euren besonderen Tag unvergesslich zu machen.
               </p>
             </div>
-            <div className="rounded-lg overflow-hidden shadow-lg">
+            {/* Bild */}
+            <div className="flex-1">
               <img
-                src={ABOUT_IMG}
-                alt="Über TrauWorte"
-                width={600}
-                height={400}
-                loading="lazy"
-                className="w-full h-full object-cover"
+                src={IMG_STEFANIE}
+                alt="Traurednerin während einer freien Hochzeit Stefanie Sick"
+                title="Traurednerin während einer freien Hochzeit Stefanie Sick"
+                width={960}
+                height={540}
+                loading="eager"
+                className="w-full rounded-sm object-cover"
+                style={{ aspectRatio: "16/9", objectPosition: "50% 35%" }}
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Standorte */}
-      <section className="py-16 bg-peach">
-        <div className="container mx-auto px-4 text-center space-y-8">
-          <h2 className="font-display text-3xl md:text-4xl text-foreground">Ich bin überall für euch da</h2>
-          <p className="font-body text-muted-foreground max-w-xl mx-auto">
-            Ob in Deutschland oder am Mittelmeer – ich komme dorthin, wo ihr eure Liebe feiern möchtet.
+      {/* ═══ 2. Ich berate euch gerne ═══ */}
+      <section style={{ backgroundColor: "#FDF4ED" }} className="py-16 md:py-24">
+        <div className="container mx-auto px-4 max-w-4xl text-center space-y-6">
+          <h2 className="font-display text-3xl md:text-4xl" style={{ color: "#111827" }}>
+            Ich berate euch gerne
+          </h2>
+          <p className="font-body text-lg leading-relaxed" style={{ color: "rgb(17, 24, 39)" }}>
+            Mit meiner emotionalen und individuell gestalteten Hochzeitsrede wird eure Trauzeremonie
+            zu einem unvergesslichen Erlebnis.
           </p>
-          <div className="flex flex-wrap justify-center gap-4 max-w-3xl mx-auto">
-            {standorte.map((s) => (
-              <div key={s.name} className="bg-background/80 backdrop-blur-sm rounded-lg px-6 py-4 shadow-sm flex items-center gap-3">
-                <span className="text-2xl">{s.flag}</span>
-                <span className="font-body text-sm text-foreground font-medium">{s.name}</span>
-              </div>
-            ))}
+          <div className="pt-2">
+            <Link
+              to="/freie-trauung-kontakt"
+              className="inline-block font-body text-sm px-6 py-3 rounded-lg border transition-colors hover:bg-gray-100"
+              style={{ borderColor: "#111827", color: "#111827" }}
+            >
+              Jetzt unverbindlich beraten lassen
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Statement */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <h2 className="font-display text-3xl md:text-4xl text-foreground text-center mb-10">
-            Magische und unvergessliche Momente
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <p className="font-body text-muted-foreground leading-relaxed">
-              Eine freie Trauung ist so viel mehr als nur eine Zeremonie. Es ist der Moment, in dem ihr euch vor euren Liebsten das Ja-Wort gebt – frei von Vorgaben, ganz nach euren Vorstellungen.
-            </p>
-            <p className="font-body text-muted-foreground leading-relaxed">
-              Ich schaffe für euch diesen magischen Moment, in dem die Zeit stillzustehen scheint und nur eure Liebe zählt. Jedes Wort wird mit Bedacht gewählt, jede Geste sorgfältig geplant.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Ablauf-Sektion */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="font-display text-3xl md:text-4xl text-foreground text-center mb-12">
-            So läuft unsere Zusammenarbeit ab
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                step: "01",
-                title: "Kennenlernen",
-                desc: "Wir treffen uns zum Gespräch. Ich möchte eure Geschichte, eure Liebe und eure Wünsche verstehen – denn nur so kann ich eure perfekte Zeremonie gestalten."
-              },
-              {
-                step: "02",
-                title: "Planung",
-                desc: "Gemeinsam entwickeln wir eure Zeremonie. Ablauf, Rituale, Musik, Texte – alles wird auf eure Geschichte abgestimmt und regelmäßig mit euch besprochen."
-              },
-              {
-                step: "03",
-                title: "Trauung",
-                desc: "Der große Tag ist da! Ich führe euch emotional und sicher durch eure Zeremonie. Eure Worte, eure Geschichte, eure Liebe – professionell und mit vollem Herzen."
-              }
-            ].map((item, i) => (
-              <div key={i} className="space-y-4 text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-accent/20">
-                  <span className="font-display text-xl text-accent font-semibold">{item.step}</span>
-                </div>
-                <h3 className="font-display text-xl text-foreground">{item.title}</h3>
-                <p className="font-body text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Angebote */}
-      <section className="py-20 bg-peach">
+      {/* ═══ 3. Über TrauWorte ═══ */}
+      <section style={{ backgroundColor: "#FBE9DA" }} className="py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="text-center space-y-4 mb-12">
-            <h2 className="font-display text-3xl md:text-4xl text-foreground">Meine Angebote</h2>
-            <p className="font-body text-muted-foreground">Was ich für euch tun kann</p>
+          <div className="flex flex-col md:flex-row-reverse gap-10 md:gap-20 items-center max-w-6xl mx-auto">
+            {/* Text (rechts im Desktop) */}
+            <div className="flex-1 space-y-5">
+              <h2 className="font-display text-3xl md:text-4xl" style={{ color: "#111827" }}>
+                Über TrauWorte
+              </h2>
+              <p className="font-body leading-relaxed" style={{ color: "rgb(17, 24, 39)" }}>
+                Ich freue mich darauf, eure Traumhochzeit mit den schönsten Worten zu untermalen.
+                Emotional, persönlich und einzigartig - so gestalte ich eure Zeremonie.
+              </p>
+              <p className="font-body leading-relaxed" style={{ color: "rgb(17, 24, 39)" }}>
+                Von der feierlichen Traurede bis zur kreativen Gestaltung eurer Ehegelübde biete ich
+                eine Vielzahl von Dienstleistungen an, um eure Hochzeit unvergesslich zu machen.
+                Lasst uns gemeinsam eure Liebe mit Worten feiern.
+              </p>
+            </div>
+            {/* Bild (links im Desktop) */}
+            <div className="flex-1">
+              <img
+                src={IMG_ABOUT}
+                alt="Traumhochzeit mit persönlicher Traurede und Ehegelübde"
+                title="Traumhochzeit mit persönlicher Traurede und Ehegelübde"
+                width={960}
+                height={540}
+                loading="lazy"
+                className="w-full rounded-sm object-cover"
+                style={{ aspectRatio: "16/9", objectPosition: "center center" }}
+              />
+            </div>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {angeboteData.map((a) => (
-              <Link to="/angebote" key={a.title} className="group block bg-background rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                <div className="aspect-[4/3] overflow-hidden">
+        </div>
+      </section>
+
+      {/* ═══ 4. Ich bin überall für euch da ═══ */}
+      <section className="relative py-16 md:py-24">
+        {/* Hintergrund-Overlay */}
+        <div
+          className="absolute inset-0"
+          style={{ backgroundColor: "rgba(253, 244, 237, 0.88)", backdropFilter: "blur(4px)" }}
+        />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="flex flex-col md:flex-row gap-10 md:gap-20 items-center max-w-6xl mx-auto">
+            {/* Text */}
+            <div className="flex-1 space-y-5">
+              <h2 className="font-display text-3xl md:text-4xl" style={{ color: "#111827" }}>
+                Ich bin überall für euch da
+              </h2>
+              <p className="font-body leading-relaxed" style={{ color: "rgb(17, 24, 39)" }}>
+                Ich stehe euch als Hochzeitsrednerin für eure Traurede gerne zur Verfügung, egal ob
+                ihr in <strong>Deutschland</strong>, <strong>Österreich</strong> oder in der{" "}
+                <strong>Schweiz</strong> heiratet. Auch für Destinationen wie beispielsweise{" "}
+                <strong>Mallorca</strong> oder die <strong>Toskana</strong> bin ich gerne für euch da.
+                Ich gestalte eure Hochzeit individuell und persönlich, überall dort, wo ihr eure Liebe
+                feiern möchtet.
+              </p>
+            </div>
+            {/* Bild */}
+            <div className="flex-1">
+              <img
+                src={IMG_LOCATIONS}
+                alt="Hochzeitsrednerin in Deutschland, Österreich, Schweiz und ganz Europa, wie zum Beispiel Mallorca in Spanien oder Toskana in Italien"
+                width={960}
+                height={540}
+                loading="lazy"
+                className="w-full rounded-sm object-cover"
+                style={{ aspectRatio: "16/9", objectPosition: "45% 20%" }}
+              />
+            </div>
+          </div>
+        </div>
+        {/* Divider */}
+        <div className="absolute bottom-0 left-0 w-full">
+          <SectionDivider type="swoopLeft" fillColor="#FBE9DA" />
+        </div>
+      </section>
+
+      {/* ═══ 5. Magische und unvergessliche Momente ═══ */}
+      <section className="relative py-20 md:py-32">
+        {/* Hintergrundbild */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${IMG_BANNER})` }}
+        />
+        {/* Overlay */}
+        <div
+          className="absolute inset-0"
+          style={{ backgroundColor: "rgba(251, 233, 218, 0.66)", backdropFilter: "blur(4px)" }}
+        />
+        <div className="container mx-auto px-4 relative z-10 max-w-3xl">
+          <h1
+            className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold mb-8"
+            style={{ color: "#111827" }}
+          >
+            Magische und unvergessliche Momente
+          </h1>
+          <div className="font-body leading-relaxed whitespace-pre-wrap" style={{ color: "rgb(17, 24, 39)", fontSize: "18px", lineHeight: "26px" }}>
+{`Euer besonderer Tag bekommt eine liebevolle Atmosphäre - mit ganz persönlichen, nur auf euch abgestimmten, Worten für eure Trauung.
+
+Meine Mission ist es, eure Traumhochzeit mit den schönsten und herzlichsten Worten zu bereichern. Ich gestalte jeden Moment eurer Feier persönlich, emotional und unvergesslich – von der individuellen Trauungszeremonie bis hin zur feierlichen Traurede. Mit kreativer Leidenschaft und umfassender Beratung begleite ich euch auf dem Weg zu und an eurem großen Tag, um jede Erwartung zu übertreffen und bleibende Erinnerungen zu schaffen.`}
+          </div>
+        </div>
+        {/* Divider */}
+        <div className="absolute bottom-0 left-0 w-full">
+          <SectionDivider type="curveUp" fillColor="#FBE9DA" />
+        </div>
+      </section>
+
+      {/* ═══ 6. Meine Angebote ═══ */}
+      <section style={{ backgroundColor: "#FBE9DA" }} className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <h2
+            className="font-display text-3xl md:text-4xl text-center mb-12"
+            style={{ color: "#111827" }}
+          >
+            Meine Angebote
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-5xl mx-auto">
+            {angebote.map((a, i) => (
+              <div key={i} className="flex flex-col">
+                <div className="overflow-hidden rounded-sm">
                   <img
                     src={a.img}
-                    alt={a.title}
-                    width={400}
-                    height={300}
+                    alt={a.alt}
+                    width={540}
+                    height={540}
                     loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full object-cover"
+                    style={{
+                      aspectRatio: "1/1",
+                      objectPosition: a.objectPosition || "center center",
+                    }}
                   />
                 </div>
-                <div className="p-5 space-y-2">
-                  <h3 className="font-display text-lg text-foreground">{a.title}</h3>
-                  <p className="font-body text-sm text-muted-foreground">{a.desc}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-          <div className="text-center mt-10">
-            <Button asChild className="font-body tracking-wide">
-              <Link to="/angebote">Alle Angebote ansehen</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="font-display text-3xl md:text-4xl text-foreground text-center mb-12">
-            Das sagen meine Paare
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                text: "Stefanie hat unsere Trauung zu einem unvergesslichen Erlebnis gemacht. Ihre Worte waren so persönlich und berührend, dass kein Auge trocken blieb. Vielen Dank!",
-                name: "Sybille M.",
-                location: "Frankfurt"
-              },
-              {
-                text: "Wir wussten genau, dass Stefanie die richtige Wahl ist. Sie hat unsere Geschichte so wunderschön erzählt und die Gäste zum Lachen und Weinen gebracht.",
-                name: "Anna & Tom",
-                location: "München"
-              },
-              {
-                text: "Die Zusammenarbeit war so entspannt und professionell. Stefanie hat unsere Wünsche zu 100% umgesetzt und sich Zeit genommen, uns wirklich kennenzulernen.",
-                name: "Lisa & Jan",
-                location: "Berlin"
-              }
-            ].map((testimonial, i) => (
-              <div key={i} className="space-y-4 bg-peach rounded-lg p-6">
-                <div className="flex justify-center gap-1">
-                  {[...Array(5)].map((_, j) => (
-                    <Star key={j} size={16} className="text-gold fill-gold" />
-                  ))}
-                </div>
-                <p className="font-body text-sm text-muted-foreground italic leading-relaxed">"{testimonial.text}"</p>
-                <div className="text-center pt-2 border-t border-accent/20">
-                  <p className="font-display text-sm text-foreground font-semibold">{testimonial.name}</p>
-                  <p className="font-body text-xs text-muted-foreground">{testimonial.location}</p>
-                </div>
+                <p
+                  className="font-body mt-4 mb-4"
+                  style={{ color: "rgb(17, 24, 39)" }}
+                >
+                  {a.title}
+                </p>
+                <Link
+                  to="/meine-angebote-freie-trauung/hochzeitsreden-traurednerin"
+                  className="inline-block font-body text-sm px-5 py-2.5 text-white transition-opacity hover:opacity-80"
+                  style={{ backgroundColor: "#333333", borderRadius: "0px" }}
+                >
+                  Mehr Infos
+                </Link>
               </div>
             ))}
           </div>
         </div>
+        {/* Divider */}
+        <SectionDivider type="slantLeft" fillColor="#FDF4ED" />
       </section>
 
-      {/* FAQ — mit forceMount für SEO (Abschnitt 10) */}
-      <section className="py-20 bg-peach">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="font-display text-3xl md:text-4xl text-foreground text-center mb-12">
-            Häufig gestellte Fragen
-          </h2>
-          <Accordion type="single" collapsible className="w-full">
-            {faqs.map((faq, i) => (
-              <AccordionItem key={i} value={`faq-${i}`}>
-                <AccordionTrigger className="text-left font-semibold font-body">
-                  {faq.q}
-                </AccordionTrigger>
-                <AccordionContent
-                  forceMount
-                  className="text-muted-foreground font-body data-[state=closed]:hidden"
-                >
-                  {faq.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+      {/* ═══ 7. Testimonial ═══ */}
+      <section style={{ backgroundColor: "#FDF4ED" }} className="py-16 md:py-24">
+        <div className="container mx-auto px-4 max-w-4xl text-center space-y-6">
+          <img
+            src={IMG_TESTIMONIAL}
+            alt="- Sybille M. aus Frankfurt"
+            width={96}
+            height={96}
+            loading="lazy"
+            className="w-24 h-24 rounded-full object-cover mx-auto"
+          />
+          <h3
+            className="font-display text-xl md:text-2xl leading-relaxed"
+            style={{ color: "#111827" }}
+          >
+            Stefanie war absolut fantastisch! Ihre Reden und Moderation bei unserer Hochzeit waren
+            herzlich und berührend. Die persönliche Note und die professionelle Präsentation haben
+            unseren besonderen Tag noch unvergesslicher gemacht. Vielen Dank, Stefanie!
+          </h3>
+          <p className="font-body text-lg" style={{ color: "rgb(17, 24, 39)" }}>
+            - Sybille M. aus Frankfurt
+          </p>
         </div>
       </section>
 
-      {/* Kontakt CTA */}
-      <section className="py-20 bg-warm">
-        <div className="container mx-auto px-4 text-center space-y-6">
-          <h2 className="font-display text-3xl md:text-4xl text-foreground">
+      {/* ═══ 8. Nehmt Kontakt mit mir auf ═══ */}
+      <section style={{ backgroundColor: "#FDF4ED" }} className="py-16 md:py-24 relative">
+        <div className="container mx-auto px-4 max-w-3xl text-center space-y-6">
+          <h2 className="font-display text-3xl md:text-4xl" style={{ color: "#111827" }}>
             Nehmt Kontakt mit mir auf
           </h2>
-          <p className="font-body text-muted-foreground max-w-lg mx-auto">
-            Ich freue mich darauf, euch und eure Liebesgeschichte kennenzulernen.
+          <p className="font-body leading-relaxed" style={{ color: "rgb(17, 24, 39)" }}>
+            Lasst uns eure Traumhochzeit unvergesslich machen und nehmt jetzt unverbindlich Kontakt
+            mit mir auf.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
-            <Button asChild size="lg" className="font-body tracking-wide">
-              <a href="mailto:info@stefaniesick.com">
-                <Mail size={18} className="mr-2" />
-                E-Mail schreiben
-              </a>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="font-body tracking-wide">
-              <a href="tel:+4900000000">
-                <Phone size={18} className="mr-2" />
-                Anrufen
-              </a>
-            </Button>
+          <div className="pt-2">
+            <Link
+              to="/freie-trauung-kontakt"
+              className="inline-block font-body text-sm px-6 py-3 rounded-lg border transition-colors hover:bg-gray-100"
+              style={{ borderColor: "#111827", color: "#111827" }}
+            >
+              Jetzt Kontakt aufnehmen
+            </Link>
           </div>
+        </div>
+        {/* Divider */}
+        <div className="mt-16">
+          <SectionDivider type="curveUp" fillColor="#FBE9DA" />
         </div>
       </section>
     </Layout>

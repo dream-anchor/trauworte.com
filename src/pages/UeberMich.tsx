@@ -30,7 +30,7 @@ const UeberMich = () => {
       <SEO
         title="Über mich – Stefanie Sick | TrauWorte"
         description="Stefanie Sick – studierte Kommunikationswissenschaftlerin mit über 10 Jahren Erfahrung in der Medien- und Eventbranche. Freie Rednerin für persönliche Trauungszeremonien."
-        canonical="/ueber-mich"
+        canonical="/ueber-traurednerin-stefanie"
         ogImage={HERO_IMG}
         schema={personSchema}
       />

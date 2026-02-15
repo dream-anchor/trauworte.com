@@ -11,7 +11,7 @@ const Datenschutz = () => {
       <SEO
         title="Datenschutzerklärung | TrauWorte"
         description="Datenschutzerklärung von TrauWorte – Freie Rednerin Stefanie Sick. Informationen zum Umgang mit personenbezogenen Daten."
-        canonical="/datenschutz"
+        canonical="/datenschutzerklaerung"
         noIndex
       />
       <StructuredData
