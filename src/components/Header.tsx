@@ -73,30 +73,34 @@ const Dropdown = ({ item, isActive }: { item: NavItem; isActive: boolean }) => {
         />
       </button>
       <div
-        className={`absolute top-full left-1/2 -translate-x-1/2 mt-3 py-3 min-w-[240px] rounded-2xl z-50 transition-all duration-300 origin-top ${
+        className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 min-w-[240px] z-50 transition-all duration-300 origin-top ${
           open
             ? "opacity-100 scale-100 pointer-events-auto"
             : "opacity-0 scale-95 pointer-events-none"
         }`}
-        style={{
-          backgroundColor: "rgba(255, 255, 255, 0.85)",
-          backdropFilter: "blur(20px) saturate(180%)",
-          WebkitBackdropFilter: "blur(20px) saturate(180%)",
-          border: "1px solid rgba(255, 255, 255, 0.5)",
-          boxShadow: "0 12px 40px rgba(0, 0, 0, 0.08)",
-        }}
       >
-        {item.children!.map((child) => (
-          <Link
-            key={child.path}
-            to={child.path}
-            onClick={() => setOpen(false)}
-            className="block px-5 py-2.5 font-body text-sm transition-all duration-200 hover:bg-white/60 hover:pl-6"
-            style={{ color: "#111827" }}
-          >
-            {child.label}
-          </Link>
-        ))}
+        <div
+          className="py-3 rounded-2xl"
+          style={{
+            backgroundColor: "rgba(255, 255, 255, 0.85)",
+            backdropFilter: "blur(20px) saturate(180%)",
+            WebkitBackdropFilter: "blur(20px) saturate(180%)",
+            border: "1px solid rgba(255, 255, 255, 0.5)",
+            boxShadow: "0 12px 40px rgba(0, 0, 0, 0.08)",
+          }}
+        >
+          {item.children!.map((child) => (
+            <Link
+              key={child.path}
+              to={child.path}
+              onClick={() => setOpen(false)}
+              className="block px-5 py-2.5 font-body text-sm transition-all duration-200 hover:bg-white/60 hover:pl-6"
+              style={{ color: "#111827" }}
+            >
+              {child.label}
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
