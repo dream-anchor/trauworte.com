@@ -13,7 +13,7 @@ const paths: Record<SectionDividerProps["type"], string> = {
 };
 
 const SectionDivider = ({ type, fillColor = "currentColor" }: SectionDividerProps) => (
-  <div className="relative w-full overflow-hidden leading-none -mb-px" style={{ height: "120px" }}>
+  <div className="relative w-full overflow-hidden leading-none -mb-px" style={{ height: "60px" }}>
     <svg
       viewBox="0 0 1440 120"
       preserveAspectRatio="none"

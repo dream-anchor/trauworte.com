@@ -336,9 +336,7 @@ Meine Mission ist es, eure Traumhochzeit mit den schönsten und herzlichsten Wor
             ))}
           </StaggerGrid>
         </div>
-        <div className="mt-16">
-          <SectionDivider type="slantLeft" fillColor="#FDF4ED" />
-        </div>
+        <SectionDivider type="slantLeft" fillColor="#FDF4ED" />
       </section>
 
       {/* ═══ 7. Testimonial ═══ */}
@@ -393,9 +391,7 @@ Meine Mission ist es, eure Traumhochzeit mit den schönsten und herzlichsten Wor
             </Link>
           </div>
         </Reveal>
-        <div className="mt-16">
-          <SectionDivider type="curveUp" fillColor="#FBE9DA" />
-        </div>
+        <SectionDivider type="curveUp" fillColor="#FBE9DA" />
       </section>
     </Layout>
   );
