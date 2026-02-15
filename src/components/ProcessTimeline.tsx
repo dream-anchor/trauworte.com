@@ -1,29 +1,42 @@
+import { Link } from "react-router-dom";
 import useScrollReveal from "@/hooks/useScrollReveal";
 
 const steps = [
   {
     number: "01",
-    title: "Kennenlernen",
+    title: "Unverbindliche Anfrage",
     description:
-      "In einem unverbindlichen Gespraech lernen wir uns kennen und ich erfahre alles ueber eure Wuensche und Vorstellungen fuer den grossen Tag.",
+      "Schreibt mir über das Kontaktformular oder per E-Mail. Erzählt mir von eurem Wunschtermin, eurem Traumort und euren ersten Ideen für die freie Trauung. Ich melde mich innerhalb von 24 Stunden bei euch — versprochen.",
   },
   {
     number: "02",
-    title: "Eure Geschichte",
+    title: "Kostenloses Kennenlerngespräch",
     description:
-      "Ich tauche ein in eure Liebesgeschichte, sammle persoenliche Details und beginne, eure individuelle Zeremonie zu gestalten.",
+      "In einem entspannten Gespräch — per Telefon, Video-Call oder persönlich in München — lernen wir uns kennen. Ich erfahre alles über eure Wünsche und ihr bekommt ein Gefühl dafür, ob ich als eure Traurednerin die Richtige bin.",
   },
   {
     number: "03",
-    title: "Die Zeremonie",
+    title: "Eure Liebesgeschichte erzählen",
     description:
-      "Gemeinsam feilen wir an jedem Detail eurer Trauung — von der Rede ueber die Rituale bis zur musikalischen Begleitung.",
+      "Das Herzstück: In einem ausführlichen Paargespräch tauche ich in eure Geschichte ein. Wie habt ihr euch kennengelernt? Was macht eure Liebe besonders? Aus diesen Details entsteht eine Traurede, die wirklich eure ist.",
   },
   {
     number: "04",
-    title: "Euer grosser Tag",
+    title: "Die Rede entsteht",
     description:
-      "Am Tag eurer Hochzeit fuehre ich euch mit Herz und Leidenschaft durch eine Zeremonie, die euch und eure Gaeste tief beruehrt.",
+      "Ich schreibe eure individuelle Traurede — Wort für Wort, mit Herzblut und Feingefühl. Ihr bekommt den Entwurf vorab zum Lesen und könnt Wünsche äußern. Gemeinsam stimmen wir Rituale, Musik und den Ablauf der Zeremonie ab.",
+  },
+  {
+    number: "05",
+    title: "Feinschliff & letzte Details",
+    description:
+      "Kurz vor eurem großen Tag klären wir die letzten Details: Technik, Zeitplan, Koordination mit Fotograf und DJ. Auf Wunsch mache ich eine Generalprobe am Trauort, damit am Hochzeitstag alles perfekt sitzt.",
+  },
+  {
+    number: "06",
+    title: "Euer großer Tag",
+    description:
+      "Am Tag eurer Hochzeit bin ich rechtzeitig vor Ort und führe euch mit Herz und Leidenschaft durch eine Zeremonie, die euch und eure Gäste tief berührt. Dieser Moment gehört ganz euch — und ich sorge dafür, dass er unvergesslich wird.",
   },
 ];
 
@@ -93,23 +106,23 @@ const ProcessTimeline = () => {
             className="font-body text-xs tracking-[0.2em] uppercase mb-4"
             style={{ color: "#B8956A" }}
           >
-            So entsteht eure Zeremonie
+            Euer Weg zur Zeremonie
           </div>
           <h2
             className="font-display text-4xl md:text-5xl"
             style={{ color: "#1a1a1a", letterSpacing: "0.02em" }}
           >
-            Von der ersten{" "}
+            So entsteht eure{" "}
             <span
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
                 fontStyle: "italic",
                 fontWeight: 500,
+                color: "#B8956A",
               }}
             >
-              Idee
-            </span>{" "}
-            zum unvergesslichen Ja-Wort
+              freie Trauung
+            </span>
           </h2>
         </div>
 
@@ -118,6 +131,25 @@ const ProcessTimeline = () => {
           {steps.map((step, i) => (
             <TimelineStep key={step.number} {...step} index={i} />
           ))}
+        </div>
+
+        {/* CTA */}
+        <div className="text-center mt-4">
+          <Link
+            to="/freie-trauung-kontakt"
+            className="inline-flex items-center gap-2 transition-all duration-300 hover:gap-4"
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "12px",
+              fontWeight: 500,
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+              color: "#B8956A",
+              textDecoration: "none",
+            }}
+          >
+            Bereit für den ersten Schritt? <span style={{ fontSize: "16px" }}>&rarr;</span>
+          </Link>
         </div>
       </div>
     </section>

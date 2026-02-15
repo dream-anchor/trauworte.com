@@ -14,6 +14,14 @@ import UeberMich from "./pages/UeberMich";
 import Blog from "./pages/Blog";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
+import TraurednerinMuenchen from "./pages/TraurednerinMuenchen";
+import TraurednerinBayern from "./pages/TraurednerinBayern";
+import TraurednerinOesterreich from "./pages/TraurednerinOesterreich";
+import FreieTrauungMallorca from "./pages/FreieTrauungMallorca";
+import FreieTrauungToskana from "./pages/FreieTrauungToskana";
+import FreieTrauungGardasee from "./pages/FreieTrauungGardasee";
+import FreieTrauungAlpen from "./pages/FreieTrauungAlpen";
+import WeddingCelebrantMunich from "./pages/WeddingCelebrantMunich";
 import NotFound from "./pages/NotFound";
 
 const AppRoutes = () => (
@@ -34,6 +42,16 @@ const AppRoutes = () => (
     <Route path="/blog" element={<Blog />} />
     <Route path="/impressum" element={<Impressum />} />
     <Route path="/datenschutzerklaerung" element={<Datenschutz />} />
+
+    {/* Regionale Landingpages */}
+    <Route path="/traurednerin-muenchen" element={<TraurednerinMuenchen />} />
+    <Route path="/traurednerin-bayern" element={<TraurednerinBayern />} />
+    <Route path="/traurednerin-oesterreich" element={<TraurednerinOesterreich />} />
+    <Route path="/freie-trauung-mallorca" element={<FreieTrauungMallorca />} />
+    <Route path="/freie-trauung-toskana" element={<FreieTrauungToskana />} />
+    <Route path="/freie-trauung-gardasee" element={<FreieTrauungGardasee />} />
+    <Route path="/freie-trauung-alpen" element={<FreieTrauungAlpen />} />
+    <Route path="/en/wedding-celebrant-munich" element={<WeddingCelebrantMunich />} />
 
     {/* Redirects: alte Slugs → neue Slugs */}
     <Route path="/ueber-mich" element={<Navigate to="/ueber-traurednerin-stefanie" replace />} />

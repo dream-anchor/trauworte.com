@@ -21,6 +21,14 @@ const ROUTES = [
   "/blog",
   "/impressum",
   "/datenschutzerklaerung",
+  "/traurednerin-muenchen",
+  "/traurednerin-bayern",
+  "/traurednerin-oesterreich",
+  "/freie-trauung-mallorca",
+  "/freie-trauung-toskana",
+  "/freie-trauung-gardasee",
+  "/freie-trauung-alpen",
+  "/en/wedding-celebrant-munich",
 ];
 
 async function prerender() {

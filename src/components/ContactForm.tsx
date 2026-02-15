@@ -41,7 +41,7 @@ const ContactForm = () => {
                 color: "#B8956A",
               }}
             >
-              Der naechste Schritt
+              Der nächste Schritt
             </p>
             <h2
               className="font-display leading-[1.15]"
@@ -51,7 +51,7 @@ const ContactForm = () => {
                 fontSize: "clamp(2rem, 4vw, 3rem)",
               }}
             >
-              Bereit fuer eure{" "}
+              Freie Trauung{" "}
               <span
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
@@ -60,9 +60,8 @@ const ContactForm = () => {
                   color: "#B8956A",
                 }}
               >
-                Traumhochzeit
+                anfragen
               </span>
-              ?
             </h2>
 
             <div
@@ -73,8 +72,8 @@ const ContactForm = () => {
               className="font-body leading-[1.9]"
               style={{ fontSize: "16px", fontWeight: 300, color: "#5C4A3A" }}
             >
-              Lasst uns unverbindlich kennenlernen. Erzaehlt mir von euren Wuenschen
-              und ich melde mich innerhalb von 24 Stunden bei euch zurueck.
+              Lasst uns unverbindlich kennenlernen. Erzählt mir von euren Wünschen
+              und ich melde mich innerhalb von 24 Stunden bei euch zurück.
             </p>
 
             {/* Decorative Quote */}
@@ -91,7 +90,7 @@ const ContactForm = () => {
                   lineHeight: 1.7,
                 }}
               >
-                &raquo;Jede Liebesgeschichte verdient es, mit den richtigen Worten erzaehlt zu werden.&laquo;
+                &raquo;Jede Liebesgeschichte verdient es, mit den richtigen Worten erzählt zu werden.&laquo;
               </p>
               <p
                 className="mt-3"
@@ -120,7 +119,7 @@ const ContactForm = () => {
                   Vielen Dank!
                 </h3>
                 <p className="font-body" style={{ color: "#5C4A3A" }}>
-                  Euer E-Mail-Programm oeffnet sich jetzt. Ich melde mich schnellstmoeglich bei euch.
+                  Euer E-Mail-Programm öffnet sich jetzt. Ich melde mich schnellstmöglich bei euch.
                 </p>
               </div>
             ) : (
@@ -184,7 +183,7 @@ const ContactForm = () => {
                 </div>
 
                 <button type="submit" className="btn-gold w-full mt-3">
-                  Verfuegbarkeit pruefen
+                  Verfügbarkeit prüfen
                 </button>
 
                 <p

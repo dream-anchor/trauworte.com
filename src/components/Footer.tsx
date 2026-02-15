@@ -72,26 +72,6 @@ const Footer = () => {
           </Link>
         </div>
 
-        {/* Ausgebildet von */}
-        <div className="mt-6">
-          <a
-            href="https://www.martinredet.de/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block transition-colors duration-300 hover:text-[#FDF4ED]"
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "11px",
-              fontWeight: 300,
-              letterSpacing: "0.08em",
-              color: "rgba(253,244,237,0.3)",
-              textDecoration: "none",
-            }}
-          >
-            Ausgebildet von martinredet.de
-          </a>
-        </div>
-
         <p
           className="mt-10"
           style={{

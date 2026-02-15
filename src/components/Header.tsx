@@ -186,12 +186,13 @@ const Header = () => {
       {/* Mobile Nav */}
       <div
         className={`lg:hidden overflow-hidden transition-all duration-500 ease-out ${
-          isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
+          isOpen ? "max-h-[600px] opacity-100 pointer-events-auto" : "max-h-0 opacity-0 pointer-events-none"
         }`}
         style={{
-          backgroundColor: "rgba(251, 233, 218, 0.95)",
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
+          backgroundColor: "rgba(251, 233, 218, 0.98)",
+          transform: "translateZ(0)",
+          position: "relative",
+          zIndex: 60,
         }}
       >
         <nav className="px-6 pb-6 pt-2">

@@ -8,7 +8,7 @@ interface BreadcrumbItem {
 }
 
 interface StructuredDataProps {
-  type: "main" | "breadcrumb";
+  type: "main" | "homepage" | "breadcrumb";
   breadcrumbs?: BreadcrumbItem[];
 }
 
@@ -50,6 +50,70 @@ const mainSchema = {
   inLanguage: "de-DE",
 };
 
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${BASE_URL}/#organization`,
+  name: "TrauWorte – Traurednerin Stefanie Sick",
+  alternateName: "TrauWorte",
+  description:
+    "Traurednerin für persönliche und emotionale freie Trauungen in München, Bayern, Österreich, Schweiz und ganz Europa.",
+  url: BASE_URL,
+  email: "info@stefaniesick.com",
+  priceRange: "€€",
+  image: `${BASE_URL}/images/traurednerin-stefanie-sick-portrait.webp`,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "München",
+    addressRegion: "Bayern",
+    addressCountry: "DE",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 48.1351,
+    longitude: 11.582,
+  },
+  areaServed: [
+    { "@type": "City", name: "München" },
+    { "@type": "State", name: "Bayern" },
+    { "@type": "Country", name: "Deutschland" },
+    { "@type": "Country", name: "Österreich" },
+    { "@type": "Country", name: "Schweiz" },
+    { "@type": "AdministrativeArea", name: "Mallorca" },
+    { "@type": "AdministrativeArea", name: "Toskana" },
+  ],
+  founder: {
+    "@type": "Person",
+    name: "Stefanie Sick",
+    jobTitle: "Freie Traurednerin",
+  },
+  knowsAbout: [
+    "Freie Trauung",
+    "Traurede",
+    "Trauungszeremonie",
+    "Hochzeitsmoderation",
+    "Ehegelübde",
+    "Destination Wedding",
+  ],
+  inLanguage: "de-DE",
+};
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Stefanie Sick",
+  jobTitle: "Freie Traurednerin",
+  worksFor: { "@id": `${BASE_URL}/#organization` },
+  url: `${BASE_URL}/ueber-traurednerin-stefanie`,
+  image: `${BASE_URL}/images/traurednerin-stefanie-sick-portrait.webp`,
+  knowsAbout: [
+    "Freie Trauung",
+    "Traurede",
+    "Hochzeitsmoderation",
+    "Trauungszeremonie",
+  ],
+};
+
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -60,6 +124,16 @@ const websiteSchema = {
 };
 
 const StructuredData = ({ type, breadcrumbs }: StructuredDataProps) => {
+  if (type === "homepage") {
+    return (
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify([localBusinessSchema, personSchema, websiteSchema])}
+        </script>
+      </Helmet>
+    );
+  }
+
   if (type === "main") {
     return (
       <Helmet>
