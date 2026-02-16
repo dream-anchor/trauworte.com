@@ -9,7 +9,6 @@ interface Credit {
   datei: string;
   fotograf: string;
   profil: string;
-  unsplash_url: string;
 }
 
 const Bildnachweise = () => {
@@ -124,8 +123,8 @@ const Bildnachweise = () => {
                       style={{ color: "#B8956A", textDecoration: "underline" }}
                     >
                       {credit.fotograf}
-                    </a>{" "}
-                    / Unsplash
+                    </a>
+                    {" "}/ Unsplash
                   </p>
                 </div>
               </div>
