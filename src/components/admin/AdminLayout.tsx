@@ -1,26 +1,199 @@
-import { type ReactNode } from "react";
+import { type ReactNode, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "./AdminPasswordGate";
-import { pageRegistry, PAGE_GROUPS } from "@/config/pageRegistry";
 
 interface Props {
   children: ReactNode;
   title?: string;
 }
 
-const GROUP_ICONS: Record<string, string> = {
-  Hauptseiten: "📄",
-  "Regionale LPs": "📍",
-  Magazin: "📰",
-  Rechtliches: "⚖️",
-};
+// Sidebar-Menüstruktur — spiegelt das Frontend-Menü wider
+interface SidebarItem {
+  label: string;
+  slug?: string; // Wenn vorhanden → Link zu /admin/pages/:slug
+  path?: string; // Wenn vorhanden → Link zu diesem Pfad
+  children?: SidebarItem[];
+}
+
+const sidebarMenu: SidebarItem[] = [
+  { label: "Dashboard", path: "/admin" },
+  { label: "Startseite", slug: "index" },
+  {
+    label: "Eure Trauung",
+    slug: "eure-freie-trauung",
+    children: [
+      { label: "Bayrisch & Tracht", slug: "bayrisch-tracht-trauung" },
+      { label: "Queere Trauung", slug: "gleichgeschlechtliche-queer-und-diverse-trauung" },
+      {
+        label: "Deutschland",
+        children: [
+          { label: "Traurednerin München", slug: "traurednerin-muenchen" },
+          { label: "Traurednerin Bayern", slug: "traurednerin-bayern" },
+        ],
+      },
+      {
+        label: "Alpen & Nachbarländer",
+        children: [
+          { label: "Freie Trauung Alpen", slug: "freie-trauung-alpen" },
+          { label: "Freie Trauung Österreich", slug: "traurednerin-oesterreich" },
+        ],
+      },
+      {
+        label: "Mittelmeer",
+        children: [
+          { label: "Freie Trauung Italien", slug: "freie-trauung-italien" },
+          { label: "Toskana", slug: "freie-trauung-toskana" },
+          { label: "Gardasee", slug: "freie-trauung-gardasee" },
+          { label: "Freie Trauung Mallorca", slug: "freie-trauung-mallorca" },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Meine Angebote",
+    slug: "meine-angebote-freie-trauung",
+    children: [
+      { label: "Preise & Pakete", slug: "hochzeitsreden-traurednerin" },
+      { label: "Unterschiede der Trauungen", slug: "unterschiede-der-trauungen" },
+      { label: "Partner", slug: "hochzeitsplanerin-fotograf" },
+      { label: "Zeitlicher Ablauf", slug: "zeitlicher-ablauf-freie-trauung" },
+    ],
+  },
+  { label: "Über mich", slug: "ueber-traurednerin-stefanie" },
+  { label: "Häufige Fragen", slug: "persoenliche-trauung-haeufige-fragen" },
+  {
+    label: "Magazin",
+    slug: "magazin",
+    children: [
+      { label: "Trausprüche", slug: "magazin/trausprueche-freie-trauung" },
+    ],
+  },
+  { label: "Kontakt", slug: "freie-trauung-kontakt" },
+  {
+    label: "Rechtliches",
+    children: [
+      { label: "Impressum", slug: "impressum" },
+      { label: "Datenschutz", slug: "datenschutzerklaerung" },
+    ],
+  },
+  { label: "Menü bearbeiten", path: "/admin/navigation" },
+  { label: "Papierkorb", path: "/admin/trash" },
+];
+
+// Rekursive Sidebar-Item-Komponente
+function SidebarNavItem({ item, depth, currentPath }: { item: SidebarItem; depth: number; currentPath: string }) {
+  const itemPath = item.path ?? (item.slug ? `/admin/pages/${item.slug}` : "");
+  const isActive = itemPath ? currentPath === itemPath : false;
+  const hasChildren = item.children && item.children.length > 0;
+
+  // Auto-open wenn ein Kind aktiv ist
+  const isChildActive = hasChildren && item.children!.some(
+    (child) => {
+      const childPath = child.path ?? (child.slug ? `/admin/pages/${child.slug}` : "");
+      if (currentPath === childPath) return true;
+      if (child.children) return child.children.some((gc) => {
+        const gcPath = gc.path ?? (gc.slug ? `/admin/pages/${gc.slug}` : "");
+        return currentPath === gcPath;
+      });
+      return false;
+    }
+  );
+
+  const [open, setOpen] = useState(isActive || isChildActive);
+
+  // Depth-basierte Styles
+  const isGroupHeading = depth > 0 && hasChildren && !item.slug;
+  const pl = depth === 0 ? "12px" : depth === 1 ? "24px" : "36px";
+
+  if (isGroupHeading) {
+    // Gruppenüberschrift (z.B. "Deutschland", "Mittelmeer")
+    return (
+      <div className="mt-2">
+        <button
+          type="button"
+          onClick={() => setOpen(!open)}
+          className="w-full flex items-center justify-between py-1.5 text-left"
+          style={{
+            paddingLeft: pl,
+            paddingRight: "12px",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "10px",
+            fontWeight: 600,
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            color: "#9ca3af",
+          }}
+        >
+          {item.label}
+          <span style={{ fontSize: "10px", color: "#d1d5db" }}>{open ? "▼" : "▶"}</span>
+        </button>
+        {open && item.children!.map((child) => (
+          <SidebarNavItem key={child.slug ?? child.label} item={child} depth={depth + 1} currentPath={currentPath} />
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <div className="flex items-center">
+        {itemPath ? (
+          <Link
+            to={itemPath}
+            className="flex-1 flex items-center py-2 rounded-md text-sm transition-colors"
+            style={{
+              paddingLeft: pl,
+              paddingRight: "8px",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: depth === 0 ? "13px" : "12px",
+              fontWeight: isActive ? 600 : depth === 0 ? 500 : 400,
+              color: isActive ? "#B8956A" : "#374151",
+              background: isActive ? "#fdf5ef" : "transparent",
+              borderLeft: isActive ? "2px solid #B8956A" : "2px solid transparent",
+            }}
+          >
+            {item.label}
+          </Link>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setOpen(!open)}
+            className="flex-1 flex items-center justify-between py-2 rounded-md text-sm transition-colors text-left"
+            style={{
+              paddingLeft: pl,
+              paddingRight: "8px",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: depth === 0 ? "13px" : "12px",
+              fontWeight: depth === 0 ? 500 : 400,
+              color: "#374151",
+            }}
+          >
+            {item.label}
+            <span style={{ fontSize: "10px", color: "#d1d5db" }}>{open ? "▼" : "▶"}</span>
+          </button>
+        )}
+        {hasChildren && itemPath && (
+          <button
+            type="button"
+            onClick={() => setOpen(!open)}
+            className="px-2 py-2 transition-colors"
+            style={{ fontSize: "10px", color: "#d1d5db" }}
+          >
+            {open ? "▼" : "▶"}
+          </button>
+        )}
+      </div>
+      {open && hasChildren && item.children!.map((child) => (
+        <SidebarNavItem key={child.slug ?? child.label} item={child} depth={depth + 1} currentPath={currentPath} />
+      ))}
+    </div>
+  );
+}
 
 const AdminLayout = ({ children, title }: Props) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
-
-  const isActive = (path: string) => location.pathname === path;
 
   const handleLogout = () => {
     logout();
@@ -33,13 +206,13 @@ const AdminLayout = ({ children, title }: Props) => {
       <aside
         className="fixed top-0 left-0 h-full overflow-y-auto border-r"
         style={{
-          width: "260px",
+          width: "280px",
           background: "#ffffff",
           borderColor: "#e5e7eb",
         }}
       >
         {/* Logo */}
-        <div className="px-6 py-5 border-b" style={{ borderColor: "#e5e7eb" }}>
+        <div className="px-5 py-4 border-b" style={{ borderColor: "#e5e7eb" }}>
           <Link to="/admin" className="flex items-center gap-2">
             <span
               style={{
@@ -64,129 +237,17 @@ const AdminLayout = ({ children, title }: Props) => {
           </Link>
         </div>
 
-        {/* Dashboard Link */}
-        <div className="px-3 pt-4 pb-2">
-          <Link
-            to="/admin"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors"
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontWeight: isActive("/admin") ? 600 : 400,
-              color: isActive("/admin") ? "#B8956A" : "#374151",
-              background: isActive("/admin") ? "#fdf5ef" : "transparent",
-              borderLeft: isActive("/admin") ? "2px solid #B8956A" : "2px solid transparent",
-            }}
-          >
-            <span>📊</span>
-            Dashboard
-          </Link>
-        </div>
-
-        {/* Seitengruppen */}
-        {PAGE_GROUPS.map((group) => (
-          <div key={group} className="px-3 pt-4">
-            <p
-              className="px-3 mb-2"
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "10px",
-                fontWeight: 600,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                color: "#9ca3af",
-              }}
-            >
-              {GROUP_ICONS[group]} {group}
-            </p>
-            {pageRegistry
-              .filter((p) => p.group === group)
-              .map((page) => {
-                const path = `/admin/pages/${page.slug}`;
-                const active = isActive(path);
-                return (
-                  <Link
-                    key={page.slug}
-                    to={path}
-                    className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors"
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontWeight: active ? 600 : 400,
-                      color: active ? "#B8956A" : "#374151",
-                      background: active ? "#fdf5ef" : "transparent",
-                      borderLeft: active ? "2px solid #B8956A" : "2px solid transparent",
-                      fontSize: "13px",
-                    }}
-                  >
-                    {page.title}
-                  </Link>
-                );
-              })}
-          </div>
-        ))}
-
-        {/* Navigation */}
-        <div className="px-3 pt-4">
-          <p
-            className="px-3 mb-2"
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "10px",
-              fontWeight: 600,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              color: "#9ca3af",
-            }}
-          >
-            🔗 Navigation
-          </p>
-          <Link
-            to="/admin/navigation"
-            className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors"
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontWeight: isActive("/admin/navigation") ? 600 : 400,
-              color: isActive("/admin/navigation") ? "#B8956A" : "#374151",
-              background: isActive("/admin/navigation") ? "#fdf5ef" : "transparent",
-              borderLeft: isActive("/admin/navigation") ? "2px solid #B8956A" : "2px solid transparent",
-              fontSize: "13px",
-            }}
-          >
-            Menü bearbeiten
-          </Link>
-        </div>
-
-        {/* User Management (nur Admin) */}
-        {user?.role === "admin" && (
-          <div className="px-3 pt-4">
-            <p
-              className="px-3 mb-2"
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "10px",
-                fontWeight: 600,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                color: "#9ca3af",
-              }}
-            >
-              ⚙️ System
-            </p>
-            <Link
-              to="/admin/users"
-              className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors"
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: isActive("/admin/users") ? 600 : 400,
-                color: isActive("/admin/users") ? "#B8956A" : "#374151",
-                background: isActive("/admin/users") ? "#fdf5ef" : "transparent",
-                borderLeft: isActive("/admin/users") ? "2px solid #B8956A" : "2px solid transparent",
-                fontSize: "13px",
-              }}
-            >
-              Benutzer
-            </Link>
-          </div>
-        )}
+        {/* Navigation — spiegelt Frontend-Menü wider */}
+        <nav className="px-2 py-3 space-y-0.5">
+          {sidebarMenu.map((item) => (
+            <SidebarNavItem
+              key={item.slug ?? item.path ?? item.label}
+              item={item}
+              depth={0}
+              currentPath={location.pathname}
+            />
+          ))}
+        </nav>
 
         {/* User Info + Logout */}
         <div
@@ -246,7 +307,7 @@ const AdminLayout = ({ children, title }: Props) => {
       {/* Main Content */}
       <main
         className="flex-1"
-        style={{ marginLeft: "260px", minHeight: "100vh" }}
+        style={{ marginLeft: "280px", minHeight: "100vh" }}
       >
         {/* Top Bar */}
         <header

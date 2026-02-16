@@ -2,15 +2,18 @@ interface HeroImageProps {
   src: string;
   alt: string;
   credit: string;
+  objectPosition?: string;
 }
 
-const HeroImage = ({ src, alt, credit }: HeroImageProps) => (
+const HeroImage = ({ src, alt, credit, objectPosition }: HeroImageProps) => (
   <section className="relative w-full overflow-hidden" style={{ maxHeight: "480px" }}>
     <img
       src={src}
       alt={alt}
+      width={1600}
+      height={480}
       className="w-full object-cover"
-      style={{ height: "480px" }}
+      style={{ height: "480px", objectPosition }}
       loading="eager"
     />
     <p

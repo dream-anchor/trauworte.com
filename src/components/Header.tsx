@@ -502,6 +502,7 @@ const Header = () => {
         {/* Logo */}
         <Link
           to="/"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="mb-3 transition-transform duration-500"
           style={{ transform: scrolled ? "scale(0.8)" : "scale(1)" }}
         >

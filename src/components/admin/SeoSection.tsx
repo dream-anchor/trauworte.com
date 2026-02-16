@@ -1,4 +1,5 @@
 import { useState } from "react";
+import KeywordBadges from "./KeywordBadges";
 
 interface SeoData {
   seo_title: string;
@@ -10,9 +11,11 @@ interface Props {
   data: SeoData;
   onChange: (data: SeoData) => void;
   pageSlug: string;
+  keywords?: string[];
+  readOnly?: boolean;
 }
 
-const SeoSection = ({ data, onChange, pageSlug }: Props) => {
+const SeoSection = ({ data, onChange, pageSlug, keywords = [], readOnly }: Props) => {
   const [open, setOpen] = useState(false);
 
   const titleLen = data.seo_title?.length ?? 0;
@@ -36,7 +39,7 @@ const SeoSection = ({ data, onChange, pageSlug }: Props) => {
             color: "#1a1a1a",
           }}
         >
-          🔍 SEO-Einstellungen
+          SEO-Einstellungen
         </span>
         <span style={{ color: "#9ca3af", fontSize: "18px" }}>
           {open ? "▲" : "▼"}
@@ -47,6 +50,7 @@ const SeoSection = ({ data, onChange, pageSlug }: Props) => {
         <div className="px-5 pb-5 space-y-5 border-t" style={{ borderColor: "#e5e7eb" }}>
           {/* SEO Titel */}
           <div className="pt-4">
+            <KeywordBadges keywords={keywords} text={data.seo_title ?? ""} />
             <label
               className="block mb-1.5"
               style={{
@@ -63,11 +67,13 @@ const SeoSection = ({ data, onChange, pageSlug }: Props) => {
               value={data.seo_title ?? ""}
               onChange={(e) => onChange({ ...data, seo_title: e.target.value })}
               placeholder="Seitentitel für Google"
+              readOnly={readOnly}
               className="w-full px-3 py-2.5 rounded-lg border text-sm outline-none"
               style={{
                 fontFamily: "'Inter', sans-serif",
                 borderColor: "#e5e7eb",
-                background: "#fafafa",
+                background: readOnly ? "#f3f4f6" : "#fafafa",
+                cursor: readOnly ? "default" : undefined,
               }}
             />
             <p className="mt-1 text-right" style={{ fontSize: "11px", color: titleColor }}>
@@ -77,6 +83,7 @@ const SeoSection = ({ data, onChange, pageSlug }: Props) => {
 
           {/* SEO Beschreibung */}
           <div>
+            <KeywordBadges keywords={keywords} text={data.seo_description ?? ""} />
             <label
               className="block mb-1.5"
               style={{
@@ -93,11 +100,13 @@ const SeoSection = ({ data, onChange, pageSlug }: Props) => {
               onChange={(e) => onChange({ ...data, seo_description: e.target.value })}
               placeholder="Beschreibung für Google-Suchergebnisse"
               rows={3}
+              readOnly={readOnly}
               className="w-full px-3 py-2.5 rounded-lg border text-sm outline-none resize-y"
               style={{
                 fontFamily: "'Inter', sans-serif",
                 borderColor: "#e5e7eb",
-                background: "#fafafa",
+                background: readOnly ? "#f3f4f6" : "#fafafa",
+                cursor: readOnly ? "default" : undefined,
               }}
             />
             <p className="mt-1 text-right" style={{ fontSize: "11px", color: descColor }}>
@@ -123,11 +132,13 @@ const SeoSection = ({ data, onChange, pageSlug }: Props) => {
               value={data.seo_canonical ?? ""}
               onChange={(e) => onChange({ ...data, seo_canonical: e.target.value })}
               placeholder={`/${pageSlug}`}
+              readOnly={readOnly}
               className="w-full px-3 py-2.5 rounded-lg border text-sm outline-none"
               style={{
                 fontFamily: "'Inter', sans-serif",
                 borderColor: "#e5e7eb",
-                background: "#fafafa",
+                background: readOnly ? "#f3f4f6" : "#fafafa",
+                cursor: readOnly ? "default" : undefined,
               }}
             />
           </div>
@@ -169,7 +180,7 @@ const SeoSection = ({ data, onChange, pageSlug }: Props) => {
                   color: "#006621",
                 }}
               >
-                trauworte.com › {pageSlug || "..."}
+                trauworte.com &rsaquo; {pageSlug || "..."}
               </p>
               <p
                 className="mt-1"

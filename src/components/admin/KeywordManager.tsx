@@ -4,6 +4,7 @@ interface Props {
   keywords: string[];
   onChange: (keywords: string[]) => void;
   content: string; // Gesamter Seitentext für Keyword-Check
+  readOnly?: boolean;
 }
 
 interface KeywordStatus {
@@ -25,7 +26,7 @@ function analyzeKeywords(keywords: string[], text: string): KeywordStatus[] {
   });
 }
 
-const KeywordManager = ({ keywords, onChange, content }: Props) => {
+const KeywordManager = ({ keywords, onChange, content, readOnly }: Props) => {
   const [newKeyword, setNewKeyword] = useState("");
   const [open, setOpen] = useState(true);
 
@@ -84,33 +85,35 @@ const KeywordManager = ({ keywords, onChange, content }: Props) => {
 
       {open && (
         <div className="px-5 pb-5 border-t" style={{ borderColor: "#e5e7eb" }}>
-          {/* Keyword hinzufügen */}
-          <div className="flex gap-2 pt-4">
-            <input
-              type="text"
-              value={newKeyword}
-              onChange={(e) => setNewKeyword(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addKeyword())}
-              placeholder="Neues Keyword..."
-              className="flex-1 px-3 py-2 rounded-lg border text-sm outline-none"
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                borderColor: "#e5e7eb",
-                background: "#fafafa",
-              }}
-            />
-            <button
-              type="button"
-              onClick={addKeyword}
-              className="px-4 py-2 rounded-lg text-white text-sm font-medium transition-opacity hover:opacity-90"
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                background: "#B8956A",
-              }}
-            >
-              +
-            </button>
-          </div>
+          {/* Keyword hinzufügen (nur Admin) */}
+          {!readOnly && (
+            <div className="flex gap-2 pt-4">
+              <input
+                type="text"
+                value={newKeyword}
+                onChange={(e) => setNewKeyword(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addKeyword())}
+                placeholder="Neues Keyword..."
+                className="flex-1 px-3 py-2 rounded-lg border text-sm outline-none"
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  borderColor: "#e5e7eb",
+                  background: "#fafafa",
+                }}
+              />
+              <button
+                type="button"
+                onClick={addKeyword}
+                className="px-4 py-2 rounded-lg text-white text-sm font-medium transition-opacity hover:opacity-90"
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  background: "#B8956A",
+                }}
+              >
+                +
+              </button>
+            </div>
+          )}
 
           {/* Gefundene Keywords */}
           {found.length > 0 && (
@@ -152,14 +155,16 @@ const KeywordManager = ({ keywords, onChange, content }: Props) => {
                     >
                       {k.count}x
                     </span>
-                    <button
-                      type="button"
-                      onClick={() => removeKeyword(k.keyword)}
-                      className="ml-0.5 hover:text-red-500 transition-colors"
-                      title="Keyword entfernen"
-                    >
-                      ×
-                    </button>
+                    {!readOnly && (
+                      <button
+                        type="button"
+                        onClick={() => removeKeyword(k.keyword)}
+                        className="ml-0.5 hover:text-red-500 transition-colors"
+                        title="Keyword entfernen"
+                      >
+                        ×
+                      </button>
+                    )}
                   </span>
                 ))}
               </div>
@@ -196,14 +201,16 @@ const KeywordManager = ({ keywords, onChange, content }: Props) => {
                     }}
                   >
                     ✗ {k.keyword}
-                    <button
-                      type="button"
-                      onClick={() => removeKeyword(k.keyword)}
-                      className="ml-0.5 hover:text-red-700 transition-colors"
-                      title="Keyword entfernen"
-                    >
-                      ×
-                    </button>
+                    {!readOnly && (
+                      <button
+                        type="button"
+                        onClick={() => removeKeyword(k.keyword)}
+                        className="ml-0.5 hover:text-red-700 transition-colors"
+                        title="Keyword entfernen"
+                      >
+                        ×
+                      </button>
+                    )}
                   </span>
                 ))}
               </div>

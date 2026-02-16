@@ -101,7 +101,7 @@ const Kontakt = () => {
         </div>
       </section>
 
-      <HeroImage src="/images/hero-kontakt.webp" alt="Hochzeitsblumen — Schreibt mir eure Wünsche" credit="Sandra Grünewald" />
+      <HeroImage src="/images/hero-kontakt-brautstrauss.webp" alt="Brautstrauß — Schreibt mir eure Wünsche" credit="Jennifer Kalenberg" objectPosition="center calc(50% - 100px)" />
 
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">

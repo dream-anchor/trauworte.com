@@ -1,4 +1,5 @@
 import RichTextEditor from "./RichTextEditor";
+import KeywordBadges from "./KeywordBadges";
 
 export interface ContentSection {
   title: string;
@@ -112,6 +113,11 @@ const SectionEditor = ({ sections, onChange, keywords }: Props) => {
               </button>
             </div>
           </div>
+
+          {/* Keyword-Badges für diese Sektion */}
+          {keywords && keywords.length > 0 && (
+            <KeywordBadges keywords={keywords} text={section.title + " " + (section.titleAccent ?? "") + " " + section.content} />
+          )}
 
           <div className="grid grid-cols-2 gap-3">
             <div>

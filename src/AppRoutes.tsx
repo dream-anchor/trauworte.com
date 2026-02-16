@@ -32,6 +32,7 @@ const AdminPasswordGate = lazy(() => import("./components/admin/AdminPasswordGat
 const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
 const AdminPageEditor = lazy(() => import("./pages/admin/AdminPageEditor"));
 const AdminNavEditor = lazy(() => import("./pages/admin/AdminNavEditor"));
+const AdminTrash = lazy(() => import("./pages/admin/AdminTrash"));
 
 const AppRoutes = () => (
   <Routes>
@@ -78,7 +79,7 @@ const AppRoutes = () => (
     {/* Angebote Detail-Links von Startseite */}
     <Route path="/meine-angebote-freie-trauung/hochzeitsreden-traurednerin" element={<Navigate to="/hochzeitsreden-traurednerin" replace />} />
 
-    {/* Admin CMS (lazy-loaded) */}
+    {/* Admin CMS (lazy-loaded, gemeinsamer PasswordGate) */}
     <Route
       path="/admin"
       element={
@@ -88,7 +89,7 @@ const AppRoutes = () => (
       }
     />
     <Route
-      path="/admin/pages/:slug"
+      path="/admin/pages/*"
       element={
         <Suspense fallback={<div className="min-h-screen flex items-center justify-center" style={{ background: "#f3f4f6" }}><p style={{ fontFamily: "'Inter', sans-serif", color: "#9ca3af" }}>Lade...</p></div>}>
           <AdminPasswordGate><AdminPageEditor /></AdminPasswordGate>
@@ -100,6 +101,14 @@ const AppRoutes = () => (
       element={
         <Suspense fallback={<div className="min-h-screen flex items-center justify-center" style={{ background: "#f3f4f6" }}><p style={{ fontFamily: "'Inter', sans-serif", color: "#9ca3af" }}>Lade...</p></div>}>
           <AdminPasswordGate><AdminNavEditor /></AdminPasswordGate>
+        </Suspense>
+      }
+    />
+    <Route
+      path="/admin/trash"
+      element={
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center" style={{ background: "#f3f4f6" }}><p style={{ fontFamily: "'Inter', sans-serif", color: "#9ca3af" }}>Lade...</p></div>}>
+          <AdminPasswordGate><AdminTrash /></AdminPasswordGate>
         </Suspense>
       }
     />

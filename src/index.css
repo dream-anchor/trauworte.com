@@ -359,9 +359,10 @@
     font-weight: 500;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    padding: 16px 40px;
-    background: #B8956A;
-    color: #FDF4ED;
+    padding: 14px 36px;
+    background: #B8956A !important;
+    color: #FDF4ED !important;
+    border-radius: 9999px;
     transition: all 0.4s ease;
   }
 

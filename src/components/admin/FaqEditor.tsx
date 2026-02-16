@@ -1,4 +1,5 @@
 import RichTextEditor from "./RichTextEditor";
+import KeywordBadges from "./KeywordBadges";
 
 export interface FaqItem {
   question: string;
@@ -111,6 +112,11 @@ const FaqEditor = ({ items, onChange, keywords }: Props) => {
               </button>
             </div>
           </div>
+
+          {/* Keyword-Badges für diesen FAQ-Eintrag */}
+          {keywords && keywords.length > 0 && (
+            <KeywordBadges keywords={keywords} text={item.question + " " + item.answer} />
+          )}
 
           <input
             type="text"

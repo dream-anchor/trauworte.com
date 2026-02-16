@@ -1,8 +1,10 @@
 // API Client für Sick CMS
-// Phase 1: localStorage als Speicher
-// Phase 2: Cloudflare Workers API (Neon DB)
+// Spricht mit dem Cloudflare Worker (Neon DB)
 
-const STORAGE_PREFIX = "sickcms_";
+const API_BASE =
+  import.meta.env.VITE_API_URL || "https://trauworte-api.antoine-dfc.workers.dev";
+
+// ── Types ──
 
 export interface PageContent {
   page_slug: string;
@@ -13,6 +15,7 @@ export interface PageContent {
   seo_canonical?: string;
   keywords?: string[];
   updated_at?: string;
+  updated_by?: string;
 }
 
 export interface NavigationItem {
@@ -27,47 +30,90 @@ export interface NavigationData {
   updated_at?: string;
 }
 
+export interface HistoryEntry {
+  id: string;
+  page_slug: string;
+  snapshot: Record<string, unknown>;
+  changed_by?: string;
+  created_at: string;
+}
+
+// ── Helper ──
+
+async function api<T>(path: string, options?: RequestInit): Promise<T> {
+  const res = await fetch(`${API_BASE}${path}`, {
+    headers: { "Content-Type": "application/json" },
+    ...options,
+  });
+  if (!res.ok && res.status !== 404) {
+    throw new Error(`API ${res.status}: ${await res.text()}`);
+  }
+  return res.json();
+}
+
 // ── Pages ──
 
 export async function fetchPages(): Promise<PageContent[]> {
-  const pages: PageContent[] = [];
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    if (key?.startsWith(STORAGE_PREFIX + "page_")) {
-      try {
-        pages.push(JSON.parse(localStorage.getItem(key)!));
-      } catch { /* skip corrupt */ }
-    }
-  }
-  return pages.sort((a, b) => a.page_slug.localeCompare(b.page_slug));
+  return api<PageContent[]>("/api/pages");
 }
 
 export async function fetchPage(slug: string): Promise<PageContent | null> {
-  const raw = localStorage.getItem(STORAGE_PREFIX + "page_" + slug);
-  return raw ? JSON.parse(raw) : null;
+  const res = await fetch(`${API_BASE}/api/pages/${slug}`, {
+    headers: { "Content-Type": "application/json" },
+  });
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error(`API ${res.status}`);
+  return res.json();
 }
 
 export async function savePage(page: PageContent): Promise<PageContent> {
-  page.updated_at = new Date().toISOString();
-  localStorage.setItem(
-    STORAGE_PREFIX + "page_" + page.page_slug,
-    JSON.stringify(page)
-  );
-  return page;
+  return api<PageContent>(`/api/pages/${page.page_slug}`, {
+    method: "PUT",
+    body: JSON.stringify(page),
+  });
+}
+
+export async function deletePage(slug: string): Promise<void> {
+  await api(`/api/pages/${slug}`, { method: "DELETE" });
+}
+
+export async function restorePage(slug: string): Promise<PageContent> {
+  return api<PageContent>(`/api/pages/${slug}/restore`, { method: "PUT" });
+}
+
+export async function fetchTrash(): Promise<PageContent[]> {
+  return api<PageContent[]>("/api/pages/trash");
+}
+
+// ── History (Undo/Redo) ──
+
+export async function fetchHistory(slug: string): Promise<HistoryEntry[]> {
+  return api<HistoryEntry[]>(`/api/history/${slug}`);
+}
+
+export async function fetchHistoryEntry(slug: string, id: string): Promise<HistoryEntry | null> {
+  const res = await fetch(`${API_BASE}/api/history/${slug}/${id}`, {
+    headers: { "Content-Type": "application/json" },
+  });
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error(`API ${res.status}`);
+  return res.json();
 }
 
 // ── Navigation ──
 
 export async function fetchNavigation(key: string): Promise<NavigationData | null> {
-  const raw = localStorage.getItem(STORAGE_PREFIX + "nav_" + key);
-  return raw ? JSON.parse(raw) : null;
+  const res = await fetch(`${API_BASE}/api/navigation/${key}`, {
+    headers: { "Content-Type": "application/json" },
+  });
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error(`API ${res.status}`);
+  return res.json();
 }
 
 export async function saveNavigation(data: NavigationData): Promise<NavigationData> {
-  data.updated_at = new Date().toISOString();
-  localStorage.setItem(
-    STORAGE_PREFIX + "nav_" + data.nav_key,
-    JSON.stringify(data)
-  );
-  return data;
+  return api<NavigationData>(`/api/navigation/${data.nav_key}`, {
+    method: "PUT",
+    body: JSON.stringify(data),
+  });
 }

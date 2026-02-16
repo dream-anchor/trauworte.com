@@ -1,0 +1,10 @@
+name = "trauworte-api"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+
+[vars]
+ALLOWED_ORIGIN = "https://trauworte.com"
+
+# DATABASE_URL wird als Secret gesetzt:
+# wrangler secret put DATABASE_URL
+# Wert: postgresql://neondb_owner:npg_Y9joJuIEq2QM@ep-orange-moon-aglh6g8y-pooler.c-2.eu-central-1.aws.neon.tech/neondb?sslmode=require
