@@ -9,12 +9,19 @@ const AdminDashboard = () => {
   const { user } = useAuth();
   const [pages, setPages] = useState<PageContent[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchPages().then((p) => {
-      setPages(p);
-      setLoading(false);
-    });
+    fetchPages()
+      .then((p) => {
+        setPages(p);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("CMS API Error:", err);
+        setError(err.message || "Verbindung zur API fehlgeschlagen");
+        setLoading(false);
+      });
   }, []);
 
   // Tageszeit-Begrüßung
@@ -72,6 +79,32 @@ const AdminDashboard = () => {
           })}
         </p>
       </div>
+
+      {/* API-Fehler */}
+      {error && (
+        <div
+          className="mb-6 rounded-xl p-4 flex items-start gap-3"
+          style={{ background: "#fef2f2", border: "1px solid #fecaca" }}
+        >
+          <span style={{ color: "#ef4444", fontSize: "18px" }}>!</span>
+          <div>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "13px", fontWeight: 600, color: "#991b1b" }}>
+              API-Verbindung fehlgeschlagen
+            </p>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "12px", color: "#b91c1c", marginTop: "4px" }}>
+              {error}
+            </p>
+            <button
+              type="button"
+              onClick={() => { setLoading(true); setError(null); fetchPages().then((p) => { setPages(p); setLoading(false); }).catch((e) => { setError(e.message); setLoading(false); }); }}
+              className="mt-2 px-3 py-1 rounded-lg text-xs font-medium transition-colors hover:opacity-90"
+              style={{ fontFamily: "'Inter', sans-serif", background: "#B8956A", color: "#fff" }}
+            >
+              Erneut versuchen
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">

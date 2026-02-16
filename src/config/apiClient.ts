@@ -41,10 +41,11 @@ export interface HistoryEntry {
 // ── Helper ──
 
 async function api<T>(path: string, options?: RequestInit): Promise<T> {
-  const res = await fetch(`${API_BASE}${path}`, {
-    headers: { "Content-Type": "application/json" },
-    ...options,
-  });
+  const headers: Record<string, string> = {};
+  // Content-Type nur bei Requests mit Body (PUT/POST)
+  if (options?.body) headers["Content-Type"] = "application/json";
+
+  const res = await fetch(`${API_BASE}${path}`, { headers, ...options });
   if (!res.ok && res.status !== 404) {
     throw new Error(`API ${res.status}: ${await res.text()}`);
   }
@@ -58,9 +59,7 @@ export async function fetchPages(): Promise<PageContent[]> {
 }
 
 export async function fetchPage(slug: string): Promise<PageContent | null> {
-  const res = await fetch(`${API_BASE}/api/pages/${slug}`, {
-    headers: { "Content-Type": "application/json" },
-  });
+  const res = await fetch(`${API_BASE}/api/pages/${slug}`);
   if (res.status === 404) return null;
   if (!res.ok) throw new Error(`API ${res.status}`);
   return res.json();
@@ -92,9 +91,7 @@ export async function fetchHistory(slug: string): Promise<HistoryEntry[]> {
 }
 
 export async function fetchHistoryEntry(slug: string, id: string): Promise<HistoryEntry | null> {
-  const res = await fetch(`${API_BASE}/api/history/${slug}/${id}`, {
-    headers: { "Content-Type": "application/json" },
-  });
+  const res = await fetch(`${API_BASE}/api/history/${slug}/${id}`);
   if (res.status === 404) return null;
   if (!res.ok) throw new Error(`API ${res.status}`);
   return res.json();
@@ -103,9 +100,7 @@ export async function fetchHistoryEntry(slug: string, id: string): Promise<Histo
 // ── Navigation ──
 
 export async function fetchNavigation(key: string): Promise<NavigationData | null> {
-  const res = await fetch(`${API_BASE}/api/navigation/${key}`, {
-    headers: { "Content-Type": "application/json" },
-  });
+  const res = await fetch(`${API_BASE}/api/navigation/${key}`);
   if (res.status === 404) return null;
   if (!res.ok) throw new Error(`API ${res.status}`);
   return res.json();
