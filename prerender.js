@@ -107,7 +107,39 @@ async function prerender() {
     console.log("  → dist/CNAME");
   }
 
-  console.log(`\n✅ Prerender abgeschlossen: ${ROUTES.length + 1} Seiten generiert`);
+  // 7. Redirect-HTML für alte Slugs (SEO-freundlich, GitHub Pages hat kein .htaccess)
+  const REDIRECTS = [
+    { from: "/blog", to: "/magazin" },
+    { from: "/ueber-mich", to: "/ueber-traurednerin-stefanie" },
+    { from: "/angebote", to: "/meine-angebote-freie-trauung" },
+    { from: "/kontakt", to: "/freie-trauung-kontakt" },
+    { from: "/datenschutz", to: "/datenschutzerklaerung" },
+    { from: "/meine-angebote-freie-trauung/hochzeitsreden-traurednerin", to: "/hochzeitsreden-traurednerin" },
+  ];
+
+  for (const { from, to } of REDIRECTS) {
+    const absTo = `https://trauworte.com${to}`;
+    const redirectHtml = `<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Weiterleitung</title>
+<link rel="canonical" href="${absTo}">
+<meta http-equiv="refresh" content="0;url=${absTo}">
+<meta name="robots" content="noindex">
+</head>
+<body>
+<p>Diese Seite ist umgezogen: <a href="${absTo}">${absTo}</a></p>
+<script>window.location.replace("${absTo}");</script>
+</body>
+</html>`;
+    const redirectPath = path.resolve(__dirname, `dist${from}/index.html`);
+    fs.mkdirSync(path.dirname(redirectPath), { recursive: true });
+    fs.writeFileSync(redirectPath, redirectHtml);
+    console.log(`  ↳ Redirect: ${from} → ${to}`);
+  }
+
+  console.log(`\n✅ Prerender abgeschlossen: ${ROUTES.length + 1} Seiten + ${REDIRECTS.length} Redirects generiert`);
 }
 
 prerender().catch((err) => {
