@@ -5,9 +5,10 @@ import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
 import HeroImage from "@/components/HeroImage";
+import usePageContent from "@/hooks/usePageContent";
 
 /* ── FAQ ── */
-const faqItems = [
+const defaultFaqItems = [
   {
     q: "Was kostet eine Traurednerin in Bayern?",
     a: "Die Kosten für eine freie Trauung in Bayern variieren je nach Umfang und Leistungspaket. Mein Honorar umfasst immer ein persönliches Kennenlerngespräch, ein ausführliches Paargespräch, eine individuell geschriebene Traurede und die professionelle Durchführung eurer Zeremonie. Die Anfahrt innerhalb Bayerns ist im Preis inbegriffen. Schreibt mir für ein unverbindliches Angebot.",
@@ -33,16 +34,6 @@ const faqItems = [
     a: "Absolut! Ob Alm ohne Straßenanbindung, einsamer Bergsee oder die Fraueninsel im Chiemsee — ich komme überall hin. Die Anreise-Logistik besprechen wir gemeinsam im Vorfeld, damit am Tag eurer Hochzeit alles reibungslos läuft.",
   },
 ];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: { "@type": "Answer", text: item.a },
-  })),
-};
 
 const serviceSchema = {
   "@context": "https://schema.org",
@@ -115,13 +106,31 @@ const bodyStyle = { fontSize: "16px", fontWeight: 300 as const, lineHeight: 1.9,
 
 const TraurednerinBayern = () => {
   usePrerenderReady(true);
+  const cms = usePageContent("traurednerin-bayern");
+
+  const faqItems = cms.content.faq?.length
+    ? cms.content.faq.map((f) => ({ q: f.question || f.q || "", a: f.answer || f.a || "" }))
+    : defaultFaqItems;
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+
+  const hero = cms.content.hero;
+  const cta = cms.content.cta;
 
   return (
     <Layout>
       <SEO
-        title="Traurednerin Bayern – Freie Trauung am See & in den Bergen"
-        description="Eure Traurednerin für Bayern: Stefanie Sick gestaltet freie Trauungen am Starnberger See, Tegernsee, Chiemsee und in den Alpen. Persönlich & emotional."
-        canonical="/traurednerin-bayern"
+        title={cms.seoTitle || "Traurednerin Bayern – Freie Trauung am See & in den Bergen"}
+        description={cms.seoDescription || "Eure Traurednerin für Bayern: Stefanie Sick gestaltet freie Trauungen am Starnberger See, Tegernsee, Chiemsee und in den Alpen. Persönlich & emotional."}
+        canonical={cms.seoCanonical || "/traurednerin-bayern"}
       />
       <StructuredData
         type="breadcrumb"
@@ -138,7 +147,7 @@ const TraurednerinBayern = () => {
       {/* ═══ HERO ═══ */}
       <section style={{ backgroundColor: "#FCECDF" }} className="pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="container mx-auto px-5 sm:px-8 max-w-[800px] text-center">
-          <Label>Traurednerin in Bayern</Label>
+          <Label>{hero?.label || "Traurednerin in Bayern"}</Label>
           <h1
             className="font-display"
             style={{
@@ -152,9 +161,7 @@ const TraurednerinBayern = () => {
             <Accent>Eure freie Trauung am See, auf der Alm oder im Schloss</Accent>
           </h1>
           <p className="font-body max-w-[600px] mx-auto mt-6" style={bodyStyle}>
-            Von den Ufern des Starnberger Sees bis zu den Gipfeln der Alpen: Als eure
-            Traurednerin in Bayern gestalte ich Zeremonien, die so vielfältig und schön sind
-            wie der Freistaat selbst. Persönlich, emotional und unvergesslich.
+            {hero?.subtitle || "Von den Ufern des Starnberger Sees bis zu den Gipfeln der Alpen: Als eure Traurednerin in Bayern gestalte ich Zeremonien, die so vielfältig und schön sind wie der Freistaat selbst. Persönlich, emotional und unvergesslich."}
           </p>
         </div>
       </section>
@@ -446,17 +453,14 @@ const TraurednerinBayern = () => {
       <section style={{ backgroundColor: "#FBE9DA" }} className="py-20 md:py-28 grain">
         <div className="container mx-auto px-5 sm:px-8 max-w-[600px] text-center relative z-10">
           <SH2 center>
-            Eure Traumhochzeit in Bayern{" "}
-            <Accent>beginnt hier</Accent>
+            {cta?.title || "Eure Traumhochzeit in Bayern"}{" "}
+            <Accent>{cta?.titleAccent || "beginnt hier"}</Accent>
           </SH2>
           <p className="font-body mb-8" style={bodyStyle}>
-            Ihr plant eine freie Trauung in Bayern? Ob am Starnberger See, auf einer Alm
-            am Tegernsee oder in einem bayerischen Schloss — schreibt mir unverbindlich und
-            erzählt von euren Wünschen. Ich freue mich darauf, euch und eure Geschichte
-            kennenzulernen.
+            {cta?.text || "Ihr plant eine freie Trauung in Bayern? Ob am Starnberger See, auf einer Alm am Tegernsee oder in einem bayerischen Schloss — schreibt mir unverbindlich und erzählt von euren Wünschen. Ich freue mich darauf, euch und eure Geschichte kennenzulernen."}
           </p>
-          <Link to="/freie-trauung-kontakt" className="btn-gold inline-block">
-            Jetzt unverbindlich anfragen
+          <Link to={cta?.buttonLink || "/freie-trauung-kontakt"} className="btn-gold inline-block">
+            {cta?.buttonText || "Jetzt unverbindlich anfragen"}
           </Link>
 
           <div className="flex flex-wrap justify-center gap-4 mt-8">

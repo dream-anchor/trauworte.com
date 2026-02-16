@@ -5,9 +5,10 @@ import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
 import HeroImage from "@/components/HeroImage";
+import usePageContent from "@/hooks/usePageContent";
 
 /* ── FAQ ── */
-const faqItems = [
+const defaultFaqItems = [
   {
     q: "Was kostet eine freie Trauung in der Toskana?",
     a: "Die Kosten für eine freie Trauung in der Toskana hängen von Umfang, Location und Anreise ab. Mein Honorar als Traurednerin umfasst Vorbereitung, Paargespräch, individuelle Traurede und Zeremonie. Hinzu kommen Flug und Übernachtung. Schreibt mir für ein Angebot, das zu eurem Budget passt.",
@@ -29,16 +30,6 @@ const faqItems = [
     a: "Ich gestalte eure Zeremonie auf Deutsch. Wenn internationale Gäste dabei sind, kann ich einzelne Passagen so gestalten, dass sie auch ohne perfekte Deutschkenntnisse emotional mitgenommen werden — etwa durch universelle Gesten, Rituale und ein kurzes gedrucktes Programm in anderen Sprachen.",
   },
 ];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: { "@type": "Answer", text: item.a },
-  })),
-};
 
 const serviceSchema = {
   "@context": "https://schema.org",
@@ -107,12 +98,31 @@ const bodyStyle = { fontSize: "16px", fontWeight: 300 as const, lineHeight: 1.9,
 const FreieTrauungToskana = () => {
   usePrerenderReady(true);
 
+  const cms = usePageContent("freie-trauung-toskana");
+
+  const faqItems = cms.content.faq?.length
+    ? cms.content.faq.map((f) => ({ q: f.question || f.q || "", a: f.answer || f.a || "" }))
+    : defaultFaqItems;
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+
+  const hero = cms.content.hero;
+  const cta = cms.content.cta;
+
   return (
     <Layout>
       <SEO
-        title="Freie Trauung Toskana – Traurednerin Stefanie Sick"
-        description="Eure freie Trauung in der Toskana: Traurednerin Stefanie Sick gestaltet persönliche Zeremonien auf Weingütern, in Villen und unter toskanischer Sonne."
-        canonical="/freie-trauung-toskana"
+        title={cms.seoTitle || "Freie Trauung Toskana – Traurednerin Stefanie Sick"}
+        description={cms.seoDescription || "Eure freie Trauung in der Toskana: Traurednerin Stefanie Sick gestaltet persönliche Zeremonien auf Weingütern, in Villen und unter toskanischer Sonne."}
+        canonical={cms.seoCanonical || "/freie-trauung-toskana"}
       />
       <StructuredData
         type="breadcrumb"
@@ -129,7 +139,7 @@ const FreieTrauungToskana = () => {
       {/* ═══ HERO ═══ */}
       <section style={{ backgroundColor: "#FCECDF" }} className="pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="container mx-auto px-5 sm:px-8 max-w-[800px] text-center">
-          <Label>Destination Wedding</Label>
+          <Label>{hero?.label || "Destination Wedding"}</Label>
           <h1
             className="font-display"
             style={{
@@ -143,9 +153,7 @@ const FreieTrauungToskana = () => {
             <Accent>Eure Traurednerin für Italien</Accent>
           </h1>
           <p className="font-body max-w-[600px] mx-auto mt-6" style={bodyStyle}>
-            Weinberge, Zypressen und goldenes Licht: Als eure Traurednerin gestalte ich freie
-            Trauungen in der Toskana, die la dolce vita in jeder Silbe spüren lassen. Genuss,
-            Kultur und eure Liebe — vereint in einer Zeremonie, die unvergesslich bleibt.
+            {hero?.subtitle || "Weinberge, Zypressen und goldenes Licht: Als eure Traurednerin gestalte ich freie Trauungen in der Toskana, die la dolce vita in jeder Silbe spüren lassen. Genuss, Kultur und eure Liebe — vereint in einer Zeremonie, die unvergesslich bleibt."}
           </p>
         </div>
       </section>
@@ -474,16 +482,14 @@ const FreieTrauungToskana = () => {
       <section style={{ backgroundColor: "#FBE9DA" }} className="py-20 md:py-28 grain">
         <div className="container mx-auto px-5 sm:px-8 max-w-[600px] text-center relative z-10">
           <SH2 center>
-            Eure Traumhochzeit in der Toskana{" "}
-            <Accent>beginnt hier</Accent>
+            {cta?.title || "Eure Traumhochzeit in der Toskana"}{" "}
+            <Accent>{cta?.titleAccent || "beginnt hier"}</Accent>
           </SH2>
           <p className="font-body mb-8" style={bodyStyle}>
-            Sichert euch euren Wunschtermin — die beliebten Monate Mai bis Oktober sind schnell
-            vergeben! Schreibt mir unverbindlich und erzählt von euren Träumen. Ich freue mich
-            darauf, eure Hochzeit in der Toskana zu einem unvergesslichen Erlebnis zu machen.
+            {cta?.text || "Sichert euch euren Wunschtermin — die beliebten Monate Mai bis Oktober sind schnell vergeben! Schreibt mir unverbindlich und erzählt von euren Träumen. Ich freue mich darauf, eure Hochzeit in der Toskana zu einem unvergesslichen Erlebnis zu machen."}
           </p>
-          <Link to="/freie-trauung-kontakt" className="btn-gold inline-block">
-            Jetzt Toskana-Termin anfragen
+          <Link to={cta?.buttonLink || "/freie-trauung-kontakt"} className="btn-gold inline-block">
+            {cta?.buttonText || "Jetzt Toskana-Termin anfragen"}
           </Link>
 
           <div className="flex flex-wrap justify-center gap-4 mt-8">

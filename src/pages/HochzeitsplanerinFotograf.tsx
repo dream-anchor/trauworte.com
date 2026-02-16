@@ -4,16 +4,20 @@ import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import HeroImage from "@/components/HeroImage";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import usePageContent from "@/hooks/usePageContent";
 
 const HochzeitsplanerinFotograf = () => {
   usePrerenderReady(true);
+  const cms = usePageContent("hochzeitsplanerin-fotograf");
+  const hero = cms.content.hero;
+  const cta = cms.content.cta;
 
   return (
     <Layout>
       <SEO
-        title="Hochzeitsplanerin & Fotograf – Empfehlungen und Zusammenarbeit"
-        description="Hochzeitsplanerin, Fotograf und weitere Dienstleister – meine Empfehlungen für eure perfekte Hochzeit. Gemeinsam sorgen wir für einen unvergesslichen Tag."
-        canonical="/hochzeitsplanerin-fotograf"
+        title={cms.seoTitle || "Hochzeitsplanerin & Fotograf – Empfehlungen und Zusammenarbeit"}
+        description={cms.seoDescription || "Hochzeitsplanerin, Fotograf und weitere Dienstleister – meine Empfehlungen für eure perfekte Hochzeit. Gemeinsam sorgen wir für einen unvergesslichen Tag."}
+        canonical={cms.seoCanonical || "/hochzeitsplanerin-fotograf"}
       />
       <StructuredData
         type="breadcrumb"
@@ -31,7 +35,7 @@ const HochzeitsplanerinFotograf = () => {
             Hochzeitsplanerin &amp; Fotograf
           </h1>
           <p className="font-body mt-4 text-lg" style={{ color: "#111827" }}>
-            Empfehlungen und Zusammenarbeit für euren perfekten Hochzeitstag
+            {hero?.subtitle || "Empfehlungen und Zusammenarbeit für euren perfekten Hochzeitstag"}
           </p>
         </div>
       </section>
@@ -113,19 +117,18 @@ const HochzeitsplanerinFotograf = () => {
       <section style={{ backgroundColor: "#FBE9DA" }} className="py-16 md:py-24">
         <div className="container mx-auto px-4 max-w-3xl text-center space-y-6">
           <h2 className="font-display text-3xl md:text-4xl" style={{ color: "#111827" }}>
-            Empfehlungen gewünscht?
+            {cta?.title || "Empfehlungen gewünscht?"}
           </h2>
           <p className="font-body leading-relaxed" style={{ color: "#111827" }}>
-            Schreibt mir und erzählt mir, was ihr noch für eure Hochzeit braucht.
-            Ich teile gerne meine Empfehlungen mit euch.
+            {cta?.text || "Schreibt mir und erzählt mir, was ihr noch für eure Hochzeit braucht. Ich teile gerne meine Empfehlungen mit euch."}
           </p>
           <div className="pt-2">
             <Link
-              to="/freie-trauung-kontakt"
+              to={cta?.buttonLink || "/freie-trauung-kontakt"}
               className="inline-block font-body text-sm px-6 py-3 rounded-lg border transition-colors hover:bg-gray-100"
               style={{ borderColor: "#111827", color: "#111827" }}
             >
-              Jetzt unverbindlich anfragen
+              {cta?.buttonText || "Jetzt unverbindlich anfragen"}
             </Link>
           </div>
         </div>

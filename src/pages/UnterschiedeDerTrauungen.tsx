@@ -4,16 +4,20 @@ import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import HeroImage from "@/components/HeroImage";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import usePageContent from "@/hooks/usePageContent";
 
 const UnterschiedeDerTrauungen = () => {
   usePrerenderReady(true);
+  const cms = usePageContent("unterschiede-der-trauungen");
+  const hero = cms.content.hero;
+  const cta = cms.content.cta;
 
   return (
     <Layout>
       <SEO
-        title="Unterschiede der Trauungen – Standesamtlich, kirchlich, frei"
-        description="Standesamtliche, kirchliche oder freie Trauung? Erfahrt die Unterschiede und findet heraus, welche Zeremonie am besten zu euch passt."
-        canonical="/unterschiede-der-trauungen"
+        title={cms.seoTitle || "Unterschiede der Trauungen – Standesamtlich, kirchlich, frei"}
+        description={cms.seoDescription || "Standesamtliche, kirchliche oder freie Trauung? Erfahrt die Unterschiede und findet heraus, welche Zeremonie am besten zu euch passt."}
+        canonical={cms.seoCanonical || "/unterschiede-der-trauungen"}
       />
       <StructuredData
         type="breadcrumb"
@@ -28,10 +32,10 @@ const UnterschiedeDerTrauungen = () => {
       <section style={{ backgroundColor: "#FCECDF" }} className="py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-display text-4xl md:text-5xl" style={{ color: "#111827" }}>
-            Unterschiede der Trauungen
+            {hero?.label || "Unterschiede der Trauungen"}
           </h1>
           <p className="font-body mt-4 text-lg" style={{ color: "#111827" }}>
-            Standesamtlich, kirchlich oder frei – welche Trauung passt zu euch?
+            {hero?.subtitle || "Standesamtlich, kirchlich oder frei – welche Trauung passt zu euch?"}
           </p>
         </div>
       </section>
@@ -165,19 +169,18 @@ const UnterschiedeDerTrauungen = () => {
       <section style={{ backgroundColor: "#FBE9DA" }} className="py-16 md:py-24">
         <div className="container mx-auto px-4 max-w-3xl text-center space-y-6">
           <h2 className="font-display text-3xl md:text-4xl" style={{ color: "#111827" }}>
-            Eure freie Trauung mit TrauWorte
+            {cta?.title || "Eure freie Trauung mit TrauWorte"}
           </h2>
           <p className="font-body leading-relaxed" style={{ color: "#111827" }}>
-            Ihr wünscht euch eine individuelle und persönliche Zeremonie? Ich gestalte eure
-            freie Trauung genau so, wie ihr es euch vorstellt.
+            {cta?.text || "Ihr wünscht euch eine individuelle und persönliche Zeremonie? Ich gestalte eure freie Trauung genau so, wie ihr es euch vorstellt."}
           </p>
           <div className="pt-2">
             <Link
-              to="/freie-trauung-kontakt"
+              to={cta?.buttonLink || "/freie-trauung-kontakt"}
               className="inline-block font-body text-sm px-6 py-3 rounded-lg border transition-colors hover:bg-gray-100"
               style={{ borderColor: "#111827", color: "#111827" }}
             >
-              Jetzt unverbindlich anfragen
+              {cta?.buttonText || "Jetzt unverbindlich anfragen"}
             </Link>
           </div>
         </div>

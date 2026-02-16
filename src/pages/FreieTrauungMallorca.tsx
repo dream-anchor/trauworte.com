@@ -5,9 +5,10 @@ import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
 import HeroImage from "@/components/HeroImage";
+import usePageContent from "@/hooks/usePageContent";
 
 /* ── FAQ ── */
-const faqItems = [
+const defaultFaqItems = [
   {
     q: "Was kostet eine freie Trauung auf Mallorca?",
     a: "Die Kosten für eine freie Trauung auf Mallorca hängen vom Umfang eures Wunschpakets ab. Mein Honorar als Traurednerin umfasst Vorbereitung, Paargespräch, individuelle Traurede und Zeremonie. Hinzu kommen Reisekosten (Flug und Übernachtung). Schreibt mir für ein unverbindliches, maßgeschneidertes Angebot.",
@@ -33,19 +34,6 @@ const faqItems = [
     a: "Regen auf Mallorca ist in der Hochzeitssaison selten, aber wir planen immer einen Plan B. Ob überdachte Terrasse, eleganter Festsaal oder romantisches Zelt — gemeinsam mit eurer Location finden wir die perfekte Lösung, damit eure freie Trauung bei jedem Wetter wunderschön wird.",
   },
 ];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.a,
-    },
-  })),
-};
 
 const serviceSchema = {
   "@context": "https://schema.org",
@@ -125,12 +113,31 @@ const bodyStyle = { fontSize: "16px", fontWeight: 300 as const, lineHeight: 1.9,
 const FreieTrauungMallorca = () => {
   usePrerenderReady(true);
 
+  const cms = usePageContent("freie-trauung-mallorca");
+
+  const faqItems = cms.content.faq?.length
+    ? cms.content.faq.map((f) => ({ q: f.question || f.q || "", a: f.answer || f.a || "" }))
+    : defaultFaqItems;
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+
+  const hero = cms.content.hero;
+  const cta = cms.content.cta;
+
   return (
     <Layout>
       <SEO
-        title="Freie Trauung Mallorca – Traurednerin Stefanie Sick"
-        description="Eure freie Trauung auf Mallorca: Traurednerin Stefanie Sick gestaltet persönliche Zeremonien auf Fincas, am Strand und an den schönsten Orten der Insel."
-        canonical="/freie-trauung-mallorca"
+        title={cms.seoTitle || "Freie Trauung Mallorca – Traurednerin Stefanie Sick"}
+        description={cms.seoDescription || "Eure freie Trauung auf Mallorca: Traurednerin Stefanie Sick gestaltet persönliche Zeremonien auf Fincas, am Strand und an den schönsten Orten der Insel."}
+        canonical={cms.seoCanonical || "/freie-trauung-mallorca"}
       />
       <StructuredData
         type="breadcrumb"
@@ -147,7 +154,7 @@ const FreieTrauungMallorca = () => {
       {/* ═══ HERO ═══ */}
       <section style={{ backgroundColor: "#FCECDF" }} className="pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="container mx-auto px-5 sm:px-8 max-w-[800px] text-center">
-          <Label>Destination Wedding</Label>
+          <Label>{hero?.label || "Destination Wedding"}</Label>
           <h1
             className="font-display"
             style={{
@@ -161,9 +168,7 @@ const FreieTrauungMallorca = () => {
             <Accent>Eure Traurednerin für die Insel</Accent>
           </h1>
           <p className="font-body max-w-[600px] mx-auto mt-6" style={bodyStyle}>
-            Sonne, Meer und eure Liebe: Als eure Traurednerin gestalte ich freie Trauungen auf Mallorca,
-            die so traumhaft sind wie die Insel selbst. Mediterrane Atmosphäre, persönliche Worte und
-            eine Zeremonie, die ihr nie vergessen werdet.
+            {hero?.subtitle || "Sonne, Meer und eure Liebe: Als eure Traurednerin gestalte ich freie Trauungen auf Mallorca, die so traumhaft sind wie die Insel selbst. Mediterrane Atmosphäre, persönliche Worte und eine Zeremonie, die ihr nie vergessen werdet."}
           </p>
         </div>
       </section>
@@ -507,16 +512,14 @@ const FreieTrauungMallorca = () => {
       <section style={{ backgroundColor: "#FBE9DA" }} className="py-20 md:py-28 grain">
         <div className="container mx-auto px-5 sm:px-8 max-w-[600px] text-center relative z-10">
           <SH2 center>
-            Bereit für eure{" "}
-            <Accent>Traumhochzeit auf Mallorca?</Accent>
+            {cta?.title || "Bereit für eure"}{" "}
+            <Accent>{cta?.titleAccent || "Traumhochzeit auf Mallorca?"}</Accent>
           </SH2>
           <p className="font-body mb-8" style={bodyStyle}>
-            Ihr träumt von einer freien Trauung auf Mallorca? Sichert euch euren Wunschtermin und
-            schreibt mir unverbindlich. Ich freue mich darauf, eure Liebesgeschichte kennenzulernen und
-            eure Hochzeit auf der Insel zu einem unvergesslichen Erlebnis zu machen.
+            {cta?.text || "Ihr träumt von einer freien Trauung auf Mallorca? Sichert euch euren Wunschtermin und schreibt mir unverbindlich. Ich freue mich darauf, eure Liebesgeschichte kennenzulernen und eure Hochzeit auf der Insel zu einem unvergesslichen Erlebnis zu machen."}
           </p>
-          <Link to="/freie-trauung-kontakt" className="btn-gold inline-block">
-            Jetzt Mallorca-Termin anfragen
+          <Link to={cta?.buttonLink || "/freie-trauung-kontakt"} className="btn-gold inline-block">
+            {cta?.buttonText || "Jetzt Mallorca-Termin anfragen"}
           </Link>
 
           <div className="flex flex-wrap justify-center gap-4 mt-8">

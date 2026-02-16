@@ -5,9 +5,10 @@ import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
 import HeroImage from "@/components/HeroImage";
+import usePageContent from "@/hooks/usePageContent";
 
 /* ── FAQ ── */
-const faqItems = [
+const defaultFaqItems = [
   {
     q: "Wo in Italien bietet ihr freie Trauungen an?",
     a: "Ich gestalte freie Trauungen in ganz Italien — von der Toskana über den Gardasee bis an die Amalfiküste, nach Südtirol, an den Comer See oder nach Apulien. Die beliebtesten Regionen meiner Paare sind die Toskana und der Gardasee.",
@@ -29,16 +30,6 @@ const faqItems = [
     a: "Die beliebteste Zeit für eine freie Trauung in Italien ist Mai bis Oktober. Besonders schön sind Juni und September: Warm genug für eine Zeremonie unter freiem Himmel, aber angenehmer als im Hochsommer. Der Herbst verzaubert mit Weinlese und goldenem Licht.",
   },
 ];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: { "@type": "Answer", text: item.a },
-  })),
-};
 
 const serviceSchema = {
   "@context": "https://schema.org",
@@ -112,12 +103,31 @@ const bodyStyle = { fontSize: "16px", fontWeight: 300 as const, lineHeight: 1.9,
 const FreieTrauungItalien = () => {
   usePrerenderReady(true);
 
+  const cms = usePageContent("freie-trauung-italien");
+
+  const faqItems = cms.content.faq?.length
+    ? cms.content.faq.map((f) => ({ q: f.question || f.q || "", a: f.answer || f.a || "" }))
+    : defaultFaqItems;
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+
+  const hero = cms.content.hero;
+  const cta = cms.content.cta;
+
   return (
     <Layout>
       <SEO
-        title="Freie Trauung Italien – Destination Wedding mit Traurednerin"
-        description="Freie Trauung in Italien: Traurednerin Stefanie Sick gestaltet eure Zeremonie in der Toskana, am Gardasee, in Südtirol & an den schönsten Orten Italiens."
-        canonical="/freie-trauung-italien"
+        title={cms.seoTitle || "Freie Trauung Italien – Destination Wedding mit Traurednerin"}
+        description={cms.seoDescription || "Freie Trauung in Italien: Traurednerin Stefanie Sick gestaltet eure Zeremonie in der Toskana, am Gardasee, in Südtirol & an den schönsten Orten Italiens."}
+        canonical={cms.seoCanonical || "/freie-trauung-italien"}
       />
       <StructuredData
         type="breadcrumb"
@@ -134,7 +144,7 @@ const FreieTrauungItalien = () => {
       {/* ═══ HERO ═══ */}
       <section style={{ backgroundColor: "#FCECDF" }} className="pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="container mx-auto px-5 sm:px-8 max-w-[800px] text-center">
-          <Label>Destination Wedding Italien</Label>
+          <Label>{hero?.label || "Destination Wedding Italien"}</Label>
           <h1
             className="font-display"
             style={{
@@ -148,9 +158,7 @@ const FreieTrauungItalien = () => {
             <Accent>Eure Traurednerin für la dolce vita</Accent>
           </h1>
           <p className="font-body max-w-[600px] mx-auto mt-6" style={bodyStyle}>
-            Sonne, Genuss und unvergessliche Emotionen: Als eure Traurednerin gestalte ich freie
-            Trauungen in ganz Italien — von den Weinbergen der Toskana über die Ufer des Gardasees
-            bis zu den Bergdörfern Südtirols. Persönlich, emotional und voller Herz.
+            {hero?.subtitle || "Sonne, Genuss und unvergessliche Emotionen: Als eure Traurednerin gestalte ich freie Trauungen in ganz Italien — von den Weinbergen der Toskana über die Ufer des Gardasees bis zu den Bergdörfern Südtirols. Persönlich, emotional und voller Herz."}
           </p>
         </div>
       </section>
@@ -387,16 +395,14 @@ const FreieTrauungItalien = () => {
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28">
         <div className="container mx-auto px-5 sm:px-8 max-w-[600px] text-center">
           <SH2 center>
-            Eure Traumhochzeit in Italien{" "}
-            <Accent>beginnt hier</Accent>
+            {cta?.title || "Eure Traumhochzeit in Italien"}{" "}
+            <Accent>{cta?.titleAccent || "beginnt hier"}</Accent>
           </SH2>
           <p className="font-body mb-8" style={bodyStyle}>
-            Ihr träumt von einer freien Trauung in Italien? Schreibt mir unverbindlich und
-            erzählt von euren Vorstellungen. Ob Toskana, Gardasee, Südtirol oder eine andere
-            Region — ich freue mich darauf, eure italienische Hochzeit unvergesslich zu machen.
+            {cta?.text || "Ihr träumt von einer freien Trauung in Italien? Schreibt mir unverbindlich und erzählt von euren Vorstellungen. Ob Toskana, Gardasee, Südtirol oder eine andere Region — ich freue mich darauf, eure italienische Hochzeit unvergesslich zu machen."}
           </p>
-          <Link to="/freie-trauung-kontakt" className="btn-gold inline-block">
-            Jetzt Italien-Hochzeit anfragen
+          <Link to={cta?.buttonLink || "/freie-trauung-kontakt"} className="btn-gold inline-block">
+            {cta?.buttonText || "Jetzt Italien-Hochzeit anfragen"}
           </Link>
 
           <div className="flex flex-wrap justify-center gap-4 mt-8">

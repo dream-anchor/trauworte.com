@@ -14,6 +14,7 @@ import MusicSection from "@/components/MusicSection";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import useParallax from "@/hooks/useParallax";
+import usePageContent from "@/hooks/usePageContent";
 
 /* ── Bilder ── */
 const IMG_STEFANIE = "/images/traurednerin-stefanie-sick-portrait.webp";
@@ -128,13 +129,14 @@ const Reveal = ({
 const Index = () => {
   usePrerenderReady(true);
   const heroPx = useParallax(0.2);
+  const cms = usePageContent("startseite");
 
   return (
     <Layout>
       <SEO
-        title="Traurednerin München – Eure persönliche freie Trauung | TrauWorte"
-        description="Traurednerin Stefanie Sick gestaltet eure freie Trauung persönlich & emotional. Freie Hochzeiten in München, Bayern, Österreich, Schweiz & Europa."
-        canonical="/"
+        title={cms.seoTitle || "Traurednerin München – Eure persönliche freie Trauung | TrauWorte"}
+        description={cms.seoDescription || "Traurednerin Stefanie Sick gestaltet eure freie Trauung persönlich & emotional. Freie Hochzeiten in München, Bayern, Österreich, Schweiz & Europa."}
+        canonical={cms.seoCanonical || "/"}
         ogImage={IMG_STEFANIE}
       />
       <StructuredData type="homepage" />

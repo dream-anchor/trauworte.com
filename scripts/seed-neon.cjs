@@ -4,8 +4,12 @@
 const pg = require("pg");
 const fs = require("fs");
 
-const DB_URL =
-  "postgresql://neondb_owner:npg_Y9joJuIEq2QM@ep-orange-moon-aglh6g8y-pooler.c-2.eu-central-1.aws.neon.tech/neondb?sslmode=require";
+const DB_URL = process.env.DATABASE_URL;
+if (!DB_URL) {
+  console.error("DATABASE_URL Umgebungsvariable fehlt!");
+  console.error("Aufruf: DATABASE_URL='postgresql://...' node scripts/seed-neon.cjs");
+  process.exit(1);
+}
 
 const raw = fs.readFileSync(__dirname + "/../src/data/cmsSeedData.ts", "utf-8");
 

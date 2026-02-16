@@ -5,8 +5,9 @@ import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import HeroImage from "@/components/HeroImage";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import usePageContent from "@/hooks/usePageContent";
 
-const faqs = [
+const defaultFaqItems = [
   {
     frage: "Was ist eine freie Trauung?",
     antwort:
@@ -49,28 +50,35 @@ const faqs = [
   },
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((f) => ({
-    "@type": "Question",
-    name: f.frage,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: f.antwort,
-    },
-  })),
-};
-
 const HaeufigeFragen = () => {
   usePrerenderReady(true);
+  const cms = usePageContent("persoenliche-trauung-haeufige-fragen");
+  const hero = cms.content.hero;
+  const cta = cms.content.cta;
+
+  const faqs = cms.content.faq?.length
+    ? cms.content.faq.map((f) => ({ frage: f.question || f.q || "", antwort: f.answer || f.a || "" }))
+    : defaultFaqItems;
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.frage,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: f.antwort,
+      },
+    })),
+  };
 
   return (
     <Layout>
       <SEO
-        title="Häufige Fragen zur freien Trauung – FAQ"
-        description="Antworten auf die häufigsten Fragen zur freien Trauung: Was kostet sie? Wie läuft sie ab? Wo kann sie stattfinden? Alle Infos auf einen Blick."
-        canonical="/persoenliche-trauung-haeufige-fragen"
+        title={cms.seoTitle || "Häufige Fragen zur freien Trauung – FAQ"}
+        description={cms.seoDescription || "Antworten auf die häufigsten Fragen zur freien Trauung: Was kostet sie? Wie läuft sie ab? Wo kann sie stattfinden? Alle Infos auf einen Blick."}
+        canonical={cms.seoCanonical || "/persoenliche-trauung-haeufige-fragen"}
       />
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
@@ -97,7 +105,7 @@ const HaeufigeFragen = () => {
               marginBottom: "20px",
             }}
           >
-            Wissenswertes
+            {hero?.label || "Wissenswertes"}
           </p>
           <h1
             className="font-display"
@@ -123,7 +131,7 @@ const HaeufigeFragen = () => {
             className="font-body mt-4 max-w-[550px] mx-auto"
             style={{ fontSize: "16px", fontWeight: 300, lineHeight: 1.9, color: "#5C4A3A" }}
           >
-            Alles, was ihr über eine freie Trauung wissen müsst — ehrlich und auf den Punkt.
+            {hero?.subtitle || "Alles, was ihr über eine freie Trauung wissen müsst — ehrlich und auf den Punkt."}
           </p>
         </div>
       </section>
@@ -179,20 +187,19 @@ const HaeufigeFragen = () => {
               fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
             }}
           >
-            Noch Fragen?
+            {cta?.title || "Noch Fragen?"}
           </h2>
           <p
             className="font-body mt-4 mb-8"
             style={{ fontSize: "16px", fontWeight: 300, lineHeight: 1.9, color: "#5C4A3A" }}
           >
-            Wenn eure Frage hier nicht beantwortet wurde, schreibt mir gerne.
-            Ich nehme mir Zeit für euch und eure Anliegen.
+            {cta?.text || "Wenn eure Frage hier nicht beantwortet wurde, schreibt mir gerne. Ich nehme mir Zeit für euch und eure Anliegen."}
           </p>
           <Link
-            to="/freie-trauung-kontakt"
+            to={cta?.buttonLink || "/freie-trauung-kontakt"}
             className="btn-gold inline-block"
           >
-            Jetzt unverbindlich anfragen
+            {cta?.buttonText || "Jetzt unverbindlich anfragen"}
           </Link>
         </div>
       </section>

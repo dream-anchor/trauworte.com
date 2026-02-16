@@ -5,8 +5,9 @@ import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
 import HeroImage from "@/components/HeroImage";
+import usePageContent from "@/hooks/usePageContent";
 
-const faqItems = [
+const defaultFaqItems = [
   {
     q: "Wo finden freie Trauungen in München statt?",
     a: "München bietet wunderschöne Locations für eure freie Trauung: vom Englischen Garten über die Isarauen bis hin zu eleganten Schlossanlagen wie Schloss Nymphenburg oder Gut Kaltenbrunn. Auch der Starnberger See und der Tegernsee sind beliebte Orte für freie Trauungen in der Region München.",
@@ -29,28 +30,33 @@ const faqItems = [
   },
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.a,
-    },
-  })),
-};
-
 const TraurednerinMuenchen = () => {
   usePrerenderReady(true);
+  const cms = usePageContent("traurednerin-muenchen");
+
+  const faqItems = cms.content.faq?.length
+    ? cms.content.faq.map((f) => ({ q: f.question || f.q || "", a: f.answer || f.a || "" }))
+    : defaultFaqItems;
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+
+  const hero = cms.content.hero;
+  const cta = cms.content.cta;
 
   return (
     <Layout>
       <SEO
-        title="Traurednerin München – Freie Trauungen | TrauWorte"
-        description="Traurednerin Stefanie Sick gestaltet eure freie Trauung in München persönlich & emotional. Zeremonien am Starnberger See, Tegernsee & ganz Oberbayern."
-        canonical="/traurednerin-muenchen"
+        title={cms.seoTitle || "Traurednerin München – Freie Trauungen | TrauWorte"}
+        description={cms.seoDescription || "Traurednerin Stefanie Sick gestaltet eure freie Trauung in München persönlich & emotional. Zeremonien am Starnberger See, Tegernsee & ganz Oberbayern."}
+        canonical={cms.seoCanonical || "/traurednerin-muenchen"}
       />
       <StructuredData
         type="breadcrumb"
@@ -78,7 +84,7 @@ const TraurednerinMuenchen = () => {
               marginBottom: "20px",
             }}
           >
-            Traurednerin in München
+            {hero?.label || "Traurednerin in München"}
           </p>
           <h1
             className="font-display"
@@ -89,25 +95,20 @@ const TraurednerinMuenchen = () => {
               lineHeight: 1.15,
             }}
           >
-            Eure Traurednerin für{" "}
-            <span
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontStyle: "italic",
-                fontWeight: 300,
-                color: "#B8956A",
-              }}
-            >
-              freie Trauungen in München
-            </span>
+            {hero?.title
+              ? hero.title.split(hero.titleAccent || "").map((part, i, arr) =>
+                  i < arr.length - 1 ? (
+                    <span key={i}>{part}<span style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 300, color: "#B8956A" }}>{hero.titleAccent}</span></span>
+                  ) : (<span key={i}>{part}</span>)
+                )
+              : (<>Eure Traurednerin für{" "}<span style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 300, color: "#B8956A" }}>freie Trauungen in München</span></>)
+            }
           </h1>
           <p
             className="font-body max-w-[600px] mx-auto mt-6"
             style={{ fontSize: "16px", fontWeight: 300, lineHeight: 1.9, color: "#5C4A3A" }}
           >
-            Als eure Traurednerin in München gestalte ich Zeremonien, die so einzigartig sind wie eure
-            Liebesgeschichte. Persönlich, emotional und unvergesslich — an den schönsten Orten
-            Münchens und Oberbayerns.
+            {hero?.subtitle || "Als eure Traurednerin in München gestalte ich Zeremonien, die so einzigartig sind wie eure Liebesgeschichte. Persönlich, emotional und unvergesslich — an den schönsten Orten Münchens und Oberbayerns."}
           </p>
         </div>
       </section>
@@ -274,7 +275,7 @@ const TraurednerinMuenchen = () => {
               fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
             }}
           >
-            Traurednerin München{" "}
+            {cta?.title || "Traurednerin München"}{" "}
             <span
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
@@ -283,21 +284,20 @@ const TraurednerinMuenchen = () => {
                 color: "#B8956A",
               }}
             >
-              anfragen
+              {cta?.titleAccent || "anfragen"}
             </span>
           </h2>
           <p
             className="font-body mb-8"
             style={{ fontSize: "16px", fontWeight: 300, lineHeight: 1.9, color: "#5C4A3A" }}
           >
-            Ihr plant eine freie Trauung in München oder Oberbayern? Schreibt mir unverbindlich und
-            erzählt von euren Wünschen. Ich melde mich innerhalb von 24 Stunden bei euch zurück.
+            {cta?.text || "Ihr plant eine freie Trauung in München oder Oberbayern? Schreibt mir unverbindlich und erzählt von euren Wünschen. Ich melde mich innerhalb von 24 Stunden bei euch zurück."}
           </p>
           <Link
-            to="/freie-trauung-kontakt"
+            to={cta?.buttonLink || "/freie-trauung-kontakt"}
             className="btn-gold inline-block"
           >
-            Jetzt unverbindlich anfragen
+            {cta?.buttonText || "Jetzt unverbindlich anfragen"}
           </Link>
         </div>
       </section>

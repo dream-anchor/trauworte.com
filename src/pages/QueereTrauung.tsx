@@ -4,16 +4,20 @@ import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
 import HeroImage from "@/components/HeroImage";
+import usePageContent from "@/hooks/usePageContent";
 
 const QueereTrauung = () => {
   usePrerenderReady(true);
+  const cms = usePageContent("gleichgeschlechtliche-queer-und-diverse-trauung");
+  const hero = cms.content.hero;
+  const cta = cms.content.cta;
 
   return (
     <Layout>
       <SEO
-        title="Queere Trauung – Gleichgeschlechtliche und diverse Trauungszeremonie"
-        description="Freie Trauung für alle Paare – gleichgeschlechtlich, queer und divers. Liebe ist Liebe, und eure Zeremonie soll genau das widerspiegeln."
-        canonical="/gleichgeschlechtliche-queer-und-diverse-trauung"
+        title={cms.seoTitle || "Queere Trauung – Gleichgeschlechtliche und diverse Trauungszeremonie"}
+        description={cms.seoDescription || "Freie Trauung für alle Paare – gleichgeschlechtlich, queer und divers. Liebe ist Liebe, und eure Zeremonie soll genau das widerspiegeln."}
+        canonical={cms.seoCanonical || "/gleichgeschlechtliche-queer-und-diverse-trauung"}
       />
       <StructuredData
         type="breadcrumb"
@@ -28,10 +32,10 @@ const QueereTrauung = () => {
       <section style={{ backgroundColor: "#FCECDF" }} className="py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-display text-4xl md:text-5xl" style={{ color: "#111827" }}>
-            Queere Trauung
+            {hero?.label || "Queere Trauung"}
           </h1>
           <p className="font-body mt-4 text-lg" style={{ color: "#111827" }}>
-            Gleichgeschlechtliche und diverse Trauungszeremonien – Liebe ist Liebe
+            {hero?.subtitle || "Gleichgeschlechtliche und diverse Trauungszeremonien – Liebe ist Liebe"}
           </p>
         </div>
       </section>
@@ -128,19 +132,18 @@ const QueereTrauung = () => {
       <section style={{ backgroundColor: "#FBE9DA" }} className="py-16 md:py-24">
         <div className="container mx-auto px-4 max-w-3xl text-center space-y-6">
           <h2 className="font-display text-3xl md:text-4xl" style={{ color: "#111827" }}>
-            Eure Liebe – eure Zeremonie
+            {cta?.title || "Eure Liebe – eure Zeremonie"}
           </h2>
           <p className="font-body leading-relaxed" style={{ color: "#111827" }}>
-            Ich freue mich darauf, euch kennenzulernen und eure ganz besondere Zeremonie
-            zu gestalten. Schreibt mir – ganz unverbindlich.
+            {cta?.text || "Ich freue mich darauf, euch kennenzulernen und eure ganz besondere Zeremonie zu gestalten. Schreibt mir – ganz unverbindlich."}
           </p>
           <div className="pt-2">
             <Link
-              to="/freie-trauung-kontakt"
+              to={cta?.buttonLink || "/freie-trauung-kontakt"}
               className="inline-block font-body text-sm px-6 py-3 rounded-lg border transition-colors hover:bg-gray-100"
               style={{ borderColor: "#111827", color: "#111827" }}
             >
-              Jetzt unverbindlich anfragen
+              {cta?.buttonText || "Jetzt unverbindlich anfragen"}
             </Link>
           </div>
         </div>

@@ -6,6 +6,7 @@ import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import ContactForm from "@/components/ContactForm";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import usePageContent from "@/hooks/usePageContent";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import HeroImage from "@/components/HeroImage";
 
@@ -127,53 +128,29 @@ const Trauspruch = ({
   </blockquote>
 );
 
-/* ─── FAQ-Schema ─── */
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Wo werden Trausprüche in der freien Trauung verwendet?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Trausprüche können in verschiedenen Momenten der freien Trauung eingesetzt werden: als Teil der Traurede, als eigenständige Lesung durch Gäste oder Familie, als Einleitung zu den Ehegelübden, auf der Hochzeitseinladung oder auf Menükarten und Tischkärtchen.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Kann ich meinen eigenen Trauspruch schreiben?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Ja, eigene Trausprüche sind oft am berührendsten. Tipps: Haltet den Spruch kurz (1-3 Sätze), seid ehrlich und authentisch, und lest ihn laut vor, bevor ihr euch entscheidet.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Wie viele Trausprüche gehören in eine freie Trauung?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "In der Regel wirken 1-2 Trausprüche am stärksten. Qualität vor Quantität. Eure Traurednerin bettet den Spruch in die Traurede ein, sodass er zum emotionalen Höhepunkt der Zeremonie wird.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Muss ein Trauspruch religiös sein?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Nein. Bei einer freien Trauung gibt es keine Vorgaben. Weltliche, poetische, literarische oder ganz persönliche Trausprüche passen perfekt und spiegeln eure individuelle Zeremonie wider.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Dürfen Gäste einen Trauspruch vortragen?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Ja, das ist eine wunderschöne Möglichkeit, eure Gäste in die Zeremonie einzubinden. Als Lesung oder Fürsprache kann ein Trauspruch, vorgetragen von Freunden oder Familie, sehr berührend sein. Stimmt das Vorgehen am besten mit eurer Traurednerin ab.",
-      },
-    },
-  ],
-};
+/* ─── FAQ-Items (Default) ─── */
+const defaultFaqItems = [
+  {
+    q: "Wo werden Trausprüche in der freien Trauung verwendet?",
+    a: "Trausprüche können in verschiedenen Momenten der freien Trauung eingesetzt werden: als Teil der Traurede, als eigenständige Lesung durch Gäste oder Familie, als Einleitung zu den Ehegelübden, auf der Hochzeitseinladung oder auf Menükarten und Tischkärtchen.",
+  },
+  {
+    q: "Kann ich meinen eigenen Trauspruch schreiben?",
+    a: "Ja, eigene Trausprüche sind oft am berührendsten. Tipps: Haltet den Spruch kurz (1-3 Sätze), seid ehrlich und authentisch, und lest ihn laut vor, bevor ihr euch entscheidet.",
+  },
+  {
+    q: "Wie viele Trausprüche gehören in eine freie Trauung?",
+    a: "In der Regel wirken 1-2 Trausprüche am stärksten. Qualität vor Quantität. Eure Traurednerin bettet den Spruch in die Traurede ein, sodass er zum emotionalen Höhepunkt der Zeremonie wird.",
+  },
+  {
+    q: "Muss ein Trauspruch religiös sein?",
+    a: "Nein. Bei einer freien Trauung gibt es keine Vorgaben. Weltliche, poetische, literarische oder ganz persönliche Trausprüche passen perfekt und spiegeln eure individuelle Zeremonie wider.",
+  },
+  {
+    q: "Dürfen Gäste einen Trauspruch vortragen?",
+    a: "Ja, das ist eine wunderschöne Möglichkeit, eure Gäste in die Zeremonie einzubinden. Als Lesung oder Fürsprache kann ein Trauspruch, vorgetragen von Freunden oder Familie, sehr berührend sein. Stimmt das Vorgehen am besten mit eurer Traurednerin ab.",
+  },
+];
 
 /* ─── Article-Schema ─── */
 const articleSchema = {
@@ -217,13 +194,30 @@ const Reveal = ({
    ═══════════════════════════════════════════════════════════════ */
 const MagazinTrausprueche = () => {
   usePrerenderReady(true);
+  const cms = usePageContent("magazin/trausprueche-freie-trauung");
+  const hero = cms.content.hero;
+  const cta = cms.content.cta;
+
+  const faqItems = cms.content.faq?.length
+    ? cms.content.faq.map((f) => ({ q: f.question || f.q || "", a: f.answer || f.a || "" }))
+    : defaultFaqItems;
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
 
   return (
     <Layout>
       <SEO
-        title="Die schönsten Trausprüche für eure freie Trauung | TrauWorte"
-        description="50+ persönliche Trausprüche für eure freie Trauung: romantisch, modern, lustig oder poetisch. Traurednerin Stefanie Sick zeigt euch die schönsten Worte."
-        canonical="/magazin/trausprueche-freie-trauung"
+        title={cms.seoTitle || "Die schönsten Trausprüche für eure freie Trauung | TrauWorte"}
+        description={cms.seoDescription || "50+ persönliche Trausprüche für eure freie Trauung: romantisch, modern, lustig oder poetisch. Traurednerin Stefanie Sick zeigt euch die schönsten Worte."}
+        canonical={cms.seoCanonical || "/magazin/trausprueche-freie-trauung"}
       />
       <StructuredData
         type="breadcrumb"
@@ -244,7 +238,7 @@ const MagazinTrausprueche = () => {
         className="pt-32 pb-20 md:pt-40 md:pb-28 relative"
       >
         <div className="container mx-auto px-5 sm:px-8 max-w-[800px] text-center">
-          <Label>Inspiration</Label>
+          <Label>{hero?.label || "Inspiration"}</Label>
           <h1
             className="font-display"
             style={{
@@ -257,10 +251,7 @@ const MagazinTrausprueche = () => {
             <Accent>freie Trauung</Accent>
           </h1>
           <p className="font-body max-w-[600px] mx-auto mt-6" style={bodyStyle}>
-            Ob romantisch, modern, poetisch oder mit einem Augenzwinkern — ein
-            Trauspruch gibt eurer Zeremonie einen besonderen Rahmen. Als Traurednerin
-            webe ich den passenden Spruch in eure Traurede ein — so wird er zum
-            emotionalen Höhepunkt eures Tages.
+            {hero?.subtitle || "Ob romantisch, modern, poetisch oder mit einem Augenzwinkern — ein Trauspruch gibt eurer Zeremonie einen besonderen Rahmen. Als Traurednerin webe ich den passenden Spruch in eure Traurede ein — so wird er zum emotionalen Höhepunkt eures Tages."}
           </p>
         </div>
       </section>
@@ -732,8 +723,8 @@ const MagazinTrausprueche = () => {
           </Reveal>
 
           <div>
-            {faqSchema.mainEntity.map((faq, i) => (
-              <FAQItem key={i} frage={faq.name} antwort={faq.acceptedAnswer.text} index={i} />
+            {faqItems.map((faq, i) => (
+              <FAQItem key={i} frage={faq.q} antwort={faq.a} index={i} />
             ))}
           </div>
         </div>
@@ -743,7 +734,7 @@ const MagazinTrausprueche = () => {
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">
         <div className="container mx-auto px-5 sm:px-8 max-w-[800px] text-center">
           <Reveal>
-            <Label>Euer nächster Schritt</Label>
+            <Label>{cta?.title || "Euer nächster Schritt"}</Label>
             <h2
               className="font-display"
               style={{
@@ -755,15 +746,13 @@ const MagazinTrausprueche = () => {
               Ihr sucht die perfekten Worte für eure <Accent>Zeremonie</Accent>?
             </h2>
             <p className="font-body max-w-[550px] mx-auto mt-6 mb-8" style={bodyStyle}>
-              Als eure Traurednerin finde ich den Trauspruch, der eure Geschichte
-              erzählt — und webe ihn in eine Zeremonie, die euch und eure Gäste tief
-              berührt.
+              {cta?.text || "Als eure Traurednerin finde ich den Trauspruch, der eure Geschichte erzählt — und webe ihn in eine Zeremonie, die euch und eure Gäste tief berührt."}
             </p>
             <Link
-              to="/freie-trauung-kontakt"
+              to={cta?.buttonLink || "/freie-trauung-kontakt"}
               className="btn-gold inline-block"
             >
-              Jetzt unverbindlich anfragen
+              {cta?.buttonText || "Jetzt unverbindlich anfragen"}
             </Link>
 
             {/* Verwandte Beiträge */}

@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import usePageContent from "@/hooks/usePageContent";
 import HeroImage from "@/components/HeroImage";
 
 /* ── Helpers ── */
@@ -74,6 +75,9 @@ const preisfaktoren = [
 
 const TraurednerinPreise = () => {
   usePrerenderReady(true);
+  const cms = usePageContent("hochzeitsreden-traurednerin");
+  const hero = cms.content.hero;
+  const cta = cms.content.cta;
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -97,9 +101,9 @@ const TraurednerinPreise = () => {
   return (
     <Layout>
       <SEO
-        title="Traurednerin & Preise – Hochzeitsreden von TrauWorte"
-        description="Professionelle Hochzeitsreden und Trauungszeremonien von Stefanie Sick. Erfahrt mehr über Leistungen, Ablauf und Preise."
-        canonical="/hochzeitsreden-traurednerin"
+        title={cms.seoTitle || "Traurednerin & Preise – Hochzeitsreden von TrauWorte"}
+        description={cms.seoDescription || "Professionelle Hochzeitsreden und Trauungszeremonien von Stefanie Sick. Erfahrt mehr über Leistungen, Ablauf und Preise."}
+        canonical={cms.seoCanonical || "/hochzeitsreden-traurednerin"}
         schema={serviceSchema}
       />
       <StructuredData
@@ -114,7 +118,7 @@ const TraurednerinPreise = () => {
       {/* Hero */}
       <section style={{ backgroundColor: "#FCECDF" }} className="pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="container mx-auto px-5 sm:px-8 max-w-[900px] text-center">
-          <Label>Leistungen &amp; Preise</Label>
+          <Label>{hero?.label || "Leistungen & Preise"}</Label>
           <h1
             className="font-display"
             style={{
@@ -131,8 +135,7 @@ const TraurednerinPreise = () => {
             className="font-body max-w-[600px] mx-auto mt-6"
             style={{ fontSize: "16px", fontWeight: 300, lineHeight: 1.9, color: "#5C4A3A" }}
           >
-            Persönlich, emotional, unvergesslich — erfahrt, was in meiner
-            Leistung enthalten ist und wie wir gemeinsam eure Traumzeremonie gestalten.
+            {hero?.subtitle || "Persönlich, emotional, unvergesslich — erfahrt, was in meiner Leistung enthalten ist und wie wir gemeinsam eure Traumzeremonie gestalten."}
           </p>
         </div>
       </section>
@@ -288,18 +291,17 @@ const TraurednerinPreise = () => {
               fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
             }}
           >
-            Euer individuelles{" "}
-            <Accent>Angebot</Accent>
+            {cta?.title || "Euer individuelles"}{" "}
+            <Accent>{cta?.titleAccent || "Angebot"}</Accent>
           </h2>
           <p
             className="font-body mb-8"
             style={{ fontSize: "16px", fontWeight: 300, lineHeight: 1.9, color: "#5C4A3A" }}
           >
-            Schreibt mir und erzählt mir von euren Plänen. Ich erstelle euch ein
-            persönliches Angebot — unverbindlich und kostenlos.
+            {cta?.text || "Schreibt mir und erzählt mir von euren Plänen. Ich erstelle euch ein persönliches Angebot — unverbindlich und kostenlos."}
           </p>
-          <Link to="/freie-trauung-kontakt" className="btn-gold inline-block">
-            Jetzt unverbindlich anfragen
+          <Link to={cta?.buttonLink || "/freie-trauung-kontakt"} className="btn-gold inline-block">
+            {cta?.buttonText || "Jetzt unverbindlich anfragen"}
           </Link>
         </div>
       </section>

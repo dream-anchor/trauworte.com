@@ -4,16 +4,20 @@ import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import HeroImage from "@/components/HeroImage";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import usePageContent from "@/hooks/usePageContent";
 
 const ZeitlicherAblauf = () => {
   usePrerenderReady(true);
+  const cms = usePageContent("zeitlicher-ablauf-freie-trauung");
+  const hero = cms.content.hero;
+  const cta = cms.content.cta;
 
   return (
     <Layout>
       <SEO
-        title="Zeitlicher Ablauf einer freien Trauung"
-        description="So läuft eine freie Trauung ab: Von der Planung über die Zeremonie bis zum Auszug. Der zeitliche Ablauf Schritt für Schritt erklärt."
-        canonical="/zeitlicher-ablauf-freie-trauung"
+        title={cms.seoTitle || "Zeitlicher Ablauf einer freien Trauung"}
+        description={cms.seoDescription || "So läuft eine freie Trauung ab: Von der Planung über die Zeremonie bis zum Auszug. Der zeitliche Ablauf Schritt für Schritt erklärt."}
+        canonical={cms.seoCanonical || "/zeitlicher-ablauf-freie-trauung"}
       />
       <StructuredData
         type="breadcrumb"
@@ -28,10 +32,10 @@ const ZeitlicherAblauf = () => {
       <section style={{ backgroundColor: "#FBE9DA" }} className="py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-display text-4xl md:text-5xl" style={{ color: "#111827" }}>
-            Zeitlicher Ablauf
+            {hero?.label || "Zeitlicher Ablauf"}
           </h1>
           <p className="font-body mt-4 text-lg" style={{ color: "#111827" }}>
-            So läuft eine freie Trauung ab – Schritt für Schritt
+            {hero?.subtitle || "So läuft eine freie Trauung ab – Schritt für Schritt"}
           </p>
         </div>
       </section>
@@ -247,19 +251,18 @@ const ZeitlicherAblauf = () => {
       <section style={{ backgroundColor: "#FBE9DA" }} className="py-16 md:py-24">
         <div className="container mx-auto px-4 max-w-3xl text-center space-y-6">
           <h2 className="font-display text-3xl md:text-4xl" style={{ color: "#111827" }}>
-            Bereit für eure Planung?
+            {cta?.title || "Bereit für eure Planung?"}
           </h2>
           <p className="font-body leading-relaxed" style={{ color: "#111827" }}>
-            Schreibt mir und wir beginnen gemeinsam mit der Planung eurer
-            unvergesslichen Zeremonie.
+            {cta?.text || "Schreibt mir und wir beginnen gemeinsam mit der Planung eurer unvergesslichen Zeremonie."}
           </p>
           <div className="pt-2">
             <Link
-              to="/freie-trauung-kontakt"
+              to={cta?.buttonLink || "/freie-trauung-kontakt"}
               className="inline-block font-body text-sm px-6 py-3 rounded-lg border transition-colors hover:bg-gray-100"
               style={{ borderColor: "#111827", color: "#111827" }}
             >
-              Jetzt unverbindlich anfragen
+              {cta?.buttonText || "Jetzt unverbindlich anfragen"}
             </Link>
           </div>
         </div>

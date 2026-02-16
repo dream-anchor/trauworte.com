@@ -3,17 +3,19 @@ import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import ObfuscatedEmail from "@/components/ObfuscatedEmail";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import usePageContent from "@/hooks/usePageContent";
 import { Link } from "react-router-dom";
 
 const Impressum = () => {
   usePrerenderReady(true);
+  const cms = usePageContent("impressum");
 
   return (
     <Layout>
       <SEO
-        title="Impressum | TrauWorte"
-        description="Impressum von TrauWorte – Freie Rednerin Stefanie Sick. Angaben gemäß § 5 TMG."
-        canonical="/impressum"
+        title={cms.seoTitle || "Impressum | TrauWorte"}
+        description={cms.seoDescription || "Impressum von TrauWorte – Freie Rednerin Stefanie Sick. Angaben gemäß § 5 TMG."}
+        canonical={cms.seoCanonical || "/impressum"}
         noIndex
       />
       <StructuredData

@@ -5,9 +5,10 @@ import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
 import HeroImage from "@/components/HeroImage";
+import usePageContent from "@/hooks/usePageContent";
 
 /* ── FAQ ── */
-const faqItems = [
+const defaultFaqItems = [
   {
     q: "Reist die Traurednerin an den Gardasee?",
     a: "Ja! Der Gardasee ist von München aus in nur vier Stunden erreichbar. Ich reise für eure freie Trauung am Gardasee gerne an und bin am Vortag vor Ort, um die Location zu besichtigen, die Technik zu prüfen und alles in Ruhe vorzubereiten.",
@@ -29,16 +30,6 @@ const faqItems = [
     a: "Die schönste Zeit für eine freie Trauung am Gardasee ist Mai bis Oktober. Besonders beliebt sind Juni und September — warm genug für eine Outdoor-Zeremonie, aber angenehmer als im Hochsommer. Der Gardasee verzaubert aber auch im Frühling mit Zitronenblüte und im Herbst mit goldenem Licht über dem See.",
   },
 ];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: { "@type": "Answer", text: item.a },
-  })),
-};
 
 const serviceSchema = {
   "@context": "https://schema.org",
@@ -106,12 +97,31 @@ const bodyStyle = { fontSize: "16px", fontWeight: 300 as const, lineHeight: 1.9,
 const FreieTrauungGardasee = () => {
   usePrerenderReady(true);
 
+  const cms = usePageContent("freie-trauung-gardasee");
+
+  const faqItems = cms.content.faq?.length
+    ? cms.content.faq.map((f) => ({ q: f.question || f.q || "", a: f.answer || f.a || "" }))
+    : defaultFaqItems;
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+
+  const hero = cms.content.hero;
+  const cta = cms.content.cta;
+
   return (
     <Layout>
       <SEO
-        title="Freie Trauung Gardasee – Traurednerin Stefanie Sick"
-        description="Freie Trauung am Gardasee mit Traurednerin Stefanie Sick. Destination Weddings in Sirmione, Malcesine, Limone & an den schönsten Orten Norditaliens."
-        canonical="/freie-trauung-gardasee"
+        title={cms.seoTitle || "Freie Trauung Gardasee – Traurednerin Stefanie Sick"}
+        description={cms.seoDescription || "Freie Trauung am Gardasee mit Traurednerin Stefanie Sick. Destination Weddings in Sirmione, Malcesine, Limone & an den schönsten Orten Norditaliens."}
+        canonical={cms.seoCanonical || "/freie-trauung-gardasee"}
       />
       <StructuredData
         type="breadcrumb"
@@ -129,7 +139,7 @@ const FreieTrauungGardasee = () => {
       {/* ═══ HERO ═══ */}
       <section style={{ backgroundColor: "#FCECDF" }} className="pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="container mx-auto px-5 sm:px-8 max-w-[800px] text-center">
-          <Label>Destination Wedding</Label>
+          <Label>{hero?.label || "Destination Wedding"}</Label>
           <h1
             className="font-display"
             style={{
@@ -143,9 +153,7 @@ const FreieTrauungGardasee = () => {
             <Accent>Eure Traurednerin für Norditalien</Accent>
           </h1>
           <p className="font-body max-w-[600px] mx-auto mt-6" style={bodyStyle}>
-            Zypressen, Olivenhaine und türkisblaues Wasser: Als eure Traurednerin gestalte ich freie
-            Trauungen am Gardasee, die italienische Romantik und persönliche Worte vereinen —
-            eingerahmt von einer Kulisse zwischen See und Bergen.
+            {hero?.subtitle || "Zypressen, Olivenhaine und türkisblaues Wasser: Als eure Traurednerin gestalte ich freie Trauungen am Gardasee, die italienische Romantik und persönliche Worte vereinen — eingerahmt von einer Kulisse zwischen See und Bergen."}
           </p>
         </div>
       </section>
@@ -483,16 +491,14 @@ const FreieTrauungGardasee = () => {
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28">
         <div className="container mx-auto px-5 sm:px-8 max-w-[600px] text-center">
           <SH2 center>
-            Eure Traumhochzeit am Gardasee{" "}
-            <Accent>beginnt hier</Accent>
+            {cta?.title || "Eure Traumhochzeit am Gardasee"}{" "}
+            <Accent>{cta?.titleAccent || "beginnt hier"}</Accent>
           </SH2>
           <p className="font-body mb-8" style={bodyStyle}>
-            Ihr träumt von einer freien Trauung am Gardasee? Schreibt mir unverbindlich und
-            erzählt von euren Wünschen. Gemeinsam machen wir euren italienischen Hochzeitstraum
-            wahr — zwischen See, Bergen und Olivenhainen.
+            {cta?.text || "Ihr träumt von einer freien Trauung am Gardasee? Schreibt mir unverbindlich und erzählt von euren Wünschen. Gemeinsam machen wir euren italienischen Hochzeitstraum wahr — zwischen See, Bergen und Olivenhainen."}
           </p>
-          <Link to="/freie-trauung-kontakt" className="btn-gold inline-block">
-            Jetzt Gardasee-Hochzeit anfragen
+          <Link to={cta?.buttonLink || "/freie-trauung-kontakt"} className="btn-gold inline-block">
+            {cta?.buttonText || "Jetzt Gardasee-Hochzeit anfragen"}
           </Link>
 
           <div className="flex flex-wrap justify-center gap-4 mt-8">

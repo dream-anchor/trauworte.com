@@ -2,12 +2,16 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import usePageContent from "@/hooks/usePageContent";
 import { Link } from "react-router-dom";
 
 const HERO_IMG = "/images/traurednerin-stefanie-sick-portrait.webp";
 
 const UeberMich = () => {
   usePrerenderReady(true);
+  const cms = usePageContent("ueber-traurednerin-stefanie");
+  const hero = cms.content.hero;
+  const cta = cms.content.cta;
 
   const personSchema = {
     "@context": "https://schema.org",
@@ -27,9 +31,9 @@ const UeberMich = () => {
   return (
     <Layout>
       <SEO
-        title="Über mich – Stefanie Sick | TrauWorte"
-        description="Stefanie Sick – studierte Kommunikationswissenschaftlerin und Moderatorin mit 30 Jahren Erfahrung in der Medien- und Eventbranche. Freie Rednerin für persönliche Trauungszeremonien."
-        canonical="/ueber-traurednerin-stefanie"
+        title={cms.seoTitle || "Über mich – Stefanie Sick | TrauWorte"}
+        description={cms.seoDescription || "Stefanie Sick – studierte Kommunikationswissenschaftlerin und Moderatorin mit 30 Jahren Erfahrung in der Medien- und Eventbranche. Freie Rednerin für persönliche Trauungszeremonien."}
+        canonical={cms.seoCanonical || "/ueber-traurednerin-stefanie"}
         ogImage={HERO_IMG}
         schema={personSchema}
       />
@@ -54,7 +58,7 @@ const UeberMich = () => {
               marginBottom: "20px",
             }}
           >
-            Über mich
+            {hero?.label || "Über mich"}
           </p>
           <h1
             className="font-display"
@@ -119,8 +123,8 @@ const UeberMich = () => {
                 Unvergesslich!"
               </p>
               <div className="pt-4">
-                <Link to="/freie-trauung-kontakt" className="btn-gold inline-block">
-                  Lernt mich kennen
+                <Link to={cta?.buttonLink || "/freie-trauung-kontakt"} className="btn-gold inline-block">
+                  {cta?.buttonText || "Lernt mich kennen"}
                 </Link>
               </div>
             </div>

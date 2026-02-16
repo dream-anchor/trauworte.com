@@ -3,17 +3,21 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import usePageContent from "@/hooks/usePageContent";
 import HeroImage from "@/components/HeroImage";
 
 const BayrischTrachtTrauung = () => {
   usePrerenderReady(true);
+  const cms = usePageContent("bayrisch-tracht-trauung");
+  const hero = cms.content.hero;
+  const cta = cms.content.cta;
 
   return (
     <Layout>
       <SEO
-        title="Bayrisch & Tracht – Freie Trauung im bayerischen Stil"
-        description="Freie Trauung im bayerischen Stil mit Tracht und Dirndl. Erfahrt, wie eure Hochzeit bayerische Tradition und persönliche Zeremonie vereint."
-        canonical="/bayrisch-tracht-trauung"
+        title={cms.seoTitle || "Bayrisch & Tracht – Freie Trauung im bayerischen Stil"}
+        description={cms.seoDescription || "Freie Trauung im bayerischen Stil mit Tracht und Dirndl. Erfahrt, wie eure Hochzeit bayerische Tradition und persönliche Zeremonie vereint."}
+        canonical={cms.seoCanonical || "/bayrisch-tracht-trauung"}
       />
       <StructuredData
         type="breadcrumb"
@@ -28,10 +32,10 @@ const BayrischTrachtTrauung = () => {
       <section style={{ backgroundColor: "#FBE9DA" }} className="py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-display text-4xl md:text-5xl" style={{ color: "#111827" }}>
-            Bayrisch &amp; Tracht Trauung
+            {hero?.label || "Bayrisch & Tracht Trauung"}
           </h1>
           <p className="font-body mt-4 text-lg" style={{ color: "#111827" }}>
-            Freie Trauung im bayerischen Stil – Tradition trifft Individualität
+            {hero?.subtitle || "Freie Trauung im bayerischen Stil – Tradition trifft Individualität"}
           </p>
         </div>
       </section>
@@ -122,19 +126,18 @@ const BayrischTrachtTrauung = () => {
       <section style={{ backgroundColor: "#FBE9DA" }} className="py-16 md:py-24">
         <div className="container mx-auto px-4 max-w-3xl text-center space-y-6">
           <h2 className="font-display text-3xl md:text-4xl" style={{ color: "#111827" }}>
-            Servus! Lasst uns reden
+            {cta?.title || "Servus! Lasst uns reden"}
           </h2>
           <p className="font-body leading-relaxed" style={{ color: "#111827" }}>
-            Ihr plant eine Hochzeit im bayerischen Stil? Ich freue mich darauf, eure
-            Trauung mit Tradition, Herz und einer Prise bayerischem Charme zu gestalten.
+            {cta?.text || "Ihr plant eine Hochzeit im bayerischen Stil? Ich freue mich darauf, eure Trauung mit Tradition, Herz und einer Prise bayerischem Charme zu gestalten."}
           </p>
           <div className="pt-2">
             <Link
-              to="/freie-trauung-kontakt"
+              to={cta?.buttonLink || "/freie-trauung-kontakt"}
               className="inline-block font-body text-sm px-6 py-3 rounded-lg border transition-colors hover:bg-gray-100"
               style={{ borderColor: "#111827", color: "#111827" }}
             >
-              Jetzt unverbindlich anfragen
+              {cta?.buttonText || "Jetzt unverbindlich anfragen"}
             </Link>
           </div>
         </div>

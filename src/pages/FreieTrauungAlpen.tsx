@@ -5,9 +5,10 @@ import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
 import HeroImage from "@/components/HeroImage";
+import usePageContent from "@/hooks/usePageContent";
 
 /* ── FAQ ── */
-const faqItems = [
+const defaultFaqItems = [
   {
     q: "Wie kommt man mit Hochzeitskleid auf den Berg?",
     a: "Viele Berglocations sind bequem per Gondel oder Auto erreichbar. Für abgelegenere Almen empfehle ich ein leichteres Kleid für den Aufstieg und ein Umziehen vor Ort. Viele Brautpaare kombinieren Wanderschuhe mit Brautkleid — ein wunderbares Fotomotiv! Ich berate euch gerne zu den Möglichkeiten eurer Wunschlocation.",
@@ -29,16 +30,6 @@ const faqItems = [
     a: "Absolut! Winterhochzeiten in den Alpen sind magisch — verschneite Gipfel, Kerzenlicht und Glühwein nach der Zeremonie. Viele Berghütten und Schlösser bieten winterliche Trauungen mit beheizten Räumen und Panoramafenstern. Eine Winterhochzeit in den Bergen ist für Paare, die das Besondere suchen, ein unvergessliches Erlebnis.",
   },
 ];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: { "@type": "Answer", text: item.a },
-  })),
-};
 
 const serviceSchema = {
   "@context": "https://schema.org",
@@ -111,12 +102,31 @@ const bodyStyle = { fontSize: "16px", fontWeight: 300 as const, lineHeight: 1.9,
 const FreieTrauungAlpen = () => {
   usePrerenderReady(true);
 
+  const cms = usePageContent("freie-trauung-alpen");
+
+  const faqItems = cms.content.faq?.length
+    ? cms.content.faq.map((f) => ({ q: f.question || f.q || "", a: f.answer || f.a || "" }))
+    : defaultFaqItems;
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+
+  const hero = cms.content.hero;
+  const cta = cms.content.cta;
+
   return (
     <Layout>
       <SEO
-        title="Freie Trauung in den Alpen – Traurednerin Stefanie Sick"
-        description="Freie Trauung in den Alpen: Eure Traurednerin für Berghochzeiten in Bayern, Tirol und Salzburg. Auf Almen, Gipfeln und vor Bergpanorama."
-        canonical="/freie-trauung-alpen"
+        title={cms.seoTitle || "Freie Trauung in den Alpen – Traurednerin Stefanie Sick"}
+        description={cms.seoDescription || "Freie Trauung in den Alpen: Eure Traurednerin für Berghochzeiten in Bayern, Tirol und Salzburg. Auf Almen, Gipfeln und vor Bergpanorama."}
+        canonical={cms.seoCanonical || "/freie-trauung-alpen"}
       />
       <StructuredData
         type="breadcrumb"
@@ -133,7 +143,7 @@ const FreieTrauungAlpen = () => {
       {/* ═══ HERO ═══ */}
       <section style={{ backgroundColor: "#FCECDF" }} className="pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="container mx-auto px-5 sm:px-8 max-w-[800px] text-center">
-          <Label>Berghochzeit</Label>
+          <Label>{hero?.label || "Berghochzeit"}</Label>
           <h1
             className="font-display"
             style={{
@@ -147,9 +157,7 @@ const FreieTrauungAlpen = () => {
             <Accent>Eure Traurednerin für Berghochzeiten</Accent>
           </h1>
           <p className="font-body max-w-[600px] mx-auto mt-6" style={bodyStyle}>
-            Gipfelglück und Liebesversprechen: Als eure Traurednerin gestalte ich freie Trauungen
-            in den Alpen — auf Bergspitzen, Almwiesen und an kristallklaren Bergseen. Wo die
-            Weite der Berge euch den Atem raubt und eure Worte in der Stille widerhallen.
+            {hero?.subtitle || "Gipfelglück und Liebesversprechen: Als eure Traurednerin gestalte ich freie Trauungen in den Alpen — auf Bergspitzen, Almwiesen und an kristallklaren Bergseen. Wo die Weite der Berge euch den Atem raubt und eure Worte in der Stille widerhallen."}
           </p>
         </div>
       </section>
@@ -454,16 +462,14 @@ const FreieTrauungAlpen = () => {
       <section style={{ backgroundColor: "#FBE9DA" }} className="py-20 md:py-28 grain">
         <div className="container mx-auto px-5 sm:px-8 max-w-[600px] text-center relative z-10">
           <SH2 center>
-            Eure Traumhochzeit in den Alpen{" "}
-            <Accent>beginnt hier</Accent>
+            {cta?.title || "Eure Traumhochzeit in den Alpen"}{" "}
+            <Accent>{cta?.titleAccent || "beginnt hier"}</Accent>
           </SH2>
           <p className="font-body mb-8" style={bodyStyle}>
-            Ihr träumt von einer freien Trauung in den Bergen? Schreibt mir unverbindlich und
-            erzählt von eurer Vision. Ob Almhütte, Berggipfel oder Bergsee — gemeinsam finden
-            wir die perfekte Kulisse für euer Ja-Wort in den Alpen.
+            {cta?.text || "Ihr träumt von einer freien Trauung in den Bergen? Schreibt mir unverbindlich und erzählt von eurer Vision. Ob Almhütte, Berggipfel oder Bergsee — gemeinsam finden wir die perfekte Kulisse für euer Ja-Wort in den Alpen."}
           </p>
-          <Link to="/freie-trauung-kontakt" className="btn-gold inline-block">
-            Jetzt Berghochzeit anfragen
+          <Link to={cta?.buttonLink || "/freie-trauung-kontakt"} className="btn-gold inline-block">
+            {cta?.buttonText || "Jetzt Berghochzeit anfragen"}
           </Link>
 
           <div className="flex flex-wrap justify-center gap-4 mt-8">

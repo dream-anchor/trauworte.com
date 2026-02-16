@@ -2,16 +2,18 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import usePageContent from "@/hooks/usePageContent";
 
 const Datenschutz = () => {
   usePrerenderReady(true);
+  const cms = usePageContent("datenschutzerklaerung");
 
   return (
     <Layout>
       <SEO
-        title="Datenschutzerklärung | TrauWorte"
-        description="Datenschutzerklärung von TrauWorte – Freie Rednerin Stefanie Sick. Informationen zum Umgang mit personenbezogenen Daten."
-        canonical="/datenschutzerklaerung"
+        title={cms.seoTitle || "Datenschutzerklärung | TrauWorte"}
+        description={cms.seoDescription || "Datenschutzerklärung von TrauWorte – Freie Rednerin Stefanie Sick. Informationen zum Umgang mit personenbezogenen Daten."}
+        canonical={cms.seoCanonical || "/datenschutzerklaerung"}
         noIndex
       />
       <StructuredData

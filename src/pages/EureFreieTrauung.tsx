@@ -3,17 +3,21 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import usePageContent from "@/hooks/usePageContent";
 import HeroImage from "@/components/HeroImage";
 
 const EureFreieTrauung = () => {
   usePrerenderReady(true);
+  const cms = usePageContent("eure-freie-trauung");
+  const hero = cms.content.hero;
+  const cta = cms.content.cta;
 
   return (
     <Layout>
       <SEO
-        title="Eure freie Trauung – Was ist eine freie Trauung?"
-        description="Eine freie Trauung ist eine persönliche, konfessionslose Zeremonie, die ganz nach euren Wünschen gestaltet wird. Erfahrt, warum sie so besonders ist."
-        canonical="/eure-freie-trauung"
+        title={cms.seoTitle || "Eure freie Trauung – Was ist eine freie Trauung?"}
+        description={cms.seoDescription || "Eine freie Trauung ist eine persönliche, konfessionslose Zeremonie, die ganz nach euren Wünschen gestaltet wird. Erfahrt, warum sie so besonders ist."}
+        canonical={cms.seoCanonical || "/eure-freie-trauung"}
       />
       <StructuredData
         type="breadcrumb"
@@ -27,10 +31,10 @@ const EureFreieTrauung = () => {
       <section style={{ backgroundColor: "#FCECDF" }} className="py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-display text-4xl md:text-5xl" style={{ color: "#111827" }}>
-            Eure freie Trauung
+            {hero?.label || "Eure freie Trauung"}
           </h1>
           <p className="font-body mt-4 text-lg" style={{ color: "#111827" }}>
-            Was ist eine freie Trauung und warum ist sie so besonders?
+            {hero?.subtitle || "Was ist eine freie Trauung und warum ist sie so besonders?"}
           </p>
         </div>
       </section>
@@ -142,19 +146,18 @@ const EureFreieTrauung = () => {
       <section style={{ backgroundColor: "#FBE9DA" }} className="py-16 md:py-24">
         <div className="container mx-auto px-4 max-w-3xl text-center space-y-6">
           <h2 className="font-display text-3xl md:text-4xl" style={{ color: "#111827" }}>
-            Bereit für eure freie Trauung?
+            {cta?.title || "Bereit für eure freie Trauung?"}
           </h2>
           <p className="font-body leading-relaxed" style={{ color: "#111827" }}>
-            Lasst uns gemeinsam eure persönliche Zeremonie gestalten. Ich freue mich darauf,
-            euch und eure Liebesgeschichte kennenzulernen.
+            {cta?.text || "Lasst uns gemeinsam eure persönliche Zeremonie gestalten. Ich freue mich darauf, euch und eure Liebesgeschichte kennenzulernen."}
           </p>
           <div className="pt-2">
             <Link
-              to="/freie-trauung-kontakt"
+              to={cta?.buttonLink || "/freie-trauung-kontakt"}
               className="inline-block font-body text-sm px-6 py-3 rounded-lg border transition-colors hover:bg-gray-100"
               style={{ borderColor: "#111827", color: "#111827" }}
             >
-              Jetzt unverbindlich anfragen
+              {cta?.buttonText || "Jetzt unverbindlich anfragen"}
             </Link>
           </div>
         </div>

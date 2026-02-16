@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import usePageContent from "@/hooks/usePageContent";
 import HeroImage from "@/components/HeroImage";
 
 const angebote = [
@@ -64,6 +65,9 @@ const Label = ({ children }: { children: React.ReactNode }) => (
 
 const MeineAngebote = () => {
   usePrerenderReady(true);
+  const cms = usePageContent("meine-angebote-freie-trauung");
+  const hero = cms.content.hero;
+  const cta = cms.content.cta;
 
   const offersSchema = {
     "@context": "https://schema.org",
@@ -81,9 +85,9 @@ const MeineAngebote = () => {
   return (
     <Layout>
       <SEO
-        title="Meine Angebote – Freie Trauung und mehr"
-        description="Entdeckt meine 6 Angebote: Persönliche Trauungszeremonie, Moderation, Traurede, Beratung, Ehegelübde und Outdoor-Trauung. Für eure perfekte Hochzeit."
-        canonical="/meine-angebote-freie-trauung"
+        title={cms.seoTitle || "Meine Angebote – Freie Trauung und mehr"}
+        description={cms.seoDescription || "Entdeckt meine 6 Angebote: Persönliche Trauungszeremonie, Moderation, Traurede, Beratung, Ehegelübde und Outdoor-Trauung. Für eure perfekte Hochzeit."}
+        canonical={cms.seoCanonical || "/meine-angebote-freie-trauung"}
         schema={offersSchema}
       />
       <StructuredData
@@ -97,7 +101,7 @@ const MeineAngebote = () => {
       {/* Hero */}
       <section style={{ backgroundColor: "#FCECDF" }} className="pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="container mx-auto px-5 sm:px-8 max-w-[900px] text-center">
-          <Label>Leistungen &amp; Angebote</Label>
+          <Label>{hero?.label || "Leistungen & Angebote"}</Label>
           <h1
             className="font-display"
             style={{
@@ -114,8 +118,7 @@ const MeineAngebote = () => {
             className="font-body max-w-[600px] mx-auto mt-6"
             style={{ fontSize: "16px", fontWeight: 300, lineHeight: 1.9, color: "#5C4A3A" }}
           >
-            Freie Trauung, Moderation, Traurede und mehr —
-            alles für euren besonderen Tag, individuell auf euch zugeschnitten.
+            {hero?.subtitle || "Freie Trauung, Moderation, Traurede und mehr — alles für euren besonderen Tag, individuell auf euch zugeschnitten."}
           </p>
         </div>
       </section>
@@ -237,18 +240,17 @@ const MeineAngebote = () => {
               fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
             }}
           >
-            Welches Angebot passt{" "}
-            <Accent>zu euch?</Accent>
+            {cta?.title || "Welches Angebot passt"}{" "}
+            <Accent>{cta?.titleAccent || "zu euch?"}</Accent>
           </h2>
           <p
             className="font-body mb-8"
             style={{ fontSize: "16px", fontWeight: 300, lineHeight: 1.9, color: "#5C4A3A" }}
           >
-            Lasst uns in einem unverbindlichen Gespräch herausfinden,
-            wie ich euren besonderen Tag gestalten kann.
+            {cta?.text || "Lasst uns in einem unverbindlichen Gespräch herausfinden, wie ich euren besonderen Tag gestalten kann."}
           </p>
-          <Link to="/freie-trauung-kontakt" className="btn-gold inline-block">
-            Jetzt unverbindlich anfragen
+          <Link to={cta?.buttonLink || "/freie-trauung-kontakt"} className="btn-gold inline-block">
+            {cta?.buttonText || "Jetzt unverbindlich anfragen"}
           </Link>
         </div>
       </section>

@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
+import usePageContent from "@/hooks/usePageContent";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -23,6 +24,9 @@ const contactSchema = z.object({
 
 const Kontakt = () => {
   usePrerenderReady(true);
+  const cms = usePageContent("freie-trauung-kontakt");
+  const hero = cms.content.hero;
+
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -69,9 +73,9 @@ const Kontakt = () => {
   return (
     <Layout>
       <SEO
-        title="Kontakt – Trauungszeremonie anfragen | TrauWorte"
-        description="Kontaktiere Stefanie Sick für deine persönliche Trauungszeremonie. Fülle das Formular aus oder schreibe eine E-Mail."
-        canonical="/freie-trauung-kontakt"
+        title={cms.seoTitle || "Kontakt – Trauungszeremonie anfragen | TrauWorte"}
+        description={cms.seoDescription || "Kontaktiere Stefanie Sick für deine persönliche Trauungszeremonie. Fülle das Formular aus oder schreibe eine E-Mail."}
+        canonical={cms.seoCanonical || "/freie-trauung-kontakt"}
         schema={{
           "@context": "https://schema.org",
           "@type": "ContactPage",
@@ -96,8 +100,8 @@ const Kontakt = () => {
 
       <section className="py-20 bg-peach">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="font-display text-4xl md:text-5xl text-foreground">Kontakt</h1>
-          <p className="font-body text-muted-foreground mt-4">Ich freue mich auf eure Nachricht</p>
+          <h1 className="font-display text-4xl md:text-5xl text-foreground">{hero?.label || "Kontakt"}</h1>
+          <p className="font-body text-muted-foreground mt-4">{hero?.subtitle || "Ich freue mich auf eure Nachricht"}</p>
         </div>
       </section>
 

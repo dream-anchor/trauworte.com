@@ -5,9 +5,10 @@ import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 import usePrerenderReady from "@/hooks/usePrerenderReady";
 import HeroImage from "@/components/HeroImage";
+import usePageContent from "@/hooks/usePageContent";
 
 /* ── FAQ ── */
-const faqItems = [
+const defaultFaqItems = [
   {
     q: "Reist die Traurednerin nach Österreich?",
     a: "Ja! Als Traurednerin mit Sitz in München ist Österreich eines meiner liebsten Reiseziele. Salzburg erreiche ich in 90 Minuten, Tirol in gut zwei Stunden. Ich reise aber auch gerne ins Salzkammergut, nach Wien, Kärnten oder in die Steiermark — überall dorthin, wo eure Traumlocation wartet.",
@@ -33,16 +34,6 @@ const faqItems = [
     a: "Ich empfehle, eure Traurednerin 6 bis 12 Monate vor dem Hochzeitstermin zu buchen. Besonders in der Hochzeitssaison von Mai bis September sind die Wochenenden schnell vergeben. Beliebte Locations in Salzburg oder am Wolfgangsee sind oft frühzeitig ausgebucht — also lieber rechtzeitig anfragen.",
   },
 ];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: { "@type": "Answer", text: item.a },
-  })),
-};
 
 const serviceSchema = {
   "@context": "https://schema.org",
@@ -115,13 +106,31 @@ const bodyStyle = { fontSize: "16px", fontWeight: 300 as const, lineHeight: 1.9,
 
 const TraurednerinOesterreich = () => {
   usePrerenderReady(true);
+  const cms = usePageContent("traurednerin-oesterreich");
+
+  const faqItems = cms.content.faq?.length
+    ? cms.content.faq.map((f) => ({ q: f.question || f.q || "", a: f.answer || f.a || "" }))
+    : defaultFaqItems;
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+
+  const hero = cms.content.hero;
+  const cta = cms.content.cta;
 
   return (
     <Layout>
       <SEO
-        title="Freie Trauung Österreich – Traurednerin für Salzburg & Tirol"
-        description="Traurednerin Stefanie Sick für freie Trauungen in Österreich. Zeremonien in Salzburg, Tirol, am Wolfgangsee & im Salzkammergut — persönlich und emotional."
-        canonical="/traurednerin-oesterreich"
+        title={cms.seoTitle || "Freie Trauung Österreich – Traurednerin für Salzburg & Tirol"}
+        description={cms.seoDescription || "Traurednerin Stefanie Sick für freie Trauungen in Österreich. Zeremonien in Salzburg, Tirol, am Wolfgangsee & im Salzkammergut — persönlich und emotional."}
+        canonical={cms.seoCanonical || "/traurednerin-oesterreich"}
       />
       <StructuredData
         type="breadcrumb"
@@ -138,7 +147,7 @@ const TraurednerinOesterreich = () => {
       {/* ═══ HERO ═══ */}
       <section style={{ backgroundColor: "#FCECDF" }} className="pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="container mx-auto px-5 sm:px-8 max-w-[800px] text-center">
-          <Label>Traurednerin in Österreich</Label>
+          <Label>{hero?.label || "Traurednerin in Österreich"}</Label>
           <h1
             className="font-display"
             style={{
@@ -152,9 +161,7 @@ const TraurednerinOesterreich = () => {
             <Accent>Eure Traurednerin für Salzburg, Tirol und das Salzkammergut</Accent>
           </h1>
           <p className="font-body max-w-[600px] mx-auto mt-6" style={bodyStyle}>
-            Zwischen Alpengipfeln und Seenlandschaften: Als eure Traurednerin gestalte ich freie
-            Trauungen in Österreich, die so atemberaubend sind wie die Kulisse selbst — persönlich,
-            emotional und unvergesslich.
+            {hero?.subtitle || "Zwischen Alpengipfeln und Seenlandschaften: Als eure Traurednerin gestalte ich freie Trauungen in Österreich, die so atemberaubend sind wie die Kulisse selbst — persönlich, emotional und unvergesslich."}
           </p>
         </div>
       </section>
@@ -419,16 +426,14 @@ const TraurednerinOesterreich = () => {
       <section style={{ backgroundColor: "#FBE9DA" }} className="py-20 md:py-28 grain">
         <div className="container mx-auto px-5 sm:px-8 max-w-[600px] text-center relative z-10">
           <SH2 center>
-            Eure Traumhochzeit in Österreich{" "}
-            <Accent>beginnt hier</Accent>
+            {cta?.title || "Eure Traumhochzeit in Österreich"}{" "}
+            <Accent>{cta?.titleAccent || "beginnt hier"}</Accent>
           </SH2>
           <p className="font-body mb-8" style={bodyStyle}>
-            Ihr plant eine freie Trauung in Österreich? Ob in Salzburg, auf einer Alm in Tirol
-            oder am Wolfgangsee — schreibt mir unverbindlich und erzählt von euren Wünschen.
-            Ich freue mich darauf, euch und eure Geschichte kennenzulernen.
+            {cta?.text || "Ihr plant eine freie Trauung in Österreich? Ob in Salzburg, auf einer Alm in Tirol oder am Wolfgangsee — schreibt mir unverbindlich und erzählt von euren Wünschen. Ich freue mich darauf, euch und eure Geschichte kennenzulernen."}
           </p>
-          <Link to="/freie-trauung-kontakt" className="btn-gold inline-block">
-            Jetzt unverbindlich anfragen
+          <Link to={cta?.buttonLink || "/freie-trauung-kontakt"} className="btn-gold inline-block">
+            {cta?.buttonText || "Jetzt unverbindlich anfragen"}
           </Link>
 
           <div className="flex flex-wrap justify-center gap-4 mt-8">
