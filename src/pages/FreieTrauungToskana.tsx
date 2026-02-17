@@ -158,7 +158,7 @@ const FreieTrauungToskana = () => {
         </div>
       </section>
 
-      <HeroImage src="/images/hero-toskana.webp" alt="Toskana — Zypressenallee in der italienischen Landschaft" credit="Achim Ruhnau" />
+      <HeroImage src="/images/hero-toskana.webp" alt="Brautpaar umarmt sich im goldenen Feld bei Sonnenuntergang — Hochzeit in der Toskana" credit="ISKRA Photography" />
 
       {/* ═══ WARUM TOSKANA ═══ */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">

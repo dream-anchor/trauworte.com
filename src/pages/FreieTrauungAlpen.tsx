@@ -162,7 +162,7 @@ const FreieTrauungAlpen = () => {
         </div>
       </section>
 
-      <HeroImage src="/images/hero-alpen.webp" alt="Alpenpanorama — Berghochzeit in den Alpen" credit="Rey Emsen" />
+      <HeroImage src="/images/hero-alpen.webp" alt="Brautpaar umarmt sich vor Bergkulisse — Berghochzeit in den Alpen" credit="Micah & Sammie Chaffin" />
 
       {/* ═══ WARUM ALPEN ═══ */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">

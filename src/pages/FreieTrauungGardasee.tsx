@@ -158,7 +158,7 @@ const FreieTrauungGardasee = () => {
         </div>
       </section>
 
-      <HeroImage src="/images/hero-gardasee.webp" alt="Gardasee — Traumkulisse für Hochzeiten in Italien" credit="Claudio Gagliardini" />
+      <HeroImage src="/images/hero-gardasee.webp" alt="Brautpaar am Wasser bei Sonnenuntergang — Hochzeit am Gardasee" credit="Micah & Sammie Chaffin" />
 
       {/* ═══ WARUM GARDASEE ═══ */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">

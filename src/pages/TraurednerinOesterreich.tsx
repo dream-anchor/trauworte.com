@@ -166,7 +166,7 @@ const TraurednerinOesterreich = () => {
         </div>
       </section>
 
-      <HeroImage src="/images/hero-oesterreich.webp" alt="Österreichische Alpen — Bergsee-Kulisse für Trauungen" credit="Jannic Böhme" />
+      <HeroImage src="/images/hero-oesterreich.webp" alt="Brautpaar auf nebligem Berg — Romantische Hochzeit in Österreich" credit="Micah & Sammie Chaffin" />
 
       {/* ═══ WARUM ÖSTERREICH ═══ */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">

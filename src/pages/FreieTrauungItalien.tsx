@@ -163,7 +163,7 @@ const FreieTrauungItalien = () => {
         </div>
       </section>
 
-      <HeroImage src="/images/hero-italien.webp" alt="Italien — Landschaft für romantische freie Trauungen" credit="Claudio Carrozzo" />
+      <HeroImage src="/images/hero-italien.webp" alt="Brautpaar umarmt sich bei Sonnenuntergang — Hochzeit in Italien" credit="John Marfe Bitoon" />
 
       {/* ═══ WARUM ITALIEN ═══ */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">

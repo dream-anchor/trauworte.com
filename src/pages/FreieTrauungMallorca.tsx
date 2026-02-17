@@ -173,7 +173,7 @@ const FreieTrauungMallorca = () => {
         </div>
       </section>
 
-      <HeroImage src="/images/hero-mallorca.webp" alt="Mallorca — Mittelmeerküste für Destination Weddings" credit="Xiskya Valladares" />
+      <HeroImage src="/images/hero-mallorca.webp" alt="Brautpaar am Strand mit Traubogen — Hochzeit auf Mallorca" credit="Shoham Avisrur" />
 
       {/* ═══ WARUM MALLORCA ═══ */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">

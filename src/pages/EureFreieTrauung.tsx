@@ -39,7 +39,7 @@ const EureFreieTrauung = () => {
         </div>
       </section>
 
-      <HeroImage src="/images/hero-freie-trauung.webp" alt="Freie Trauung im Freien — Hochzeitszeremonie" credit="Hitesh Patel" />
+      <HeroImage src="/images/hero-freie-trauung.webp" alt="Hochzeitszeremonie im Freien — Freie Trauung unter freiem Himmel" credit="Alexander Mass" />
 
       {/* Was ist eine freie Trauung? */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-16 md:py-24">

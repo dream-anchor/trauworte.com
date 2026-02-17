@@ -113,7 +113,7 @@ const TraurednerinMuenchen = () => {
         </div>
       </section>
 
-      <HeroImage src="/images/hero-muenchen.webp" alt="Freie Trauung München — Blick auf die Frauenkirche" credit="Camilla Bundgaard" />
+      <HeroImage src="/images/hero-muenchen.webp" alt="Brautpaar umgeben von Grün — Elegante Hochzeit in München" credit="Samantha Gades" />
 
       {/* Haupttext */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">

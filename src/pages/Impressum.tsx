@@ -96,7 +96,7 @@ const Impressum = () => {
               <h2 className="font-display mb-4" style={{ color: "#1a1a1a", fontSize: "1.4rem" }}>
                 Umsatzsteuer
               </h2>
-              <p>Kleinunternehmerin gemäß § 19 UStG — es wird keine Umsatzsteuer ausgewiesen.</p>
+              <p>Freiberufliche Tätigkeit — es wird keine Umsatzsteuer-Identifikationsnummer benötigt.</p>
             </div>
 
             {/* Verantwortlich */}

@@ -166,7 +166,7 @@ const TraurednerinBayern = () => {
         </div>
       </section>
 
-      <HeroImage src="/images/hero-bayern.webp" alt="Bayerische Alpen — Traumkulisse für freie Trauungen" credit="Daniel Seßler" />
+      <HeroImage src="/images/hero-bayern.webp" alt="Brautpaar Hand in Hand auf grünem Hügel — Hochzeit in Bayern" credit="Micah & Sammie Chaffin" />
 
       {/* ═══ WARUM BAYERN ═══ */}
       <section style={{ backgroundColor: "#FDF4ED" }} className="py-20 md:py-28 grain">
