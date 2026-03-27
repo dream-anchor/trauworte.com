@@ -1,0 +1,3 @@
+# Legacy /de/ prefix redirects (alte Sprachstruktur)
+/de/ / 301
+/de/* /:splat 301
