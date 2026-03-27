@@ -108,13 +108,13 @@ async function prerender() {
   }
 
   // 7. Redirect-HTML für alte Slugs (SEO-freundlich, GitHub Pages hat kein .htaccess)
+  // NICHT: /blog und /meine-angebote-freie-trauung/hochzeitsreden-traurednerin
+  // → Diese werden über _redirects (301) gehandelt, nicht über statische HTML
   const REDIRECTS = [
-    { from: "/blog", to: "/magazin" },
     { from: "/ueber-mich", to: "/ueber-traurednerin-stefanie" },
     { from: "/angebote", to: "/meine-angebote-freie-trauung" },
     { from: "/kontakt", to: "/freie-trauung-kontakt" },
     { from: "/datenschutz", to: "/datenschutzerklaerung" },
-    { from: "/meine-angebote-freie-trauung/hochzeitsreden-traurednerin", to: "/hochzeitsreden-traurednerin" },
   ];
 
   for (const { from, to } of REDIRECTS) {

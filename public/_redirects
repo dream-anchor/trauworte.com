@@ -2,8 +2,8 @@
 /de/ / 301
 /de/* /:splat 301
 
-# Moved pages (301, forced über statische Dateien)
-/blog /magazin/ 301!
-/blog/ /magazin/ 301!
-/meine-angebote-freie-trauung/hochzeitsreden-traurednerin /hochzeitsreden-traurednerin/ 301!
-/meine-angebote-freie-trauung/hochzeitsreden-traurednerin/ /hochzeitsreden-traurednerin/ 301!
+# Moved pages (301 via Cloudflare Pages _redirects)
+/blog /magazin/ 301
+/blog/ /magazin/ 301
+/meine-angebote-freie-trauung/hochzeitsreden-traurednerin /hochzeitsreden-traurednerin/ 301
+/meine-angebote-freie-trauung/hochzeitsreden-traurednerin/ /hochzeitsreden-traurednerin/ 301
