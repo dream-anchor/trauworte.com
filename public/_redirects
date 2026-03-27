@@ -1,3 +1,9 @@
 # Legacy /de/ prefix redirects (alte Sprachstruktur)
 /de/ / 301
 /de/* /:splat 301
+
+# Moved pages (301 statt React Navigate — vermeidet noindex bei meta-refresh)
+/blog /magazin 301
+/blog/ /magazin/ 301
+/meine-angebote-freie-trauung/hochzeitsreden-traurednerin /hochzeitsreden-traurednerin/ 301
+/meine-angebote-freie-trauung/hochzeitsreden-traurednerin/ /hochzeitsreden-traurednerin/ 301
