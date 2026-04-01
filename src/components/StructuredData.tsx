@@ -26,6 +26,10 @@ const mainSchema = {
   image: `${BASE_URL}/images/traurednerin-stefanie-sick-portrait.webp`,
   address: {
     "@type": "PostalAddress",
+    streetAddress: "Nördliche Münchner Straße 27a",
+    postalCode: "82031",
+    addressLocality: "Grünwald",
+    addressRegion: "Bayern",
     addressCountry: "DE",
   },
   areaServed: [
@@ -64,17 +68,20 @@ const localBusinessSchema = {
   image: `${BASE_URL}/images/traurednerin-stefanie-sick-portrait.webp`,
   address: {
     "@type": "PostalAddress",
-    addressLocality: "München",
+    streetAddress: "Nördliche Münchner Straße 27a",
+    postalCode: "82031",
+    addressLocality: "Grünwald",
     addressRegion: "Bayern",
     addressCountry: "DE",
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 48.1351,
-    longitude: 11.582,
+    latitude: 48.0465,
+    longitude: 11.5195,
   },
   areaServed: [
     { "@type": "City", name: "München" },
+    { "@type": "City", name: "Grünwald" },
     { "@type": "State", name: "Bayern" },
     { "@type": "Country", name: "Deutschland" },
     { "@type": "Country", name: "Österreich" },
@@ -103,9 +110,20 @@ const personSchema = {
   "@type": "Person",
   name: "Stefanie Sick",
   jobTitle: "Freie Traurednerin",
+  description:
+    "Stefanie Sick ist freie Traurednerin aus Grünwald bei München für persönliche und emotionale freie Trauungen in Bayern, Österreich und Europa.",
   worksFor: { "@id": `${BASE_URL}/#organization` },
   url: `${BASE_URL}/ueber-traurednerin-stefanie`,
   image: `${BASE_URL}/images/traurednerin-stefanie-sick-portrait.webp`,
+  sameAs: [
+    "https://stefaniesick.com",
+    "https://www.linkedin.com/in/stefaniesick",
+    "https://www.instagram.com/stefanie.sick",
+  ],
+  nationality: {
+    "@type": "Country",
+    name: "Deutschland",
+  },
   knowsAbout: [
     "Freie Trauung",
     "Traurede",

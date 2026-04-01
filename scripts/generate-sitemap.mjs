@@ -20,8 +20,7 @@ const PAGES = [
   { slug: "freie-trauung-kontakt", priority: "0.9", changefreq: "monthly" },
   { slug: "ueber-traurednerin-stefanie", priority: "0.8", changefreq: "monthly" },
   { slug: "magazin", priority: "0.6", changefreq: "weekly" },
-  { slug: "impressum", priority: "0.3", changefreq: "yearly" },
-  { slug: "datenschutzerklaerung", priority: "0.3", changefreq: "yearly" },
+  // impressum + datenschutzerklaerung entfernt: haben noindex, dürfen nicht in Sitemap
   { slug: "traurednerin-muenchen", priority: "0.8", changefreq: "monthly" },
   { slug: "traurednerin-bayern", priority: "0.8", changefreq: "monthly" },
   { slug: "traurednerin-oesterreich", priority: "0.8", changefreq: "monthly" },
